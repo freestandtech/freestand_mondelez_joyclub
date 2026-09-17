@@ -1,77 +1,350 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<title>FreeStand × Mondelez — Demo Hub</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Lexend+Deca:wght@400;500;600&display=swap" rel="stylesheet">
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Snapshot · what this demo covers</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--brand:#052762;--brand2:#0A49B7;--accent:#FA6600;--bg:#EDF1F8;--line:#DDE3EE}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;height:100%;overflow:hidden;font-family:'Poppins',Arial,sans-serif;background:var(--bg);color:#1a1a1a}
-a{color:var(--brand)}a:hover{color:var(--accent)}
-#hub{display:flex;height:100vh;overflow:hidden}
-#hub-side{width:290px;flex-shrink:0;background:linear-gradient(180deg,#052762,#0A49B7);color:#fff;display:flex;flex-direction:column;transition:width .22s ease;position:relative}
-#hub.collapsed #hub-side{width:56px}
-#hub.collapsed .hub-brand{padding:20px 0 16px;align-items:center}
-#hub.collapsed .hub-lock{flex-direction:column;gap:8px}
-#hub.collapsed .hub-lock .x{display:none}
-#hub.collapsed .hub-brand .s,#hub.collapsed #hub-side-list,#hub.collapsed .hub-foot{display:none}
-#hub.collapsed .hub-lock img{display:none}
-#hub.collapsed .hub-lock img.m{display:block;height:auto;width:34px}
-#hub.collapsed .hub-brand{border-bottom-color:rgba(255,255,255,0.1)}
-#hub-toggle{position:absolute;top:29px;right:-11px;z-index:5;width:22px;height:22px;border-radius:999px;border:none;background:#fff;color:#052762;box-shadow:0 2px 8px rgba(5,39,98,0.3);cursor:pointer;font-size:11px;line-height:1;display:flex;align-items:center;justify-content:center;font-family:inherit;padding:0}
-#hub-toggle:hover{background:var(--accent);color:#fff}
-.hub-brand{padding:24px 20px 18px;display:flex;flex-direction:column;gap:11px;border-bottom:1px solid rgba(255,255,255,0.13)}
-.hub-lock{display:flex;align-items:center;gap:11px}
-.hub-lock img{height:17px;width:auto;filter:brightness(0) invert(1)}
-.hub-lock img.m{height:34px;opacity:0.95}
-.hub-lock .x{font-size:11px;opacity:0.38;font-weight:300}
-.hub-brand .s{font-size:8.5px;letter-spacing:2.4px;text-transform:uppercase;opacity:0.45;white-space:nowrap}
-#hub-side-list{flex:1;overflow-y:auto;padding-bottom:18px}
-.hub-group{padding:16px 20px 6px;font-size:9.5px;letter-spacing:2px;text-transform:uppercase;opacity:0.45;font-weight:700}
-.hub-item{padding:9px 18px;display:flex;align-items:center;gap:10px;font-size:13px;cursor:pointer;color:rgba(255,255,255,0.78);border-left:3px solid transparent;line-height:1.3}
-.hub-item:hover{background:rgba(255,255,255,0.06)}
-.hub-item.active{background:rgba(255,255,255,0.10);color:#fff;font-weight:700;border-left-color:var(--accent)}
-.hub-item .dot{width:6px;height:6px;border-radius:999px;background:rgba(255,255,255,0.3);flex-shrink:0}
-.hub-item.active .dot{background:var(--accent)}
-.hub-foot{padding:14px 20px;border-top:1px solid rgba(255,255,255,0.15);font-size:10.5px;line-height:1.6;opacity:0.55}
-.hub-foot img{height:20px;filter:brightness(0) invert(1);opacity:0.8;margin-bottom:8px;display:block}
-#hub-main{flex:1;display:flex;flex-direction:column;min-width:0}
-#hub-stage{flex:1;display:flex;align-items:center;justify-content:center;padding:26px 30px 12px;min-height:0}
-.hub-frame{position:relative;width:100%;max-width:1280px;max-height:100%;background:#fff;border-radius:8px;box-shadow:0 18px 50px rgba(5,39,98,0.18);overflow:hidden}
-.hub-frame iframe{border:none;display:block}
-.hub-embed{width:100%;height:100%;border:none;border-radius:8px;background:#fff;box-shadow:0 18px 50px rgba(5,39,98,0.18)}
-.hub-empty{font-size:14px;color:#5a678c;background:#fff;border:1px dashed #B8C4DD;border-radius:10px;padding:40px 60px}
-#hub-bar{display:flex;align-items:center;gap:16px;padding:10px 30px 20px;max-width:1340px;width:100%;margin:0 auto}
-#hub-bar button{background:var(--brand);color:#fff;border:none;border-radius:6px;padding:9px 18px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit}
-#hub-bar button:disabled{background:#c3cbdd;cursor:not-allowed}
-#hub-counter{font-family:monospace;font-size:12px;color:#5a678c;min-width:64px;text-align:center}
-#hub-label{flex:1;font-size:12.5px;color:#43507a;text-align:center;min-height:16px}
-</style>
-</head>
-<body>
-<div id="hub">
-  <div id="hub-side">
-    <button id="hub-toggle" title="Collapse menu">‹</button>
-    <div class="hub-brand"><div class="hub-lock"><img src="mdlz/lite-fs-logo.png" alt="FreeStand"/><span class="x">×</span><img class="m" src="mdlz/lite-mdlz-logo.png" alt="Mondelez"/></div><div class="s">Demo of Demos</div></div>
-    <div id="hub-side-list"></div>
-    <div class="hub-foot">← → keys step through each demo.<br>Pick a demo above to start.</div>
-  </div>
-  <div id="hub-main">
-    <div id="hub-stage"></div>
-    <div id="hub-bar">
-      <button id="hub-prev">← Previous</button>
-      <div id="hub-counter" style="display:none"></div>
-      <div id="hub-label"></div>
-      <button id="hub-next">Next →</button>
-    </div>
-  </div>
+*{box-sizing:border-box}html,body{margin:0;padding:0;width:1280px;height:832px;overflow:hidden;font-family:Inter,Arial,sans-serif;background:#F7F8FB;color:#111827;-webkit-font-smoothing:antialiased}
+a{color:#0A49B7}a:hover{color:#E4A400}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes dashmove{to{stroke-dashoffset:-28}}
+#topbar{display:none}
+#topbar img.md{height:40px;background:#fff;border-radius:9px;padding:4px}
+#topbar img.fs{height:25px;filter:brightness(0) invert(1);margin-left:auto}
+#topbar .t{color:#fff;font-size:20px;font-weight:600;letter-spacing:-0.2px}
+#caption{display:none}
+#caption .tag{background:#E4A400;color:#0B1F3F;border-radius:7px;padding:6px 12px;font-size:12px;font-weight:700;letter-spacing:1.1px}
+#caption .tt{font-size:19px;font-weight:600}
+#caption .ss{margin-left:auto;font-size:14px;font-weight:500;opacity:0.85}
+/* how-it-works rail */
+#hiw{position:absolute;left:26px;top:26px;width:236px;bottom:24px}
+#hiw .lbl{font-size:11px;font-weight:700;letter-spacing:1.6px;color:#98A2B3;margin-bottom:18px}
+.hs{display:flex;align-items:center;gap:14px;cursor:pointer}
+.hs .n{width:42px;height:42px;border-radius:12px;border:1.5px solid #E3E7EF;background:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#98A2B3;flex-shrink:0;transition:all 0.25s}
+.hs .nm{font-size:18px;font-weight:600;color:#98A2B3;letter-spacing:-0.3px;transition:color 0.25s}
+.hs .sub{font-size:11.5px;color:#6B7280;margin-top:2px;font-weight:500}
+.hs.on .nm{font-weight:700}
+.hs.on .sub{color:#475467}
+.conn{height:40px;margin-left:20px;border-left:2px dotted #DCE2EC}
+/* content pane */
+#pane{position:absolute;left:298px;right:26px;top:22px;bottom:24px;display:flex;flex-direction:column}
+#eyebrow{font-size:11.5px;font-weight:700;letter-spacing:1.8px}
+#h1{font-size:37px;font-weight:800;letter-spacing:-1.2px;line-height:1.12;margin-top:7px;max-width:940px}
+#h1 em{font-style:normal}
+#sub{font-size:14px;color:#5B6472;margin-top:8px;font-weight:500;line-height:1.5;max-width:900px}
+#body{flex:1;min-height:0;margin-top:16px}
+.grid{display:grid;gap:12px;height:100%}
+.tile{background:#fff;border:1px solid #E3E7EF;border-radius:16px;padding:15px 16px;display:flex;flex-direction:column;animation:fadeInUp 0.4s both;position:relative;overflow:hidden;min-height:0}
+.tile .ico{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tile .t{font-size:16.5px;font-weight:700;margin-top:12px;letter-spacing:-0.3px;line-height:1.25;flex-shrink:0}
+.tile .s{font-size:13px;color:#5B6472;margin-top:6px;font-weight:500;line-height:1.45;flex-shrink:0;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.tile .s + .chip{}
+.tile .chip{margin-top:auto;padding-top:12px;display:flex;flex-wrap:wrap;gap:5px;overflow:hidden;flex-shrink:0}
+.tile .chip span{font-size:11px;font-weight:700;border-radius:6px;padding:4px 8px}
+.stat{background:#fff;border:1px solid #E3E7EF;border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;justify-content:center;animation:fadeInUp 0.4s both}
+.stat{padding:8px 12px!important;justify-content:center}
+.stat .v{font-size:36px;font-weight:800;letter-spacing:-1.6px;line-height:1}
+.stat .l{font-size:12.5px;color:#5B6472;font-weight:600;margin-top:6px}
+.stat .d{font-size:11.5px;color:#98A2B3;margin-top:3px;font-weight:500}
+.quote{background:#fff;border:1px solid #E3E7EF;border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;animation:fadeInUp 0.4s both}
+.quote .q{font-size:13px;color:#1F2937;line-height:1.55;font-weight:500}
+.quote .who{font-size:11.5px;color:#98A2B3;margin-top:auto;padding-top:10px;font-weight:600}
+.live{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:700;letter-spacing:0.6px;border-radius:999px;padding:4px 9px;background:#E9FBF0;color:#128C4A;position:absolute;right:13px;top:13px}
+.live b{width:6px;height:6px;border-radius:999px;background:#22C55E;display:inline-block}
+.shot{background:#fff;border:1px solid #E3E7EF;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;animation:fadeInUp 0.4s both;min-height:0;box-shadow:0 3px 12px rgba(11,31,63,0.07)}
+.shot .sh-im{flex:1;min-height:0;position:relative;overflow:hidden;background:#F1F4F9}
+.shot .sh-im img{position:absolute;left:0;top:0;width:100%;height:auto;display:block}
+.shot .sh-cp{flex-shrink:0;padding:10px 13px 12px;border-top:1px solid #F1F3F8}
+.shots4 .shot{border-radius:11px;box-shadow:0 2px 8px rgba(11,31,63,0.06)}
+.shots4 .sh-cp{padding:6px 9px 7px}
+.shots4 .sh-cp .t{font-size:11.5px;font-weight:800;letter-spacing:-0.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shots4 .sh-cp .s{font-size:9px;font-weight:600;margin-top:1px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shots4 .last{background:linear-gradient(150deg,#B4591B,#8A3F0C);border:none;color:#fff;padding:12px 13px;justify-content:center;gap:5px}
+.shots4 .last .k{font-size:9px;font-weight:800;letter-spacing:1.2px;opacity:.85}
+.shots4 .last .v{font-size:13px;font-weight:800;line-height:1.25;letter-spacing:-0.2px}
+.shots4 .last .l{font-size:9.5px;font-weight:600;opacity:.9;line-height:1.35}
+.shots4 .sh-im img{width:100%}
+.dplay{display:grid;grid-template-columns:1fr 236px;gap:12px;flex:1;min-height:0}
+.dscr{position:relative;border:1px solid #E6EAF2;border-radius:13px;background:#F4F6FA;overflow:hidden;box-shadow:0 10px 28px rgba(11,31,63,.09)}
+.dscr .win{position:absolute;inset:0;display:flex;flex-direction:column}
+.dscr .wbar{flex-shrink:0;height:26px;display:flex;align-items:center;gap:6px;padding:0 11px;background:#fff;border-bottom:1px solid #EDF0F6}
+.dscr .wbar i{width:7px;height:7px;border-radius:999px;background:#DDE3EE}
+.dscr .wbar span{margin-left:8px;font-size:9.5px;font-weight:700;letter-spacing:.7px;color:#98A3BA}
+.dscr .stack{position:relative;flex:1;min-height:0;background:#fff}
+.dscr .stack img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:contain;object-position:50% 0;opacity:0;transition:opacity .42s ease}
+.dscr .stack img.on{opacity:1}
+.dspot{position:absolute;height:74px;border-radius:999px;border:2.5px solid #B4591B;box-shadow:0 0 0 4px rgba(180,89,27,.13);transition:left .5s cubic-bezier(.4,0,.2,1),top .5s cubic-bezier(.4,0,.2,1),width .5s ease;pointer-events:none;animation:spotPulse 1.9s ease-in-out infinite}
+@keyframes spotPulse{0%,100%{box-shadow:0 0 0 4px rgba(180,89,27,.13)}50%{box-shadow:0 0 0 11px rgba(180,89,27,.07)}}
+.dmodal{transition:opacity .3s ease,transform .3s ease;position:absolute;right:12px;bottom:11px;width:270px;background:#fff;border:1px solid #E6EAF2;border-radius:12px;box-shadow:0 16px 40px rgba(11,31,63,.22);padding:11px 14px 12px}
+.dmodal b{display:block;font-size:13px;font-weight:800;letter-spacing:-.35px;margin-top:4px;line-height:1.25}
+.dmodal p{margin:4px 0 0;font-size:10.5px;line-height:1.38;color:#6B7280;font-weight:500}
+.dmodal .k{font-size:8.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:#B4591B}
+.dtabs{display:flex;flex-direction:column;gap:8px;min-height:0}
+.dtab{flex:1;text-align:left;border:1px solid #E6EAF2;background:#fff;border-radius:11px;padding:10px 12px;cursor:pointer;font-family:inherit;transition:border-color .2s,box-shadow .2s,background .2s;display:flex;flex-direction:column;justify-content:center;gap:3px}
+.dtab .n{font-size:8.5px;font-weight:800;letter-spacing:1.4px;color:#A9B3C7}
+.dtab .t{font-size:12.5px;font-weight:800;letter-spacing:-.3px;color:#0E1729}
+.dtab .s{font-size:10.5px;font-weight:600;line-height:1.35;color:#8992A5}
+.dtab.on{background:#FDF1E6;border-color:#B4591B;box-shadow:0 6px 16px rgba(180,89,27,.14)}
+.dtab.on .n{color:#B4591B}
+.dnote{border:1px dashed #E0C4A8;background:#FFFBF7;border-radius:11px;padding:9px 12px;font-size:10.5px;line-height:1.4;font-weight:600;color:#8A5A2B;flex-shrink:0}
+.shot .sh-cp .t{font-size:14.5px;font-weight:800;letter-spacing:-0.3px}
+.shot .sh-cp .s{font-size:11.5px;color:#6B7280;font-weight:600;margin-top:2px}
+.lgwall{flex-shrink:0;background:#fff;border:1px solid #E3E7EF;border-radius:14px;padding:8px 14px;animation:fadeInUp 0.4s 0.35s both}
+.lgwall .k{font-size:9px;font-weight:800;letter-spacing:1.4px;color:#9AA3B2;text-transform:uppercase;margin-bottom:6px}
+.lgwall .l{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:10px;align-items:center;justify-items:center}
+.lgwall .l img{height:22px;width:100%;max-width:70px;object-fit:contain}
+.vt{background:#fff;border:1px solid #E3E7EF;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;animation:fadeInUp 0.4s both;min-height:0;position:relative}
+.vt .im{flex:1;min-height:0;position:relative;overflow:hidden;background:#F1F4F9}
+.vt .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 34%}
+.vt .cap{flex-shrink:0;padding:10px 13px 11px;display:grid;grid-template-columns:auto 1fr;gap:2px 8px;align-items:center}
+.vt .cap .d{width:8px;height:8px;border-radius:3px;flex-shrink:0}
+.vt .cap .lb{font-size:14.5px;font-weight:700;letter-spacing:-0.35px;line-height:1.15}
+.vt .cap .sb{grid-column:2;font-size:10.5px;font-weight:600;color:#8A93A6;line-height:1.2}
+.cs{background:#fff;border:1px solid #E3E7EF;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;animation:fadeInUp 0.4s both;min-height:0;box-shadow:0 3px 12px rgba(11,31,63,0.07)}
+.cs .im{flex:0 0 44%;position:relative;overflow:hidden;background:#EEF1F7}
+.cs .im>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 18%}
+.cs .im:after{content:"";position:absolute;left:0;right:0;bottom:0;height:64%;background:linear-gradient(transparent,rgba(6,12,28,0.88))}
+.cs .lg{position:absolute;left:12px;top:12px;background:#fff;border-radius:10px;padding:6px 10px;box-shadow:0 3px 10px rgba(0,0,0,0.18);max-width:62%;z-index:2;display:flex;align-items:center}
+.cs .lg img{height:22px;width:auto;max-width:112px;object-fit:contain;display:block}
+.cs .lg .wm{font-size:10px;font-weight:800;letter-spacing:0.6px;color:#111827;line-height:1.15}
+.cs .mt{position:absolute;left:14px;right:14px;bottom:11px;z-index:2;color:#fff}
+.cs .mt .v{font-size:34px;font-weight:800;letter-spacing:-1.6px;line-height:1}
+.cs .mt .l{font-size:12px;font-weight:600;opacity:0.92;margin-top:3px;line-height:1.3}
+.cs .meta{flex-shrink:0;display:grid;grid-template-columns:1fr 1.25fr;gap:8px;padding:10px 12px 9px;border-bottom:1px solid #F1F3F8}
+.cs .meta .k{font-size:9px;font-weight:800;letter-spacing:1.2px;color:#9AA3B2}
+.cs .meta .x{font-size:11.5px;font-weight:700;margin-top:3px;line-height:1.2}
+.cs .note{flex:1;min-height:0;padding:9px 12px 0;font-size:11px;color:#4B5563;font-weight:500;line-height:1.4;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.cs .csfoot{flex-shrink:0;padding:8px 12px 11px;font-size:10.5px;font-weight:700;line-height:1.35}
+</style></head><body>
+<div id="__asset-preload" style="display:none" aria-hidden="true"><img data-asset="cs-vaseline-vis.jpg" src="cs-vaseline-vis.jpg" alt="" /><img data-asset="cs-vaseline-logo.png" src="cs-vaseline-logo.png" alt="" /><img data-asset="../../mdlz/mini-shot-chatgpt.jpg" src="../../mdlz/mini-shot-chatgpt.jpg" alt="" /><img data-asset="../../mdlz/mini-shot-gpay.jpg" src="../../mdlz/mini-shot-gpay.jpg" alt="" /><img data-asset="../../mdlz/mini-shot-google.jpg" src="../../mdlz/mini-shot-google.jpg" alt="" /><img data-asset="../../mdlz/mini-shot-instagram.jpg" src="../../mdlz/mini-shot-instagram.jpg" alt="" /><img data-asset="../../mdlz/mini-shot-qr.jpg" src="../../mdlz/mini-shot-qr.jpg" alt="" /><img data-asset="../../mdlz/flow-blinkit-biscoff.jpg" src="../../mdlz/flow-blinkit-biscoff.jpg" alt="" /><img data-asset="../../mdlz/flow-creator-story.jpg" src="../../mdlz/flow-creator-story.jpg" alt="" /><img data-asset="../../mdlz/flow-commerce-order.jpg" src="../../mdlz/flow-commerce-order.jpg" alt="" /><img data-asset="../../mdlz/lite-fs-logo.png" src="../../mdlz/lite-fs-logo.png" alt="" /><img data-asset="../../mdlz/lite-mdlz-logo.png" src="../../mdlz/lite-mdlz-logo.png" alt="" /><img data-asset="acq-qr.jpg" src="acq-qr.jpg" alt="" /><img data-asset="acq-social.jpg" src="acq-social.jpg" alt="" /><img data-asset="acq-website.jpg" src="acq-website.jpg" alt="" /><img data-asset="acq-promoter.jpg" src="acq-promoter.jpg" alt="" /><img data-asset="acq-creator.jpg" src="acq-creator.jpg" alt="" /><img data-asset="acq-commerce.jpg" src="acq-commerce.jpg" alt="" /><img data-asset="acq-drops.jpg" src="acq-drops.jpg" alt="" /><img data-asset="acq-whatsapp.jpg" src="acq-whatsapp.jpg" alt="" /><img data-asset="cs-mars-vis.jpg" src="cs-mars-vis.jpg" alt="" /><img data-asset="an-dash.jpg" src="an-dash.jpg" alt="" /><img data-asset="an-geo.jpg" src="an-geo.jpg" alt="" /><img data-asset="an-live.jpg" src="an-live.jpg" alt="" /><img data-asset="lg-p01-6.jpg" src="lg-p01-6.jpg" alt="" /><img data-asset="lg-p01-7.jpg" src="lg-p01-7.jpg" alt="" /><img data-asset="lg-p01-5.jpg" src="lg-p01-5.jpg" alt="" /><img data-asset="lg-p02-14.jpg" src="lg-p02-14.jpg" alt="" /><img data-asset="lg-p02-15.jpg" src="lg-p02-15.jpg" alt="" /><img data-asset="lg-p02-18.jpg" src="lg-p02-18.jpg" alt="" /><img data-asset="lg-p02-10.jpg" src="lg-p02-10.jpg" alt="" /><img data-asset="lg-p02-11.jpg" src="lg-p02-11.jpg" alt="" /><img data-asset="lg-p02-13.jpg" src="lg-p02-13.jpg" alt="" /><img data-asset="lg-p02-21.jpg" src="lg-p02-21.jpg" alt="" /><img data-asset="lg-p02-22.jpg" src="lg-p02-22.jpg" alt="" /><img data-asset="lg-p02-3.jpg" src="lg-p02-3.jpg" alt="" /><img data-asset="cs-mars-logo.png" src="cs-mars-logo.png" alt="" /><img data-asset="cs-cerave-vis.jpg" src="cs-cerave-vis.jpg" alt="" /><img data-asset="cs-cerave-logo.png" src="cs-cerave-logo.png" alt="" /><img data-asset="aw-2.jpg" src="aw-2.jpg" alt="" /><img data-asset="aw-3.jpg" src="aw-3.jpg" alt="" /><img data-asset="aw-4.jpg" src="aw-4.jpg" alt="" /><img data-asset="aw-5.jpg" src="aw-5.jpg" alt="" /><img data-asset="inc-sampling.jpg" src="inc-sampling.jpg" alt="" /><img data-asset="inc-joyclub.jpg" src="inc-joyclub.jpg" alt="" /><img data-asset="inc-drops.jpg" src="inc-drops.jpg" alt="" /><img data-asset="inc-cashback.jpg" src="inc-cashback.jpg" alt="" /><img data-asset="inc-wa.jpg" src="inc-wa.jpg" alt="" /><img data-asset="inc-ugc.jpg" src="inc-ugc.jpg" alt="" /><img data-asset="inc-members.jpg" src="inc-members.jpg" alt="" /></div>
+<script>
+(function(){
+  var MAP={};
+  function build(){
+    var box=document.getElementById("__asset-preload"); if(!box) return;
+    [].forEach.call(box.querySelectorAll("img[data-asset]"),function(im){
+      var k=im.getAttribute("data-asset"), v=im.getAttribute("src");
+      if(v&&v!==k) MAP[k]=v;
+    });
+  }
+  function fixOne(el){
+    var s=el.getAttribute("src")||"";
+    if(MAP[s]) el.setAttribute("src",MAP[s]);
+  }
+  function sweep(root){
+    if(!root||!root.querySelectorAll) return;
+    if(root.tagName==="IMG") fixOne(root);
+    [].forEach.call(root.querySelectorAll("img"),fixOne);
+  }
+  build(); sweep(document);
+  new MutationObserver(function(muts){
+    for(var i=0;i<muts.length;i++){
+      var m=muts[i];
+      if(m.type==="attributes"&&m.target.tagName==="IMG") fixOne(m.target);
+      for(var j=0;j<m.addedNodes.length;j++) sweep(m.addedNodes[j]);
+    }
+  }).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:["src"]});
+})();
+</script>
+<template id="__bundler_thumbnail" data-bg-color="#052762">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#052762"/><g fill="none" stroke="#E4A400" stroke-width="20"><rect x="360" y="300" width="140" height="140" rx="14"/><rect x="540" y="300" width="140" height="140" rx="14"/><rect x="720" y="300" width="140" height="140" rx="14"/></g><text x="600" y="600" font-family="Arial,sans-serif" font-size="46" font-weight="700" fill="#fff" text-anchor="middle">Snapshot</text><text x="600" y="660" font-family="Arial,sans-serif" font-size="22" letter-spacing="5" fill="#fff" opacity="0.6" text-anchor="middle">MONDELEZ × FREESTAND</text></svg>
+</template>
+<div id="topbar">
+  <img class="md" src="../../mdlz/lite-mdlz-logo.png" alt="Mondelez"/>
+  <div class="t">Snapshot · what this demo covers</div>
+  <img class="fs" src="../../mdlz/lite-fs-logo.png" alt="FreeStand"/>
 </div>
-<script>(function(){var h=document.getElementById('hub'),b=document.getElementById('hub-toggle');function set(c){h.classList.toggle('collapsed',c);b.textContent=c?'›':'‹';b.title=c?'Expand menu':'Collapse menu';try{localStorage.setItem('mdlzHubSide',c?'1':'0')}catch(e){}}set(localStorage.getItem('mdlzHubSide')==='1');b.addEventListener('click',function(){set(!h.classList.contains('collapsed'))});})();</script>
-<script src="mdlz-hub/demos.js?v=2"></script>
-<script src="mdlz-hub/hub.js?v=3"></script>
-</body>
-</html>
+<div id="hiw"><div class="lbl">HOW IT WORKS</div><div id="hiw-list"></div></div>
+<div id="pane">
+  <div id="eyebrow"></div>
+  <div id="h1"></div>
+  <div id="sub"></div>
+  <div id="body"></div>
+</div>
+<div id="caption"><div class="tag">SNAPSHOT</div><div class="tt" id="cap-t"></div><div class="ss" id="cap-s"></div></div>
+<script>
+const P={
+ acquire:'<path d="M3.5 12h13M12 6.5l5.5 5.5L12 17.5"/><path d="M19.5 4.5v15"/>',
+ gift:'<path d="M4 10h16v10H4zM3 6.5h18V10H3zM12 6.5V20"/><path d="M12 6.5C12 4.5 10.6 3.5 9 3.5S6.5 5 7.5 6.5M12 6.5C12 4.5 13.4 3.5 15 3.5S17.5 5 16.5 6.5"/>',
+ star:'<path d="M12 3.5l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.8l6-.8z"/>',
+ drop:'<path d="M5 8.5h14v11H5zM8.5 8.5V6a3.5 3.5 0 017 0v2.5"/><path d="M9 13.5h6"/>',
+ cash:'<path d="M3 6.5h18v11H3z"/><circle cx="12" cy="12" r="2.6"/><path d="M6 12h.01M18 12h.01"/>',
+ data:'<path d="M4 6.5h16M7 12h10M10 17.5h4"/>',
+ profile:'<circle cx="12" cy="8.5" r="3.6"/><path d="M4.5 20c0-4 3.4-6 7.5-6s7.5 2 7.5 6"/>',
+ media:'<path d="M4.5 8.5h9v7h-9zM13.5 11l6-3v8l-6-3z"/>',
+ chart:'<path d="M4.5 19.5V11M10.5 19.5V5M16.5 19.5v-6"/><path d="M3 19.5h18"/>',
+ chat:'<path d="M4 5.5h16v10H9l-5 4z"/><path d="M8.5 10.5h7"/>',
+};
+function ic(k,c,sz){return '<svg width="'+(sz||21)+'" height="'+(sz||21)+'" viewBox="0 0 24 24" fill="none" stroke="'+c+'" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">'+P[k]+'</svg>';}
+function vtile(o,i){return '<div class="vt" style="animation-delay:'+(i*0.07)+'s">'
+ +'<div class="im"><img src="'+o.img+'" alt=""/>'+(o.live?'<div class="live"><b></b>'+o.live.toUpperCase()+'</div>':'')+'</div>'
+ +'<div class="cap"><span class="d" style="background:'+o.c+'"></span><span class="lb">'+o.t+'</span>'+(o.s?'<span class="sb">'+o.s+'</span>':'')+'</div></div>';}
+function tile(o,i){if(o.img) return vtile(o,i); return '<div class="tile" style="animation-delay:'+(i*0.07)+'s">'
+ +(o.live?'<div class="live"><b></b>'+o.live.toUpperCase()+'</div>':'')
+ +'<div class="ico" style="background:'+o.bg+'">'+ic(o.k,o.c)+'</div>'
+ +'<div class="t">'+o.t+'</div><div class="s">'+o.s+'</div>'
+ +(o.chip?'<div class="chip">'+o.chip.map(t=>'<span style="background:'+o.bg+';color:'+o.c+'">'+t+'</span>').join("")+'</div>':'')
+ +'</div>';}
+
+const LOGOS=["lg-p01-6.jpg","lg-p01-7.jpg","lg-p01-5.jpg","lg-p02-14.jpg","lg-p02-15.jpg","lg-p02-18.jpg","lg-p02-10.jpg","lg-p02-13.jpg","lg-p02-21.jpg","lg-p02-22.jpg","lg-p02-3.jpg"];
+const CH=[
+ {n:"1",nm:"Acquire",rs:"Where consumers come from",c:"#0A49B7",bg:"#EAF0FB",
+  eyebrow:"ACQUIRE",
+  h1:'Multi entry points into the <em style="color:#0A49B7">Mondelez ecosystem</em>',
+  sub:"QR on pack, digital ads, AI assistants, payment apps, search, social, brand site and promoters · one claim experience.",
+  cols:"repeat(4,1fr)",rows:"1fr 1fr",
+  tiles:[
+   {img:"../../mdlz/mini-shot-chatgpt.jpg",t:"AI assistants",s:"ChatGPT · Claude",c:"#0A49B7",live:"digital sampling"},
+   {img:"../../mdlz/mini-shot-gpay.jpg",t:"Payment apps",s:"GPay · Paytm",c:"#0A49B7",live:"digital sampling"},
+   {img:"../../mdlz/mini-shot-google.jpg",t:"Search &amp; brand website",s:"Google · cadbury.in",c:"#4F2170",live:"website sampling"},
+   {img:"../../mdlz/mini-shot-instagram.jpg",t:"Social &amp; media ads",s:"Meta · Instagram",c:"#0A49B7",live:"digital sampling"},
+   {img:"../../mdlz/mini-shot-qr.jpg",t:"QR on pack &amp; in store",s:"every pack, every store",c:"#4F2170",live:"promoter sampling"},
+   {img:"../../mdlz/flow-blinkit-biscoff.jpg",t:"Q-commerce banners",s:"Blinkit · Zepto · Instamart",c:"#B4591B",live:"limited drops"},
+   {img:"../../mdlz/flow-creator-story.jpg",t:"Creators &amp; UGC",s:"influencer led sampling",c:"#C4517E",live:"creator demo"},
+   {img:"../../mdlz/flow-commerce-order.jpg",t:"Post order referral",s:"member invites friends",c:"#128C4A",live:"commerce demo"},
+  ],
+  cap:["Multi entry points into the Mondelez ecosystem","6 interactive demos"]},
+
+ {n:"2",nm:"Value exchange",rs:"Sampling, loyalty, drops, cashback",c:"#4F2170",bg:"#F3EAFA",
+  eyebrow:"VALUE EXCHANGE",
+  h1:'A <em style="color:#4F2170">value exchange program</em> for customers to engage',
+  sub:"Four incentive engines on one profile: product sampling, an always-on loyalty club, exclusive drops and receipt cashback.",
+  cols:"repeat(3,1fr)",rows:"1fr 1fr",
+  tiles:[
+   {img:"inc-sampling.jpg",t:"Product sampling",c:"#4F2170",live:"3 demos"},
+   {img:"inc-joyclub.jpg",t:"Joy Club loyalty",c:"#4F2170",live:"clickable app"},
+   {img:"inc-drops.jpg",t:"Exclusive drops",c:"#4F2170",live:"live demo"},
+   {img:"inc-cashback.jpg",t:"Receipt cashback",c:"#4F2170",live:"live demo"},
+   {img:"inc-wa.jpg",t:"Always-on WhatsApp",c:"#128C4A"},
+   {img:"inc-ugc.jpg",t:"UGC & reviews earn points",c:"#0A49B7"},
+  ],
+  cap:["Value exchange program for customers to engage","Clickable app + 5 demos"]},
+
+ {n:"3",nm:"Data",rs:"Enrich, profile, retarget",c:"#B4591B",bg:"#FDF1E6",
+  eyebrow:"DATA",
+  h1:'It compounds into <em style="color:#B4591B">enriched profiles Mondelez owns</em>',
+  sub:"Sparse records become 19-field profiles · charted, modelled, saved as cohorts and pushed straight into Meta Custom Audiences and Google Ads.",
+  shots:[
+   {img:"dt-overview.jpg",t:"Overview",s:"241,908 → 119,212 delivered"},
+   {img:"dt-live.jpg",t:"Live analytics",s:"Claims &amp; deliveries by day"},
+   {img:"dt-feed.jpg",t:"Live feed",s:"Source, geo &amp; answer per claim"},
+   {img:"dt-viz.jpg",t:"Data visualisation",s:"Every answer stored as a tag"},
+   {img:"dt-loyalty.jpg",t:"Loyalty enrollment",s:"612,880 friends added"},
+   {img:"dt-funnels.jpg",t:"Channel funnels",s:"A full funnel per UTM source"},
+   {img:"dt-stats.jpg",t:"Statistical analysis",s:"What predicts repeat purchase"},
+   {img:"dt-utm.jpg",t:"UTM breakdown",s:"Source · medium · campaign"},
+   {img:"dt-perf.jpg",t:"Campaign performance",s:"Health, CAC, weekly trend"},
+   {img:"dt-aud.jpg",t:"Saved audiences",s:"Dynamic cohorts, all campaigns"},
+   {img:"dt-export.jpg",t:"Export to Meta &amp; Google",s:"Custom Audience · Google Ads"}
+  ],
+  dstats:[["9.2M","records enriched","#B4591B"],["19","fields per profile","#B4591B"],["~68%","ad-platform match","#0A49B7"],["₹92","cost per profile","#0A49B7"]],
+  dscreens:[
+   {img:"dt-live.jpg",tab:"Live analytics",tabs:"Claims &amp; deliveries, by the minute",k:"LIVE ANALYTICS",t:"Every claim visible as it happens",p:"Source, geography and answer arrive per claim, so the campaign is auditable while it runs.",fx:0.30,fy:0.31,fw:1.9},
+   {img:"dt-viz.jpg",tab:"Data visualisation",tabs:"Every answer stored as a queryable tag",k:"DATA VISUALISATION",t:"Each answer becomes a field you can slice",p:"Retailer, SKU, basket value, payment method: charted the moment the chatbot collects them.",fx:0.36,fy:0.42,fw:1},
+   {img:"dt-stats.jpg",tab:"Statistical analysis",tabs:"What predicts repeat purchase",k:"STATISTICAL ANALYSIS",t:"The combinations that actually convert",p:"Lift and significance per answer combination, so the next campaign targets the pattern, not the average.",fx:0.55,fy:0.50,fw:1.4},
+   {img:"dt-perf.jpg",tab:"Campaign performance",tabs:"Health, CAC and weekly trend",k:"CAMPAIGN PERFORMANCE",t:"One funnel, scan to delivered to repeat",p:"241,908 scans to 119,212 delivered at ₹92 a profile, attributed by UTM source down to the creative.",fx:0.33,fy:0.30,fw:1.9}
+  ],
+  cap:["Data · enriched profiles, analytics, retargeting","11 live dashboards & exports"]},
+
+ {n:"4",nm:"Proven record",rs:"Live with brands today",c:"#128C4A",bg:"#E9FBF0",
+  eyebrow:"PROVEN RECORD",
+  h1:'Not a concept · <em style="color:#128C4A">FreeStand runs this today</em>',
+  sub:"Award-winning sampling, loyalty and enrichment programmes live with FMCG and personal-care brands.",
+  cols:"repeat(4,1fr)",rows:"auto 1fr",
+  stats:[["70M","records in the graph","identity & geo intelligence"],["9.2M","records enriched","for a single FMCG client"],["48 hrs","brief to live campaign","WhatsApp, end to end"],["5 min","microsite embed","no dev cycle needed"]],
+  cases:[
+   {vis:"cs-mars-vis.jpg",logo:"cs-mars-logo.png",wm:null,metric:"200M",mlabel:"Unique customers reached",ind:"Pet care",uc:"Sampling across 3 brands",c:"#0A49B7",
+    note:"20% sampling → full-size purchase conversion · 34% feedback rate · 7.5M data points.",foot:"Best Product Sampling Award · afaqs Marketers' Excellence 2025 & 2024"},
+   {vis:"cs-cerave-vis.jpg",logo:"cs-cerave-logo.png",wm:null,metric:"10M+",mlabel:"Unique customers reached",ind:"Skincare",uc:"New-market launch sampling",c:"#0A49B7",
+    note:"5% clicked the purchase CTA · 20% shared feedback · 300K+ unique data points.",foot:"ET Shark Awards 2024 · a trophy-studded launch"},
+   {vis:"cs-vaseline-vis.jpg",logo:"cs-vaseline-logo.png",wm:null,metric:"50%",mlabel:"Feedback response rate",ind:"Personal care",uc:"Influencer led sampling",c:"#0A49B7",
+    note:"25,000 samples placed through creators · UGC campaign ran on the same profile base.",foot:"Sampling plus UGC in one program"},
+  ],
+  cap:["Proven record, live case studies","MARS · CeraVe · Vaseline"]},
+];
+
+let curCh=-1,dpaint=null;
+function show(){
+  const raw=parseFloat(location.hash.slice(1)||"0")||0;
+  const i=Math.max(0,Math.min(CH.length-1,Math.floor(raw)));
+  const sub=Math.max(0,Math.round((raw-Math.floor(raw))*10));
+  const c=CH[i];
+  if(i===curCh&&c.dscreens&&dpaint){ dpaint(sub); return; }
+  document.getElementById("hiw-list").innerHTML=CH.map((x,j)=>{
+    const on=j===i;
+    return '<div class="hs'+(on?" on":"")+'" onclick="location.hash='+j+'">'
+     +'<div class="n" style="'+(on?'border-color:'+x.c+';background:'+x.bg+';color:'+x.c:'')+'">'+x.n+'</div>'
+     +'<div><div class="nm" style="'+(on?'color:'+x.c:'')+'">'+x.nm+'</div><div class="sub">'+x.rs+'</div></div></div>'
+     +(j<CH.length-1?'<div class="conn"></div>':'');
+  }).join("");
+  const eb=document.getElementById("eyebrow"); eb.textContent=c.eyebrow; eb.style.color=c.c;
+  document.getElementById("h1").innerHTML=c.h1;
+  document.getElementById("sub").textContent=c.sub;
+  let html="";
+  if(c.shots){
+    html='<div style="height:100%;display:flex;flex-direction:column;gap:12px">'
+     +'<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;flex:0 0 62px">'
+     +c.dstats.map((x,j)=>'<div class="stat" style="animation-delay:'+(j*0.06)+'s;border-top:3px solid '+x[2]+'"><div class="v" style="color:'+x[2]+';font-size:22px">'+x[0]+'</div><div class="l">'+x[1]+'</div></div>').join("")
+     +'</div>'
+     +'<div class="dplay">'
+     +'<div class="dscr"><div class="win"><div class="wbar"><i></i><i></i><i></i><span>app.freestand.in/analytics · Mondelez India</span></div>'
+     +'<div class="stack" id="dstack">'+c.dscreens.map((x,j)=>'<img src="'+x.img+'" alt="" data-i="'+j+'"'+(j===sub?' class="on"':'')+'/>').join("")+'</div></div>'
+     +'<div class="dspot" id="dspot"></div>'
+     +'<div class="dmodal" id="dmodal"></div></div>'
+     +'<div class="dtabs">'+c.dscreens.map((x,j)=>'<button class="dtab'+(j===sub?' on':'')+'" data-i="'+j+'"><div class="n">0'+(j+1)+'</div><div class="t">'+x.tab+'</div><div class="s">'+x.tabs+'</div></button>').join("")
+     +'<div class="dnote">Eleven dashboards in the console · every cohort lands in the Mondelez CDP, Meta and Google Ads the same day.</div></div>'
+     +'</div></div>';
+    setTimeout(()=>dplayer(c.dscreens,sub),0);
+  } else if(c.tiles){
+    html='<div class="grid" style="grid-template-columns:'+c.cols+';grid-template-rows:'+c.rows+'">'+c.tiles.map(tile).join("")+'</div>';
+  } else {
+    html='<div style="height:100%;display:grid;grid-template-rows:92px minmax(0,1fr) 60px;gap:12px">'
+     +'<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;min-height:0">'
+     +c.stats.map((s,j)=>'<div class="stat" style="animation-delay:'+(j*0.07)+'s"><div class="v" style="color:'+c.c+'">'+s[0]+'</div><div class="l">'+s[1]+'</div><div class="d">'+s[2]+'</div></div>').join("")
+     +'</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;min-height:0;overflow:hidden">'
+     +c.cases.map((a,j)=>'<div class="cs" style="animation-delay:'+(0.2+j*0.08)+'s">'
+       +'<div class="im"'+(a.vis?'':' style="background:linear-gradient(150deg,'+a.c+',#0B1F3F)"')+'>'+(a.vis?'<img src="'+a.vis+'" alt=""/>':'')
+       +'<div class="lg">'+(a.logo?'<img src="'+a.logo+'" alt=""/>':'<span class="wm">'+a.wm+'</span>')+'</div>'
+       +'<div class="mt"><div class="v">'+a.metric+'</div><div class="l">'+a.mlabel+'</div></div></div>'
+       +'<div class="meta"><div><div class="k">INDUSTRY</div><div class="x">'+a.ind+'</div></div><div><div class="k">USE CASE</div><div class="x">'+a.uc+'</div></div></div>'
+       +'<div class="note">'+a.note+'</div>'
+       +'<div class="csfoot" style="color:'+a.c+'">'+a.foot+'</div>'
+       +'</div>').join("")
+     +'</div>'
+     +'<div class="lgwall"><div class="k">Brands that trust FreeStand</div><div class="l">'+LOGOS.map(l=>'<img src="'+l+'" alt=""/>').join("")+'</div></div>'
+     +'</div>';
+  }
+  document.getElementById("body").innerHTML=html;
+  curCh=i;
+  document.getElementById("cap-t").textContent=c.cap[0];
+  document.getElementById("cap-s").textContent=c.cap[1];
+}
+window.addEventListener("hashchange",show); show();
+function dplayer(S,start){
+  const stack=document.getElementById("dstack"); if(!stack)return;
+  dpaint=null;
+  const spot=document.getElementById("dspot"),modal=document.getElementById("dmodal");
+  const tabs=[].slice.call(document.querySelectorAll(".dtab"));
+  function place(n){
+    const im=stack.children[n], box=stack.getBoundingClientRect();
+    const scr=stack.closest(".dscr"), off=scr?box.top-scr.getBoundingClientRect().top:0;
+    const ar=(im.naturalWidth&&im.naturalHeight)?im.naturalWidth/im.naturalHeight:1.71;
+    const w=box.width, h=Math.min(box.height,w/ar);
+    const t=S[n], rw=74*(t.fw||1);
+    spot.style.width=rw+"px";
+    spot.style.left=Math.round(t.fx*w-rw/2)+"px";
+    spot.style.top=Math.round(t.fy*h-37+off)+"px";
+  }
+  function paint(n){
+    [].forEach.call(stack.children,(im,j)=>im.classList.toggle("on",j===n));
+    tabs.forEach((b,j)=>b.classList.toggle("on",j===n));
+    modal.style.opacity="0";modal.style.transform="translateY(6px)";
+    setTimeout(()=>{modal.style.opacity="1";modal.style.transform="none";},40);
+    modal.innerHTML='<div class="k">'+S[n].k+'</div><b>'+S[n].t+'</b><p>'+S[n].p+'</p>';
+    place(n); setTimeout(()=>place(n),60);
+  }
+  tabs.forEach(b=>b.onclick=()=>{ const n=+b.dataset.i; location.hash=(n===0?"2":"2."+n); });
+  dpaint=paint;
+  paint(start||0);
+}
+</script>
+</body></html>
