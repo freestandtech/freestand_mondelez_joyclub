@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>All channels → Joy Club</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}html,body{margin:0;padding:0;width:1280px;height:832px;overflow:hidden;font-family:Inter,Arial,sans-serif;background:#F7F8FB;color:#111827;-webkit-font-smoothing:antialiased}
+a{color:#0A49B7}a:hover{color:#E4A400}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideR{from{opacity:0;transform:translateX(-16px)}to{opacity:1;transform:none}}
+@keyframes slideL{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
+@keyframes dashmove{to{stroke-dashoffset:-30}}
+#hd{position:absolute;left:26px;right:26px;top:20px}
+#hd .h1{font-size:40px;font-weight:800;letter-spacing:-1.3px;line-height:1.14}
+#hd .h1 em{font-style:normal;color:#4F2170}
+#wrap{position:absolute;left:26px;right:26px;top:118px;bottom:24px;display:grid;grid-template-columns:326px 1fr 424px;gap:0}
+.colh{font-size:12px;font-weight:800;letter-spacing:1.7px;text-transform:uppercase;margin-bottom:14px}
+/* channel chips */
+#left{display:flex;flex-direction:column;padding-right:16px}
+.chs{display:flex;flex-direction:column;gap:14px;flex:1;justify-content:center}
+.ch{min-height:108px;background:#fff;border:1px solid #E3E7EF;border-radius:18px;padding:17px 18px;display:flex;align-items:center;gap:16px;box-shadow:0 4px 14px rgba(11,31,63,0.08);animation:slideR 0.45s both}
+.ch .ic{width:70px;height:70px;border-radius:16px;flex-shrink:0;overflow:hidden;position:relative;background:#F1F4F9}
+.ch .ic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ch .n{font-size:22px;font-weight:800;letter-spacing:-0.55px;line-height:1.12}
+.ch .s{font-size:14px;color:#6B7280;font-weight:600;margin-top:5px}
+/* centre */
+#mid{position:relative;display:flex;flex-direction:column;align-items:center}
+#mid .badge{background:linear-gradient(160deg,#54237A,#421B60);color:#fff;border-radius:999px;padding:9px 26px;display:flex;align-items:center;gap:13px;box-shadow:0 10px 26px rgba(42,16,70,0.3);z-index:3}
+#mid .badge .w{font-style:italic;font-weight:800;font-size:26px;line-height:1}
+#mid .badge .w b{color:#F2B123;font-style:italic}
+#mid .badge .u{font-size:9.5px;letter-spacing:1.5px;font-weight:700;opacity:0.85;border-left:1px solid rgba(255,255,255,0.3);padding-left:13px;line-height:1.35}
+#mid .ph{position:relative;margin-top:12px;flex:1;min-height:0;width:100%}
+#mid .ph img{position:absolute;top:0;bottom:0;left:50%;transform:translateX(-50%);height:100%;width:auto;display:block;filter:drop-shadow(0 22px 42px rgba(11,31,63,0.26))}
+#mid .outs{display:flex;gap:10px;justify-content:center;width:100%;margin-top:12px;flex-shrink:0;z-index:3}
+.op{background:#fff;border:1px solid #E3E7EF;border-radius:12px;padding:10px 12px;text-align:center;flex:1;box-shadow:0 3px 10px rgba(11,31,63,0.07);animation:fadeIn 0.5s both}
+.op .t{font-size:15px;font-weight:800;letter-spacing:-0.3px;line-height:1.15}
+.op .s{font-size:11.5px;color:#6B7280;font-weight:600;margin-top:3px}
+/* right brands */
+#right{display:flex;flex-direction:column;padding-left:24px}
+.brs{display:flex;flex-direction:column;gap:16px;flex:1;justify-content:center}
+.br{min-height:138px;background:#fff;border:none;border-radius:22px;padding:15px 16px;display:flex;align-items:center;gap:15px;box-shadow:0 6px 20px rgba(11,31,63,0.09);animation:slideL 0.45s both;position:relative;overflow:hidden}
+.br .sw{width:104px;height:104px;border-radius:18px;flex-shrink:0;overflow:hidden;position:relative;background:#F1F4F9}
+.br .bt{flex:1;min-width:0}
+.br .sw img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.br .n{font-size:22px;font-weight:800;letter-spacing:-0.7px;line-height:1.1;text-transform:capitalize}
+.br .v{font-size:14px;font-weight:600;margin-top:8px;line-height:1.35;color:#4A5468}
+.br .v .ar{font-weight:800}
+.br .chev{width:44px;height:44px;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:auto}
+.rails{margin-top:12px;background:#4F2170;border-radius:12px;padding:10px 14px;color:#fff;display:flex;align-items:center;gap:12px;animation:fadeIn 0.5s 0.4s both}
+.rails .k{font-size:9.5px;font-weight:800;letter-spacing:1.3px;color:#F2B123;white-space:nowrap}
+.rails .x{font-size:12px;font-weight:600;line-height:1.35}
+svg#flows{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+</style></head><body>
+<div id="__asset-preload" style="display:none" aria-hidden="true"><img data-asset="joyclub-phone-s.png" src="joyclub-phone-s.png" alt="" /><img data-asset="../snapshot/acq-social.jpg" src="../snapshot/acq-social.jpg" alt="" /><img data-asset="../snapshot/acq-qr.jpg" src="../snapshot/acq-qr.jpg" alt="" /><img data-asset="../snapshot/acq-commerce.jpg" src="../snapshot/acq-commerce.jpg" alt="" /><img data-asset="../snapshot/acq-promoter.jpg" src="../snapshot/acq-promoter.jpg" alt="" /><img data-asset="../snapshot/acq-website.jpg" src="../snapshot/acq-website.jpg" alt="" /><img data-asset="brand-dm-biscoff.jpg" src="brand-dm-biscoff.jpg" alt="" /><img data-asset="brand-bournvita.jpg" src="brand-bournvita.jpg" alt="" /><img data-asset="brand-oreo-twirl.jpg" src="brand-oreo-twirl.jpg" alt="" /><img data-asset="../../mdlz/flow-oreo-logo.png" src="../../mdlz/flow-oreo-logo.png" alt="" /><img data-asset="../../mdlz/flow-bournvita-ad.jpg" src="../../mdlz/flow-bournvita-ad.jpg" alt="" /><img data-asset="../../mdlz/prod-twirl.jpg" src="../../mdlz/prod-twirl.jpg" alt="" /><img data-asset="../../mdlz/prod-biscoff.jpg" src="../../mdlz/prod-biscoff.jpg" alt="" /></div>
+<script>
+(function(){
+  var MAP={};
+  function build(){
+    var box=document.getElementById("__asset-preload"); if(!box) return;
+    [].forEach.call(box.querySelectorAll("img[data-asset]"),function(im){
+      var k=im.getAttribute("data-asset"), v=im.getAttribute("src");
+      if(v&&v!==k) MAP[k]=v;
+    });
+  }
+  function fixOne(el){ var s=el.getAttribute("src")||""; if(MAP[s]) el.setAttribute("src",MAP[s]); }
+  function sweep(root){ if(!root||!root.querySelectorAll) return; if(root.tagName==="IMG") fixOne(root); [].forEach.call(root.querySelectorAll("img"),fixOne); }
+  build(); sweep(document);
+  new MutationObserver(function(muts){
+    for(var i=0;i<muts.length;i++){ var m=muts[i];
+      if(m.type==="attributes"&&m.target.tagName==="IMG") fixOne(m.target);
+      for(var j=0;j<m.addedNodes.length;j++) sweep(m.addedNodes[j]); }
+  }).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:["src"]});
+})();
+</script>
+<template id="__bundler_thumbnail" data-bg-color="#4F2170">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#4F2170"/><g stroke="#E4A400" stroke-width="14" fill="none"><path d="M200 240 L560 400 M200 400 L560 400 M200 560 L560 400"/><rect x="560" y="300" width="200" height="200" rx="24"/><path d="M760 400 L1000 240 M760 400 L1000 400 M760 400 L1000 560"/></g><text x="600" y="680" font-family="Arial,sans-serif" font-size="44" font-weight="700" fill="#fff" text-anchor="middle">Joy Club</text></svg>
+</template>
+<div id="hd">
+  <div class="h1">Country scale, <em>multi-channel customer engagement program</em></div>
+</div>
+<div id="wrap">
+  <svg id="flows" viewBox="0 0 1228 612" preserveAspectRatio="none"></svg>
+  <div id="left"><div class="colh" style="color:#0A49B7">Acquisition channels in</div><div class="chs" id="chs"></div></div>
+  <div id="mid">
+    <div class="badge"><div class="w">Joy <b>Club</b></div><div class="u">ONE MONDELEZ<br/>LOYALTY DESTINATION</div></div>
+    <div class="ph"><img src="joyclub-phone-s.png" alt="Mondelez Joy Club app"/></div>
+    <div class="outs" id="outs"></div>
+  </div>
+  <div id="right"><div class="colh" style="color:#4F2170">Brand level personalised customer experience</div><div class="brs" id="brs"></div></div>
+</div>
+<script>
+const P={
+ ad:'<path d="M4.5 9.5h4l6-4v13l-6-4h-4z"/><path d="M17.5 9a4.5 4.5 0 010 6"/>',
+ qr:'<path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4z"/><path d="M14 14h2v2h-2zM18 14h2v2h-2zM14 18h2v2h-2zM18 18h2v2h-2z"/>',
+ ref:'<circle cx="9" cy="8" r="3.4"/><circle cx="17.5" cy="9" r="2.6"/><path d="M3 20c0-3.4 2.7-5.2 6-5.2s6 1.8 6 5.2M15.5 20c0-2.6 1.6-4.2 4-4.2 1 0 1.9.3 2.5.8"/>',
+ shop:'<path d="M5 8.5h14l-1 11H6z"/><path d="M9 8.5V6a3 3 0 016 0v2.5"/>',
+ globe:'<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.4 2.4 14.2 0 17M12 3.5c-2.4 2.4-2.4 14.2 0 17"/>',
+};
+const CHAN=[
+ ["../snapshot/acq-social.jpg","Digital ads","Meta · Google · GPay","#0A49B7"],
+ ["../snapshot/acq-qr.jpg","Pack QR","every pack, every store","#4F2170"],
+ ["../snapshot/acq-commerce.jpg","Referral","member invites friend","#B4591B"],
+ ["../snapshot/acq-promoter.jpg","Offline & retail","promoters · stalls · events","#128C4A"],
+ ["../snapshot/acq-website.jpg","Existing users","CRM base · website · PR","#92549A"],
+];
+const BRANDS=[
+ ["Dairy Milk × Biscoff","brand-dm-biscoff.jpg","Hype marketing","drops & early access","#4F2170","#EDE6F8"],
+ ["Bournvita","brand-bournvita.jpg","LTV expansion","repeat purchase","#D2691E","#FBEADB"],
+ ["Oreo · 5 Star · Twirl","brand-oreo-twirl.jpg","Play & share","UGC challenges","#0A49B7","#DEEAFB"],
+];
+const OUTS=[
+ ["Repeat purchase","continuous incentive","#4F2170"],
+ ["Community","earned rewards","#0A49B7"],
+ ["Enriched 1PD","straight to the CDP","#128C4A"],
+];
+document.getElementById("chs").innerHTML=CHAN.map((c,i)=>
+ '<div class="ch" style="animation-delay:'+(i*0.07)+'s;border-left:4px solid '+c[3]+'"><div class="ic"><img src="'+c[0]+'" alt=""/></div>'
+ +'<div><div class="n">'+c[1]+'</div><div class="s">'+c[2]+'</div></div></div>').join("");
+document.getElementById("brs").innerHTML=BRANDS.map((b,i)=>
+ '<div class="br" style="animation-delay:'+(0.1+i*0.07)+'s">'
+ +'<div class="sw"><img src="'+b[1]+'" alt=""/></div>'
+ +'<div class="bt"><div class="n" style="color:'+b[4]+'">'+b[2]+'</div>'
+ +'<div class="v">'+b[0]+' <span class="ar" style="color:'+b[4]+'">→</span> '+b[3]+'</div></div>'
+ +'<div class="chev" style="background:'+b[5]+'"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="'+b[4]+'" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 16 12 9 18"></polyline></svg></div>'
+ +'</div>').join("");
+document.getElementById("outs").innerHTML=OUTS.map((o,i)=>
+ '<div class="op" style="animation-delay:'+(0.3+i*0.1)+'s;border-top:3px solid '+o[2]+'"><div class="t">'+o[0]+'</div><div class="s">'+o[1]+'</div></div>').join("");
+/* connectors: chips -> phone -> brands */
+function drawFlows(){
+  const svg=document.getElementById("flows"), W=1228, H=612;
+  const wrap=document.getElementById("wrap").getBoundingClientRect();
+  const sx=W/wrap.width, sy=H/wrap.height;
+  const pr=document.querySelector("#mid .ph img").getBoundingClientRect();
+  const cx1=(pr.left-wrap.left)*sx, cx2=(pr.right-wrap.left)*sx, cy=(pr.top+pr.height/2-wrap.top)*sy;
+  let d="";
+  [...document.querySelectorAll("#chs .ch")].forEach((el,i)=>{
+    const r=el.getBoundingClientRect(), y=(r.top+r.height/2-wrap.top)*sy, x=(r.right-wrap.left)*sx;
+    d+='<path d="M'+x+' '+y+' C '+(x+80)+' '+y+', '+(cx1-80)+' '+cy+', '+cx1+' '+cy+'" fill="none" stroke="#CFC2E6" stroke-width="2.4" stroke-dasharray="8 7" style="animation:dashmove 1.5s linear infinite;animation-delay:'+(i*0.12)+'s"/>';
+  });
+  [...document.querySelectorAll("#brs .br")].forEach((el,i)=>{
+    const r=el.getBoundingClientRect(), y=(r.top+r.height/2-wrap.top)*sy, x=(r.left-wrap.left)*sx;
+    d+='<path d="M'+cx2+' '+cy+' C '+(cx2+80)+' '+cy+', '+(x-80)+' '+y+', '+x+' '+y+'" fill="none" stroke="#CFC2E6" stroke-width="2.4" stroke-dasharray="8 7" style="animation:dashmove 1.5s linear infinite;animation-delay:'+(i*0.12)+'s"/>';
+  });
+  svg.innerHTML=d;
+}
+drawFlows();
+if(document.fonts&&document.fonts.ready) document.fonts.ready.then(()=>requestAnimationFrame(drawFlows));
+window.addEventListener("load",()=>requestAnimationFrame(drawFlows));
+</script>
+</body></html>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Acquire · where consumers come from</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}html,body{margin:0;padding:0;width:1280px;height:832px;overflow:hidden;font-family:Inter,Arial,sans-serif;background:#F7F8FB;color:#111827;-webkit-font-smoothing:antialiased}
+a{color:#0A49B7}a:hover{color:#E4A400}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes scanline{0%{top:43%}50%{top:59%}100%{top:43%}}
+#topbar{position:absolute;left:0;top:0;right:0;height:66px;background:linear-gradient(100deg,#052762,#0A49B7);display:flex;align-items:center;padding:0 26px;gap:16px}
+#topbar img.md{height:40px;background:#fff;border-radius:9px;padding:4px}
+#topbar img.fs{height:25px;filter:brightness(0) invert(1);margin-left:auto}
+#topbar .t{color:#fff;font-size:20px;font-weight:600;letter-spacing:-0.2px}
+#caption{position:absolute;left:22px;right:22px;bottom:14px;height:56px;background:#052762;color:#fff;border-radius:12px;padding:0 22px;display:flex;gap:16px;align-items:center}
+#caption .tag{background:#E4A400;color:#0B1F3F;border-radius:7px;padding:6px 12px;font-size:12px;font-weight:700;letter-spacing:1.1px}
+#caption .tt{font-size:19px;font-weight:600}
+#caption .ss{margin-left:auto;font-size:14px;font-weight:500;opacity:0.85}
+#grid{position:absolute;left:20px;right:20px;top:74px;bottom:170px;display:grid;grid-template-columns:repeat(5,1fr);gap:10px;min-height:0}
+.col{background:#fff;border:1px solid #E3E7EF;border-radius:15px;padding:11px 10px 9px;display:flex;flex-direction:column;align-items:center;animation:fadeInUp 0.4s both;min-width:0;min-height:0;overflow:hidden}
+.chead{align-self:stretch;display:flex;flex-direction:column;height:54px}
+.k{font-size:10.5px;font-weight:700;letter-spacing:1px;color:#6B7280;text-transform:uppercase;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.plats{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}
+.plat{border:1px solid #E3E7EF;border-radius:7px;padding:3px 7px;font-size:10.5px;font-weight:500;background:#FAFBFD;color:#374151;white-space:nowrap}
+.shot{flex:1;min-height:0;align-self:stretch;display:flex;align-items:center;justify-content:center}
+.phone{height:100%;width:auto;max-width:100%;aspect-ratio:210/452;border-radius:28px;background:#111;padding:7px;box-shadow:0 12px 28px rgba(11,31,63,0.2);position:relative;flex-shrink:1}
+.phone .scr{width:100%;height:100%;border-radius:22px;overflow:hidden;position:relative;background:#fff}
+.phone .scr img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.phone .nt{position:absolute;left:50%;top:11px;transform:translateX(-50%);width:64px;height:15px;border-radius:99px;background:#111;z-index:3}
+.scanwrap{position:absolute;inset:0;z-index:2}
+.scanwrap .win{position:absolute;left:33%;right:29%;top:41%;bottom:39%;border-radius:5px;box-shadow:0 0 0 999px rgba(6,10,22,0.34)}
+.scanwrap .brk{position:absolute;width:13px;height:13px;border-color:#F2C94C}
+.scanwrap .ln{position:absolute;left:34%;right:30%;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,#F2C94C,transparent);box-shadow:0 0 12px rgba(242,201,76,0.95);animation:scanline 2.1s ease-in-out infinite}
+.scanwrap .lb{position:absolute;left:0;right:0;bottom:11px;text-align:center;font-size:10px;font-weight:700;color:#fff;letter-spacing:0.3px;text-shadow:0 2px 8px rgba(0,0,0,0.9)}
+.route{padding-top:8px;display:flex;align-items:center;gap:6px;justify-content:center;align-self:stretch}
+.rchip{background:#EAF0FB;color:#0A49B7;border-radius:999px;padding:5px 10px;font-size:11.5px;font-weight:600;white-space:nowrap}
+/* new acquisition flows · strip */
+#flows{position:absolute;left:20px;right:20px;bottom:80px;height:80px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.flow{background:#fff;border:1px solid #E3E7EF;border-radius:14px;padding:9px 12px 9px 9px;display:flex;gap:11px;align-items:center;animation:fadeInUp 0.4s both;min-width:0;overflow:hidden}
+.flow .th{width:40px;height:58px;border-radius:9px;overflow:hidden;flex-shrink:0;background:#111;box-shadow:0 6px 14px rgba(11,31,63,0.18)}
+.flow .th img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.flow .bd{min-width:0;flex:1}
+.flow .nb{font-size:9.5px;font-weight:700;letter-spacing:1px;color:#8a6d00;background:#FDF3DC;border-radius:5px;padding:2px 6px;display:inline-block;white-space:nowrap}
+.flow .ti{font-size:13.5px;font-weight:700;letter-spacing:-0.2px;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.flow .de{font-size:11px;line-height:1.35;color:#5B6472;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.flow .go{margin-left:auto;flex-shrink:0;background:#EAF0FB;color:#0A49B7;border-radius:999px;padding:5px 9px;font-size:10.5px;font-weight:700;white-space:nowrap}
+</style></head><body>
+<div id="__asset-preload" style="display:none" aria-hidden="true"><img data-asset="../../mdlz/flow-blinkit-biscoff.jpg" src="../../mdlz/flow-blinkit-biscoff.jpg" alt="" /><img data-asset="../../mdlz/flow-commerce-order.jpg" src="../../mdlz/flow-commerce-order.jpg" alt="" /><img data-asset="../../mdlz/flow-creator-story.jpg" src="../../mdlz/flow-creator-story.jpg" alt="" /><img data-asset="../../mdlz/lite-fs-logo.png" src="../../mdlz/lite-fs-logo.png" alt="" /><img data-asset="../../mdlz/lite-mdlz-logo.png" src="../../mdlz/lite-mdlz-logo.png" alt="" /><img data-asset="../../mdlz/mini-shot-chatgpt.jpg" src="../../mdlz/mini-shot-chatgpt.jpg" alt="" /><img data-asset="../../mdlz/mini-shot-google.jpg" src="../../mdlz/mini-shot-google.jpg" alt="" /><img data-asset="../../mdlz/mini-shot-gpay.jpg" src="../../mdlz/mini-shot-gpay.jpg" alt="" /><img data-asset="../../mdlz/mini-shot-instagram.jpg" src="../../mdlz/mini-shot-instagram.jpg" alt="" /><img data-asset="../../mdlz/mini-shot-qr.jpg" src="../../mdlz/mini-shot-qr.jpg" alt="" /></div>
+<script>
+(function(){
+  var MAP={};
+  function build(){
+    var box=document.getElementById("__asset-preload"); if(!box) return;
+    [].forEach.call(box.querySelectorAll("img[data-asset]"),function(im){
+      var k=im.getAttribute("data-asset"), v=im.getAttribute("src");
+      if(v&&v!==k) MAP[k]=v;
+    });
+  }
+  function fixOne(el){
+    var s=el.getAttribute("src")||"";
+    if(MAP[s]) el.setAttribute("src",MAP[s]);
+  }
+  function sweep(root){
+    if(!root||!root.querySelectorAll) return;
+    if(root.tagName==="IMG") fixOne(root);
+    [].forEach.call(root.querySelectorAll("img"),fixOne);
+  }
+  build(); sweep(document);
+  new MutationObserver(function(muts){
+    for(var i=0;i<muts.length;i++){
+      var m=muts[i];
+      if(m.type==="attributes"&&m.target.tagName==="IMG") fixOne(m.target);
+      for(var j=0;j<m.addedNodes.length;j++) sweep(m.addedNodes[j]);
+    }
+  }).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:["src"]});
+})();
+</script>
+
+
+<template id="__bundler_thumbnail" data-bg-color="#052762">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#052762"/><g fill="none" stroke="#E4A400" stroke-width="22" stroke-linecap="round"><path d="M420 400h360M700 320l80 80-80 80"/></g><text x="600" y="600" font-family="Arial,sans-serif" font-size="46" font-weight="700" fill="#fff" text-anchor="middle">Acquire</text><text x="600" y="660" font-family="Arial,sans-serif" font-size="22" letter-spacing="5" fill="#fff" opacity="0.6" text-anchor="middle">MONDELEZ × FREESTAND</text></svg>
+</template>
+<div id="topbar">
+  <img class="md" src="../../mdlz/lite-mdlz-logo.png" alt="Mondelez"/>
+  <div class="t">Acquire · where consumers come from</div>
+  <img class="fs" src="../../mdlz/lite-fs-logo.png" alt="FreeStand"/>
+</div>
+
+<div id="grid"></div>
+<div id="flows"></div>
+<div id="caption"><div class="tag">ACQUIRE</div><div class="tt">Every entry point, one claim journey</div><div class="ss">5 media sources · 3 new acquisition flows</div></div>
+<script>
+const IP={spark:'<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/>',wallet:'<rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M3 10h18M16.5 14.5h2"/>',globe:'<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.4 2.6 14.2 0 17-2.6-2.8-2.6-14.6 0-17z"/>',cam:'<rect x="3" y="6" width="18" height="14" rx="3.5"/><circle cx="12" cy="13" r="3.6"/>',qr:'<rect x="3.5" y="3.5" width="6" height="6" rx="1"/><rect x="14.5" y="3.5" width="6" height="6" rx="1"/><rect x="3.5" y="14.5" width="6" height="6" rx="1"/><path d="M14.5 14.5h3v3h-3zM20.5 14.5v3M17.5 20.5h3"/>',arrow:'<path d="M5 12h14M13 6l6 6-6 6"/>'};
+function ic(n,s,c){return '<svg width="'+(s||14)+'" height="'+(s||14)+'" viewBox="0 0 24 24" fill="none" stroke="'+(c||"currentColor")+'" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0">'+IP[n]+'</svg>';}
+const SRC=[
+ {k:"AI assistants",ic:"spark",plats:["ChatGPT","Claude"],img:"../../mdlz/mini-shot-chatgpt.jpg",route:"Digital sampling"},
+ {k:"Payment apps",ic:"wallet",plats:["Google Pay","Paytm"],img:"../../mdlz/mini-shot-gpay.jpg",route:"Digital sampling"},
+ {k:"Search",ic:"globe",plats:["Google","cadbury.in"],img:"../../mdlz/mini-shot-google.jpg",route:"Website sampling"},
+ {k:"Social ads",ic:"cam",plats:["Instagram","Meta"],img:"../../mdlz/mini-shot-instagram.jpg",route:"Digital sampling"},
+ {k:"QR on pack",ic:"qr",plats:["Pack QR","In-store QR"],img:"../../mdlz/mini-shot-qr.jpg",route:"Promoter sampling",scan:true},
+];
+const FLOWS=[
+ {n:"LIMITED DROPS",t:"Biscoff × Minimon drop",img:"../../mdlz/flow-blinkit-biscoff.jpg",
+  d:"Banner → waitlist → 5 receipts",go:"6 steps"},
+ {n:"CREATORS",t:"Celebrations memory UGC",img:"../../mdlz/flow-creator-story.jpg",
+  d:"Creator story → UGC → Joy Club reward",go:"5 steps"},
+ {n:"COMMERCE",t:"Post-order referral",img:"../../mdlz/flow-commerce-order.jpg",
+  d:"Post-order banner → refer 10 → sample",go:"5 steps"},
+];
+document.getElementById("grid").innerHTML=SRC.map((s,i)=>'<div class="col" style="animation-delay:'+(i*0.06)+'s">'
+ +'<div class="chead"><div class="k">'+ic(s.ic,12,"#6B7280")+s.k+'</div>'
+ +'<div class="plats">'+s.plats.map(p=>'<span class="plat">'+p+'</span>').join("")+'</div></div>'
+ +'<div class="shot"><div class="phone"><div class="scr"><img src="'+s.img+'" alt="'+s.k+'"/>'
+ +(s.scan?'<div class="scanwrap"><div class="win"></div>'
+   +'<div class="brk" style="left:31%;top:39%;border-top:2.5px solid;border-left:2.5px solid;border-radius:4px 0 0 0"></div>'
+   +'<div class="brk" style="right:27%;top:39%;border-top:2.5px solid;border-right:2.5px solid;border-radius:0 4px 0 0"></div>'
+   +'<div class="brk" style="left:31%;bottom:37%;border-bottom:2.5px solid;border-left:2.5px solid;border-radius:0 0 0 4px"></div>'
+   +'<div class="brk" style="right:27%;bottom:37%;border-bottom:2.5px solid;border-right:2.5px solid;border-radius:0 0 4px 0"></div>'
+   +'<div class="ln"></div><div class="lb">Scanning QR…</div></div>':"")
+ +'</div><div class="nt"></div></div></div>'
+ +'<div class="route">'+ic("arrow",14,"#0A49B7")+'<span class="rchip">'+s.route+'</span></div></div>').join("");
+document.getElementById("flows").innerHTML=FLOWS.map((f,i)=>'<div class="flow" style="animation-delay:'+(0.3+i*0.08)+'s">'
+ +'<div class="th"><img src="'+f.img+'" alt="'+f.t+'"/></div>'
+ +'<div class="bd"><span class="nb">NEW · '+f.n+'</span><div class="ti">'+f.t+'</div><div class="de">'+f.d+'</div></div>'
+ +'</div>').join("");
+</script>
+</body></html>

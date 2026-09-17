@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>FreeStand Analytics · Mondelez</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}html,body{margin:0;padding:0;width:1280px;height:832px;overflow:hidden;font-family:Inter,Arial,sans-serif;background:#F5F6F8;color:#111827;font-size:13px}
+a{color:#1D4ED8}a:hover{color:#0F3BA8}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+#app{position:absolute;inset:0;display:flex}
+/* icon rail */
+#rail{width:44px;flex-shrink:0;background:linear-gradient(180deg,#052762,#0A49B7);display:flex;flex-direction:column;align-items:center;padding:10px 0;gap:2px;position:relative}
+#rail .logo{width:28px;height:28px;border-radius:7px;background:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+#rail .ri{width:30px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:6px;position:relative;cursor:default}
+#rail .ri.on{background:rgba(255,255,255,0.16)}
+#rail .bdg{position:absolute;top:1px;right:1px;background:#E11D48;color:#fff;font-size:7.5px;font-weight:700;border-radius:99px;padding:0 3px;line-height:1.5}
+#rail .exp{position:absolute;right:-9px;top:14px;width:18px;height:18px;border-radius:999px;background:#0A49B7;border:1.5px solid #fff;display:flex;align-items:center;justify-content:center}
+/* secondary menu */
+#menu{width:150px;flex-shrink:0;background:#fff;border-right:1px solid #E5E7EB;display:flex;flex-direction:column;padding:0 0 10px}
+#menu .cons{height:40px;display:flex;align-items:center;gap:8px;padding:0 10px;font-size:11.5px;font-weight:500;color:#374151}
+#menu .cons .b{width:18px;height:18px;border-radius:999px;background:#E5E7EB;display:flex;align-items:center;justify-content:center}
+.mgrp{font-size:13px;font-weight:600;color:#1D4ED8;padding:14px 14px 7px}
+.mi{font-size:11.5px;color:#4B5563;padding:7px 14px;line-height:1.3;cursor:pointer;border-left:3px solid transparent}
+.mi:hover{background:#F9FAFB}
+.mi.on{background:#EEF3FF;color:#111827;font-weight:600;border-left-color:#1D4ED8}
+/* main */
+#main{flex:1;display:flex;flex-direction:column;min-width:0}
+#top{height:44px;background:#fff;border-bottom:1px solid #E5E7EB;display:flex;align-items:center;padding:0 16px;flex-shrink:0}
+#top .h{font-size:16px;font-weight:600}
+#top .rt{margin-left:auto;display:flex;align-items:center;gap:14px;color:#6B7280}
+#top .bell{position:relative}
+#top .bell .n{position:absolute;top:-6px;right:-9px;background:#2563EB;color:#fff;font-size:8px;font-weight:700;border-radius:99px;padding:1px 4px}
+#body{flex:1;overflow-y:auto;padding:14px 16px 40px;background:#F5F6F8}
+#body::-webkit-scrollbar{width:7px}#body::-webkit-scrollbar-thumb{background:#D1D5DB;border-radius:4px}
+/* common UI atoms */
+.selrow{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.sel{background:#fff;border:1px solid #D1D5DB;border-radius:7px;padding:8px 11px;font-size:12px;color:#111827;display:flex;align-items:center;gap:20px;cursor:pointer}
+.sel .cv{color:#9CA3AF}
+.btnB{background:#1D4ED8;color:#fff;border-radius:7px;padding:8px 13px;font-size:12px;font-weight:600;display:flex;align-items:center;gap:6px;border:none;font-family:inherit;cursor:pointer}
+.btnO{background:#fff;border:1px solid #D1D5DB;border-radius:7px;padding:7px 11px;font-size:11.5px;color:#6B7280;display:flex;align-items:center;gap:7px}
+.card{background:#fff;border:1px solid #E5E7EB;border-radius:8px}
+.sec{background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:13px 14px;margin-bottom:14px}
+.sec>.sh{display:flex;align-items:flex-start;gap:10px;margin-bottom:11px}
+.sec>.sh .t{font-size:13.5px;font-weight:600}
+.sec>.sh .s{font-size:11px;color:#6B7280;margin-top:2px}
+.sec>.sh .tools{margin-left:auto;display:flex;align-items:center;gap:7px}
+.wcard{background:#fff;border:1px solid #E5E7EB;border-radius:7px;padding:10px 12px;position:relative;min-height:118px}
+.wcard .wt{font-size:11.5px;font-weight:600}
+.wcard .ws{font-size:9.5px;color:#6B7280;margin-top:2px;line-height:1.3}
+.wcard .icons{position:absolute;right:9px;top:9px;display:flex;gap:6px;color:#9CA3AF}
+.bignum{text-align:center;padding:20px 0 6px}
+.bignum .v{font-size:31px;font-weight:700;letter-spacing:-0.5px}
+.bignum .l{font-size:10.5px;color:#6B7280;margin-top:4px}
+.bignum .f{font-size:9px;color:#9CA3AF;margin-top:8px}
+.tl{background:#F3F8FF;border:1px solid #DCE8FB;border-radius:8px;padding:11px 12px;margin-bottom:14px}
+.tl .th{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:500;color:#1F2937;margin-bottom:9px}
+.tlgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.tile{border-radius:7px;padding:8px 10px;border:1px solid transparent}
+.tile .k{font-size:10px;font-weight:500;color:#374151;display:flex;align-items:center;gap:5px;line-height:1.3}
+.tile .a{font-size:11px;font-weight:600;margin-top:5px}
+.tile .d{font-size:9.5px;color:#6B7280;line-height:1.45}
+.tile .n{font-size:19px;font-weight:700;margin-top:3px}
+.chip{font-size:10px;font-weight:600;border-radius:6px;padding:4px 8px;border:1px solid}
+.tabs{display:flex;gap:18px;border-bottom:1px solid #E5E7EB;margin-bottom:12px}
+.tab{font-size:12.5px;font-weight:500;color:#6B7280;padding:0 2px 9px;border-bottom:2px solid transparent;cursor:pointer}
+.tab.on{color:#111827;font-weight:600;border-bottom-color:#111827}
+table.dt{width:100%;border-collapse:collapse}
+table.dt th{font-size:10.5px;font-weight:600;color:#374151;background:#F9FAFB;text-align:left;padding:7px 9px;border-bottom:1px solid #E5E7EB;white-space:nowrap}
+table.dt td{font-size:11px;padding:7px 9px;border-bottom:1px solid #F3F4F6;color:#374151}
+table.dt td.num,table.dt th.num{text-align:right}
+.mut{color:#9CA3AF}
+.pillG{background:#ECFDF3;color:#15803D;border-radius:5px;padding:2px 6px;font-size:10px;font-weight:600}
+.pillB{background:#EFF4FF;color:#1D4ED8;border-radius:5px;padding:2px 6px;font-size:10px;font-weight:600}
+.pillR{background:#FEF2F2;color:#B91C1C;border-radius:5px;padding:2px 6px;font-size:10px;font-weight:600}
+.pillY{background:#FFFBEB;color:#92400E;border-radius:5px;padding:2px 6px;font-size:10px;font-weight:600}
+.sw{display:flex;background:#F3F4F6;border-radius:8px;padding:3px;gap:3px;width:max-content;margin:10px auto 0}
+.sw button{border:none;background:transparent;font-family:inherit;font-size:12px;font-weight:600;color:#4B5563;padding:7px 16px;border-radius:6px;cursor:pointer}
+.sw button.on{background:#1D4ED8;color:#fff}
+.addsec{display:block;margin:4px auto 0;background:#fff;border:1px solid #D1D5DB;border-radius:7px;padding:9px 18px;font-size:12px;color:#1D4ED8;font-weight:600;font-family:inherit;cursor:pointer}
+</style></head><body>
+<div id="__asset-preload" style="display:none" aria-hidden="true"><img data-asset="../../mdlz/lite-fs-logo.png" src="../../mdlz/lite-fs-logo.png" alt="" /></div>
+<script>
+(function(){
+  var MAP={};
+  function build(){
+    var box=document.getElementById("__asset-preload"); if(!box) return;
+    [].forEach.call(box.querySelectorAll("img[data-asset]"),function(im){
+      var k=im.getAttribute("data-asset"), v=im.getAttribute("src");
+      if(v&&v!==k) MAP[k]=v;
+    });
+  }
+  function fixOne(el){
+    var s=el.getAttribute("src")||"";
+    if(MAP[s]) el.setAttribute("src",MAP[s]);
+  }
+  function sweep(root){
+    if(!root||!root.querySelectorAll) return;
+    if(root.tagName==="IMG") fixOne(root);
+    [].forEach.call(root.querySelectorAll("img"),fixOne);
+  }
+  build(); sweep(document);
+  new MutationObserver(function(muts){
+    for(var i=0;i<muts.length;i++){
+      var m=muts[i];
+      if(m.type==="attributes"&&m.target.tagName==="IMG") fixOne(m.target);
+      for(var j=0;j<m.addedNodes.length;j++) sweep(m.addedNodes[j]);
+    }
+  }).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:["src"]});
+})();
+</script>
+
+
+<img id="fs-logo-src" src="../../mdlz/lite-fs-logo.png" alt="" style="display:none" />
+<template id="__bundler_thumbnail" data-bg-color="#052762">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#052762"/><g transform="translate(600 360) scale(14)" fill="none" stroke="#E4A400" stroke-width="1.6" stroke-linecap="round"><path transform="translate(-12 -12)" d="M5 19V9M11 19V5M17 19v-7"/></g><text x="600" y="600" font-family="Arial,sans-serif" font-size="46" font-weight="700" fill="#fff" text-anchor="middle">Analytics</text><text x="600" y="660" font-family="Arial,sans-serif" font-size="22" letter-spacing="5" fill="#fff" opacity="0.6" text-anchor="middle">MONDELEZ × FREESTAND</text></svg>
+</template>
+
+<div id="app">
+  <div id="rail"></div>
+  <div id="menu"></div>
+  <div id="main">
+    <div id="top"><div class="h" id="ptitle"></div>
+      <div class="rt"><div class="bell" id="bellslot"></div><div id="userslot"></div></div>
+    </div>
+    <div id="body"></div>
+  </div>
+</div>
+<script src="icons.js?v=2"></script>
+<script src="pages1.js?v=2"></script>
+<script src="pages2.js?v=2"></script>
+<script>
+const MENU=[
+  ["grp","Analytics"],
+  ["mi","Overview","overview"],
+  ["mi","Live Analytics","live"],
+  ["mi","Data Visualisation","dataviz"],
+  ["mi","Statistical Analysis","stats"],
+  ["grp","Dashboards"],
+  ["mi","All Charts","allcharts"],
+  ["mi","Campaign Performance Overview","perf"],
+  ["mi","Geographic Performance","geo"],
+  ["mi","Consumer Profile & Survey Insights","profile"],
+  ["mi","Feedback Deep Dive","fb"],
+  ["mi","Purchase Intent Deep Dive","pi"],
+  ["mi","Channel & Acquisition Analysis","ch"],
+  ["mi","+ New Dashboard","newdash"],
+];
+const RAIL=["users","calendar","building","clipboard","layers","usercheck","database","users2","check","bell2","clock2","chart","chart2","star","gift","doc","dollar","box","key","book"];
+const PAGES={perf:{t:"Dashboard",r:()=>pagePerf()},live:{t:"Live Analytics",r:()=>pageLive()},stats:{t:"Statistical Analysis",r:()=>pageStats()},dataviz:{t:"Data Visualisation",r:()=>pageDataviz()},overview:{t:"Overview",r:()=>pageOverview()}};
+const ORDER=["perf","stats","live","dataviz","overview"];
+let cur="perf";
+const FSLOGO=document.getElementById("fs-logo-src").getAttribute("src");
+function drawRail(){
+  document.getElementById("rail").innerHTML='<div class="logo"><img src="'+FSLOGO+'" alt="FreeStand" style="width:22px;height:22px;object-fit:contain"/></div>'
+   +'<div class="exp">'+ic("chevR",11,"#fff")+'</div>'
+   +RAIL.map((n,i)=>'<div class="ri'+(i===11?" on":"")+'">'+ic(n,15,"rgba(255,255,255,0.78)")+(i===14?'<span class="bdg">20</span>':"")+'</div>').join("");
+}
+function drawMenu(){
+  document.getElementById("menu").innerHTML='<div class="cons"><span class="b">'+ic("back",11,"#4B5563")+'</span>Consolidated</div>'
+   +MENU.map(m=>m[0]==="grp"?'<div class="mgrp">'+m[1]+'</div>'
+     :'<div class="mi'+(m[2]===cur?" on":"")+'" onclick="go(\''+m[2]+'\')">'+m[1].replace(/&/g,"&amp;")+'</div>').join("");
+}
+function go(k){ if(!PAGES[k])return; cur=k; location.hash=ORDER.indexOf(k)>=0?ORDER.indexOf(k):0; render(); }
+function render(){
+  drawRail(); drawMenu();
+  document.getElementById("bellslot").innerHTML=ic("bell2",17,"#6B7280")+'<span class="n">99+</span>';
+  document.getElementById("userslot").innerHTML=ic("usercheck",17,"#6B7280");
+  const p=PAGES[cur]||PAGES.perf;
+  document.getElementById("ptitle").textContent=p.t;
+  document.getElementById("body").innerHTML=p.r();
+  document.getElementById("body").scrollTop=0;
+}
+function show(){
+  const i=Math.max(0,Math.min(ORDER.length-1,parseInt(location.hash.slice(1)||"0",10)||0));
+  cur=ORDER[i]; render();
+}
+window.addEventListener("hashchange",show); window.addEventListener("load",show);
+</script>
+</body></html>
