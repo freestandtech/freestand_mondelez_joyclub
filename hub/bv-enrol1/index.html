@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8" />
+<title>Cadbury Bournvita · WhatsApp sampling (end to end)</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/line.css"><link rel="stylesheet" href="../shared/chatpage.css?v=9"><link rel="stylesheet" href="../shared/builder.css?v=9"><link rel="stylesheet" href="../shared/modals.css?v=7">
+<style id="wa-theme">
+.ln-status{background:#075E54!important;color:#fff!important}
+.ln-status .sig{color:#fff!important}
+.ln-head{background:#075E54!important;color:#fff!important;border-bottom:none!important}
+.ln-back,.ln-hicons{color:#fff!important}
+.ln-bname{color:#fff!important;display:flex!important;flex-direction:column;align-items:flex-start;line-height:1.15}
+.ln-bname::after{content:"✓ Verified business · online";font-size:10px;font-weight:500;opacity:.85;letter-spacing:0}
+.ln-badge{display:none!important}
+.ln-chat{background:#ECE0D8!important;background-image:none!important;height:calc(100% - 124px)!important;max-height:none!important}
+.ln-date{background:#fff!important;color:#54656F!important;border-radius:999px!important;box-shadow:0 1px 1px rgba(0,0,0,.06)}
+.ln-av{display:none!important}
+.ln-card{background:#fff!important;border-radius:10px!important;box-shadow:0 1px 1px rgba(0,0,0,.13)!important;border:none!important;overflow:hidden!important;padding-bottom:0!important}
+.ln-ctext{color:#111B21!important;padding-bottom:8px!important}
+.ln-btn{border:none!important;border-top:1px solid #E9EDEF!important;color:#027EB5!important;background:#fff!important;border-radius:0!important;font-weight:500!important;text-align:center!important;margin:0!important;padding:9px 8px!important;font-size:12.5px!important}
+.ln-phone{background-image:none!important;overflow:hidden!important}
+.ln-bub{background:#fff!important;color:#111B21!important;border-radius:2px 10px 10px 10px!important;box-shadow:0 1px 1px rgba(0,0,0,.13)!important}
+.ln-row.ln-user .ln-bub{background:#D9FDD3!important;border-radius:10px 2px 10px 10px!important}
+.ln-meta{color:#667781!important}
+.ln-input{background:#F0F2F5!important;border-top:1px solid #E1E4E8!important}
+.ln-input .ln-ico{color:#54656F!important}
+</style>
+<style id="wf-theme">
+.fa{top:44px!important;height:calc(100% - 52px)!important}
+.fa-int{top:40px!important;height:calc(100% - 46px)!important}
+.fa-int h1{font-size:34px!important}
+
+.mz-nav img{height:40px}
+.wb-body{background:#fff}
+.wb-step{color:#8A6A4A;letter-spacing:1.6px;padding:15px 18px 0}
+.wb-q{font-size:17px;color:#1F2937;padding:7px 18px 13px}
+.wb-opt{counter-increment:wbo;border:1.5px solid #0F2E6B;border-radius:5px;padding:10px 12px;font-size:12.5px;color:#1F2937;font-weight:600}
+.wb-opt .r{width:22px;height:22px;border-radius:4px;border:1.5px solid #0F2E6B;background:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#0F2E6B}
+.wb-opt .r::after{content:counter(wbo,upper-alpha)}
+.wb-opt.sel{border-color:#F2C94C;background:#FDF8E7}
+.wb-opt.sel .r{border:1.5px solid #F2C94C;background:#F2C94C;color:#4A3200}
+.wb-field .l{font-size:12px;font-weight:700;color:#1F2937;margin-bottom:5px}
+.wb-field .f{border:1.5px solid #0F2E6B;border-radius:5px;height:42px;font-size:13px}
+.wb-btn{background:#0F2E6B;border-radius:5px;height:42px;font-size:13px;margin:12px 18px 0}
+.wb-hero{height:150px;background:linear-gradient(160deg,#FDF0DF,#F3C78A)}
+.wb-btn{background:#4F2170!important}
+.wb-opt.sel{border-color:#4F2170!important;background:#F6F1FC!important}
+.wb-opt.sel .r{border-color:#4F2170!important;background:#4F2170!important;color:#fff!important}
+.wb-prog i{background:#4F2170!important}
+.wb-hero .k{color:#7B3F00;letter-spacing:2.2px}
+.wb-hero .t{font-size:21px;color:#3A2109}
+.wb-succ .e{background:#FDF0DF;color:#7B3F00}
+.wb-succ .t{color:#7B3F00}
+.wb-sku .im{background:#7B3F00}
+</style>
+</head><body>
+<div id="chat-root"></div>
+<script src="../shared/line.js"></script>
+<script src="../shared/builder.js?v=9"></script><script src="../shared/modals.js?v=7"></script>
+<script>
+function g(msgs,extra){ return Object.assign(msgs,extra||{}); }
+function w(web,extra){ return Object.assign([],{web:web},extra||{}); }
+const HERO="linear-gradient(160deg,#FDF0DF,#F3C78A)";
+const INTRO={kind:"intro",kicker:"WEBSITE SAMPLING · CADBURY BOURNVITA INDIA",logo:"../../mdlz-hub/strat/dp-bournvita.png",
+ title:"One web form on bournvita.in<br>and everything after it.",
+ sub:"Mondelez buys the media. FreeStand runs the rest: the form, the pack rule, the courier, the delivery, the feedback, the loyalty card.",
+ meta:[["CAMPAIGN","BV-IN-2026"],["CHANNEL","Web form · bournvita.in"],["SAMPLES","100,000"]],
+ phases:[["Build it once","Questions, pack rules, pixels, embed script.",["Builder","No developer"]],
+  ["Paste it on the brand site","One script tag on bournvita.in. Mondelez keeps the page.",["Website embed","Live in 5 min"]],
+  ["Run the whole engagement","Qualify → pack → courier → verify → ship → ask → convert.",["Agentic consensus","Dynamic courier"]],
+  ["Keep the customer","One profile. Auto-enrolled into Mondelez Joy Club.",["Enriched profile","Loyalty"]]],
+ cta:"Start with the builder"};
+const B={kind:"builder",pageNos:[1,4,6],title:"Cadbury Bournvita Interaction [Sep 2026-live]",hero:HERO,heroT:"Claim a free Bournvita pack",formTitle:"Claim a free Bournvita pack for your child · five quick questions.",formCta:"Continue →",fields:["Full name","Mobile number","Email ID"],fixed:[["Consent to be contacted","Always Enabled"],["Mobile verified by OTP","Always Enabled"]],
+ pages:[[["How old is your child?","Decides which Bournvita pack we send"],["What matters most for your child right now?","Tailors the tips we send after delivery"]],[["Where do you usually shop for your child’s essentials?","Decides where the Day-7 coupon sends them"],["Is your child drinking a malt drink today?","Tells us if this is a switch or a first trial"]],[["Please enter your postal code","Used to score the delivery partner for your area"],["Please share your complete address","Verified by agentic consensus before approval"]]],
+ after:["Claim Success 🎉","Feedback · Day 7 (email + SMS)","Purchase intent · Blinkit coupon"]};
+const EMBED_CODE='<script defer src="sample.freestand.in/api/script.js"></' + 'script>\n<iframe id="freestand-integration" src="sample.freestand.in/interactions/bv-c41f8b7d?utm_source=meta&utm_medium=paid_social&utm_campaign=BV-IN-2026" width="100%" height="600"></iframe>';
+window.CHAT_CONFIG = {
+heads:["Form builder · questions & preview","Pack logic · age → SKU","Pixels · Meta · Google · GA4","Share form · website embed","Script pasted into bournvita.in","The ad sends her to the page","Landing page on bournvita.in","Your details · name, mobile, email","OTP · number verified","Child's age → pack allocated","What matters most right now","Where she shops → coupon","Another brand → screening","Address → courier scored live","Verification → agentic consensus","WhatsApp · claim confirmed","WhatsApp · shipped & delivered","Gratification period","WhatsApp · Day-7 feedback","WhatsApp · coupon → Blinkit","Blinkit · coupon applied"],
+title:"Cadbury Bournvita · website sampling (end to end)", brand:"Cadbury Bournvita", campaignId:"BV-IN-2026", channelLabel:"Web form · bournvita.in", chatKicker:"WhatsApp · Bournvita India",
+avatar:{img:"../../mdlz-hub/strat/dp-bournvita.png"},
+source:"Web form · bournvita.in",
+startDate:"Sep 12 (Sat)",
+trackLabel:"Track my delivery",
+postal:"INDIA POST",
+web:{name:"Cadbury Bournvita", color:"#4F2170", url:"mondelezinternational.com/india/our-brands/bournvita", site:"mondelezinternational.com", chrome:"mdlz", navLogo:"../../mdlz/lite-mdlz-logo.png", crumb:"HOME / OUR BRANDS /", title:"BOURNVITA", script:"sample.freestand.in", logo:"../../mdlz-hub/strat/dp-bournvita.png", logoH:30},
+pre:[
+ Object.assign({},B,{call:{k:"STEP 1 · BUILDER",t:"The brand builds the form, not a developer",s:"Questions, grouped into pages. The phone shows the live web form preview.",pts:["Page 1 qualifies the child","Page 6 collects the address"],cta:"Add the pack logic"}}),
+ Object.assign({},B,{modal:"skus",sku:{q:"How old is your child?",skus:["Bournvita Pro 500 g · 6–9 years trial","Bournvita 750 g · 10–14 years trial"],rules:[{ans:"3 – 5 years",pick:0},{ans:"6 – 9 years",pick:0},{ans:"10 – 12 years",pick:1},{ans:"13 – 14 years",pick:1}]},
+  call:{k:"STEP 2 · PACK LOGIC",t:"One answer decides which pack ships",s:"Four answers → two packs. No wrong sample leaves the warehouse.",pts:["6–9 y → Bournvita Pro 500 g","10–14 y → Bournvita 750 g"],cta:"Next: pixels"}}),
+ Object.assign({},B,{modal:"pixels",pixel:{platform:"Meta Pixel",name:"bournvita_in",id:"1884207713904562"},more:[["Marketing Pixel 2 · TikTok Pixel","C8LM4RJC77U9K2"],["Marketing Pixel 3 · Google Ads","AW-9920 1174"],["Marketing Pixel 4 · GPay Ads","yjtag 7740-XX"],["Marketing Pixel 5 · GA4","G-8814BVIN"]],
+  call:{k:"STEP 3 · MEASUREMENT",t:"The agency’s pixels fire from the form",s:"Pasted in once. Every claim and store click goes back to the platform that paid for the click.",pts:["No tag-manager work at all","Attributed to the exact creative"],cta:"Next: go live"}}),
+ Object.assign({},B,{modal:"share",mode:"embed",spot:"live preview",utm:{source:"meta",medium:"paid_social",campaign:"BV-IN-2026",content:"growth_carousel",term:"malt_drink",platform:"instagram",audience:"mothers_28_45",variant:"a"},
+  code:EMBED_CODE,
+  call:{k:"STEP 4 · GO LIVE",t:"Copy the website embed code",s:"One script tag with the UTMs baked in · it goes onto the Bournvita page on cadbury.in.",pts:["Embed → form on the brand site","Live in minutes, not a release cycle"],cta:"Paste it into bournvita.in"}}),
+ {kind:"integrate",title2:"The form is integrated into bournvita website",sub:"One paste on the Cadbury page. No developer, no release cycle.",hero:HERO,heroT:"Claim a free Bournvita pack",formTitle:"Claim a free pack for your child",formCta:"Continue →",fields:["Full name","Mobile number","Email ID"],chips:["Script → live form","Mondelez keeps the page","FreeStand keeps the logic"],cta:"See how she arrives"},
+],
+ad:{img:"../../mdlz/bv-ad-sq4.jpg",caption:"The link sits on the Bournvita ad creative · one tap opens the claim form on bournvita.in.",
+ ig:{handle:"bournvita_india",avImg:"../../mdlz-hub/strat/dp-bournvita.png",cta:"Claim free sample",likes:"2,856 likes",caption:"Strength everyday 💪 Claim a FREE Bournvita pack for your child · tap to claim on bournvita.in!",url:"#Bournvita #MondelezIndia"},
+ media2:{kind:"google",url:"google.co.in",q:"bournvita free sample",results:[
+  {ad:true,url:"bournvita.in/free-sample",title:"Bournvita Free Sample | Cadbury India",desc:"The right pack for your child's age, free. Just 5 questions.",cta:"Claim a free sample ›"},
+  {url:"bournvita.in",title:"Bournvita | Cadbury",desc:"Malt drink with Vitamin D, B12 and iron."},
+  {url:"momspresso.com/malt-drink",title:"How to choose a malt drink",desc:"What other mothers say about kids' nutrition drinks."}]},
+ now:[0,2],
+ types:["Instagram / Meta ads","TikTok in-feed & Spark","Google & GPay search","ChatGPT recommendations","Email to Mondelez members","Pack & vending-machine QR"],
+ line:"Same form, same UTM, whichever medium brings her. Follow-up runs on email and SMS."},
+friend:{cover:"linear-gradient(135deg,#0A49B7,#3B82F6)", contacts:"1,942,806", desc:"Cadbury Bournvita India. Delivery updates, growing-up tips and Joy Club offers.", links:["Free sample campaign","Bournvita nutrition guide","Mondelez Joy Club"]},
+optinTag:"Web form claim · opted in",
+persona:{ name:"Meena Shah", phone:"+91 98200 31122", address:"A-504, Sunteck City, Goregaon West, Mumbai 400104", postal:"400104", area:"Goregaon West, Mumbai",
+  photo:"../../mdlz/opt/meena.jpg", photoPos:"38% 30%", cohorts:["Mumbai · Goregaon","Child 6–9 years","Growth & height","Shops on Blinkit"],
+  trackId:"BV-4471-2280-9913", carrier:"Delhivery", fc:"Bhiwandi FC (Bhiwandi, Maharashtra)", eta:"arrives Sep 14", homeLabel:"A-504 Sunteck City · Goregaon", region:"Western India", orderDate:"Sep 12, 2026" },
+alloc:{postal:"400104", area:"Goregaon West, Mumbai", winnerIdx:0, weights:[["On-time performance",50],["Delivery speed",30],["Cost per shipment",20]],
+ partners:[["Delhivery",97.4,2,395,96.4,"Best on-time record in 400104, and matches the fastest transit time in the ward."],
+  ["Blue Dart",94.2,2,385,95.3,"Cheapest 2-day option, slightly lower on-time record."],
+  ["India Post",93.8,3,350,86.9,"Lowest cost, one day slower into Goregaon."],
+  ["Ekart Logistics",90.2,4,410,77.2,"Built for bulk freight, not single parcels."]]},
+consensus:{score:96.8, threshold:90, canonical:"A-504, Sunteck City, Goregaon West, Mumbai 400104",
+ agents:[["ChatGPT","Building name and block/lot order match India Post conventions",97.2],["Claude","Canonical match on the PIN 400104 postal record",96.4],["Grok","No duplicate claim on this household",95.9],["Gemini","Geocoded to building level · confidence 98%",97.5]]},
+screening:{verdict:"Eligible · competitor-brand user", sub:"She buys a rival malt drink. That makes her the campaign’s best prospect.",
+ now:"Another brand of malt drink", want:"Switchers & first-time users", score:8.7, scoreLabel:"Switch likelihood · highest of any answer",
+ note:"31% of competitor-brand parents bought Bournvita after a 7-day trial in the last campaign.",
+ rows:[["Which malt drink today?","Yes · another brand"],["Campaign rule","Target switchers · exclude current Bournvita buyers"],["Decision","Approved · continue to delivery"]],
+ tags:["Switcher","High conversion value","Competitor user","Priority retargeting"]},
+skumap:{q:"How old is your child?", sel:1, map:[0,0,1,1],
+ opts:["3 – 5 years","6 – 9 years","10 – 12 years","13 – 14 years"],
+ packs:[{img:"../../mdlz-hub/converge/brand-bournvita.png",name:"Bournvita Pro 500 g · 6–9 years",pack:"Trial pack · 500 g"},
+  {img:"../../mdlz-hub/converge/brand-bournvita.png",name:"Bournvita 750 g · 10–14 years",pack:"Trial pack · 500 g"}]},
+inventory:{claimed:50001, allocated:100000, sku:"Bournvita Pro 500 g · 6–9 years trial pack", wh:"Bhiwandi FC (Bhiwandi, Maharashtra)"},
+track:{url:"track.freestand.in/in/BV-4471-2280-9913", statusLabel:"Arriving on", day:"Monday", month:"September", date:"14", year:"2026", status:"Out for delivery", orderId:"ORD-2026-003", item:"Bournvita Pro 500 g · 6–9 years trial pack (400 g)",
+ activity:[["14 SEP","07:40","Out for delivery","Goregaon delivery centre · Delhivery"],["13 SEP","21:12","Arrived at destination hub","Goregaon delivery centre, Mumbai"],["13 SEP","16:05","In transit","Maharashtra Logistics Center → Mumbai"],["12 SEP","18:30","Shipment picked up","Bhiwandi FC (Bhiwandi, Maharashtra)"],["12 SEP","17:22","Order packed","Sample #50,001 · allocated from campaign stock"]]},
+skuSel:0, orders:[["ORD-2026-001","Sep 12, 2026","Rahul Kumar","+91 98671 20034","C-1204, Lodha Amara, Thane West, Mumbai 400607","Bournvita 750 g · 10–14 years trial pack by FreeStand","Blue Dart"],["ORD-2026-002","Sep 12, 2026","Priya Menon","+91 99300 55412","B-802, Amanora Park, Hadapsar, Pune 411028","Bournvita Pro 500 g · 6–9 years trial pack by FreeStand","India Post"]],
+skuRule:"child’s age → Bournvita Pro 500 g (6–9 y) or Bournvita 750 g (10–14 y)",
+skus:[{answer:"6 – 9 years",short:"BV Pro",name:"Bournvita Pro 500 g · 6–9 years",pack:"Trial pack · 500 g",color:"#B4591B",why:"Vitamin D, B12, iron and 2× calcium for growth."},{answer:"10 – 14 years",short:"AKTIF",name:"Bournvita 750 g · 10–14 years",pack:"Trial pack · 500 g",color:"#052762",why:"AktifGro + DHA for pre-schoolers."}],
+purchase:{dest:"blinkit.com/prn/cadbury-bournvita-pro-750g", utm:"?utm_source=freestand&utm_medium=web_form&utm_campaign=BV-IN-2026&utm_content=day7_coupon&fs_uid=6b21-44da",
+  events:[["17:15:02","“Shop on Blinkit” tapped on the claim page","Day-7 feedback page"],["17:15:02","Store chosen from her own answer","She told the form she buys on Blinkit"],["17:15:03","Redirect built with UTM + customer id","Cohort “High intent · Blinkit”"],["17:15:03","Coupon auto-applied","BV40 · ₹40 off 750 g"],["17:15:04","Conversion events fired","Meta · TikTok · Google · GPay · GA4"],["later","Loop closed","Order webhook links sample → purchase"]],
+  attr:["utm_source=meta · paid_social","The Instagram creative she tapped on Sep 12"], coupon:["BV40 · ₹40","Single use · 14 days"], pixels:["Meta · TikTok · Google · GPay · GA4","purchase_click · value ₹3,285"]},
+groups:[
+ w({kind:"landing", photo:"../../mdlz/flow-bournvita-ad.jpg", k:"FREE SAMPLE", t:"Strength for every<br>growing day", s:"Five quick questions and we’ll send the right Bournvita pack for your child’s age, free.", cta:"Claim my free pack", pts:["One pack per household","Delivered in about 2 days","Right pack for your child’s age"]},{fact:"Source: Instagram ad (utm_source=meta)"}),
+ w({kind:"form", step:"Your details", q:"Let’s start with you", prog:12, fields:[["Full name","Meena Shah"],["Mobile number","+91 98200 31122"],["Email ID","meena.shah@gmail.com"]], cta:"Send OTP", note:"One claim per household. We use your number only for delivery updates."},{set:{name:true},fact:"Consent: opt-in on the form"}),
+ w({kind:"otp", step:"Verify your number", q:"Enter the 4-digit OTP sent to +91 98200 31122", prog:24, code:"4829", note:"Number verified in the form · no bot, no duplicate claim.", cta:"Verify & continue"},{set:{phone:true},fact:"Mobile verified by OTP"}),
+ w({kind:"quiz", step:"Question 1 of 4", q:"How old is your child?", prog:36, opts:["3 – 5 years","6 – 9 years","10 – 12 years","13 – 14 years"], sel:1},{panel:"skumap",fact:"Child age: 6–9 years → Bournvita Pro 500 g"}),
+ w({kind:"quiz", step:"Question 2 of 4", q:"What matters most for your child right now?", prog:48, opts:["Growth & height","Immunity","Fussy eating","Concentration"], sel:0},{fact:"Priority: Growth & height"}),
+ w({kind:"quiz", step:"Question 3 of 4", q:"Where do you usually shop for your child’s essentials?", prog:60, opts:["Blinkit / Zepto","Modern trade","Kirana store","Amazon.in"], sel:0},{fact:"Preferred store: Blinkit"}),
+ w({kind:"quiz", step:"Question 4 of 4", q:"Is your child drinking a malt drink today?", prog:72, opts:["Yes · another brand","Yes · Bournvita already","Not yet"], sel:0},{panel:"screening",fact:"On another brand · switch opportunity"}),
+ w({kind:"form", step:"Delivery address", q:"Where should we send the pack?", prog:88, fields:[["Pincode","400104"],["House / flat","A-504, Sunteck City"],["Locality","Goregaon West"],["City","Mumbai"],["State","Maharashtra"]], cta:"Submit my claim"},{set:{address:true},fact:["Pincode: 400104","Courier: Delhivery · 2 days"],panel:"alloc"}),
+ w({kind:"check", step:"Verification", q:"Checking your claim", prog:100, rows:[["Address format canonicalised",1],["Pincode 400104 serviceable",1],["Courier scored for your ward",1],["No duplicate claim on this household",0]], note:"Four AI agents score the address. Above 90% it is approved without a human.", cta:"See the verdict"},{panel:"verify",fact:"Address approved · consensus 96.8%"}),
+ g([{b:"Hi Meena 👋 Your free pack is confirmed 🎉\n\nBournvita Pro 500 g · trial pack\nShipping today from Bhiwandi · about 2 days with Delhivery.",opts:["Track my delivery"],t:"19:12"},{u:"Perfect, thank you!",t:"19:13"}],{fact:["Allocated: Bournvita Pro 500 g","Order ORD-2026-003 · sample #50,001","Follow-up on WhatsApp"],panel:"order"}),
+ g([{b:"Your Bournvita Pro 500 g sample has shipped 📦\n\nDelhivery · BV-4471-2280-9913\nArriving Mon, Sep 14.",opts:["Track my delivery"],t:"13:14"}],{panel:"delivery",fact:["Shipped · Delhivery BV-4471-2280-9913","Delivered · Sep 14 14:32 · photo proof"],afterDate:"Sep 14 (Mon)",after:[{b:"Delivered! 📦\nLeft at your door at 14:32 · photo on your tracking page.\n\nEnjoy trying Bournvita ✨",t:"14:32"},{u:"Received, thank you!",t:"14:40"}]}),
+ g([],{panel:"gratify"}),
+ g([{b:"How was it? Tell us how your child liked Bournvita Pro 500 g.",opts:["😍 Loved it","🙂 Good","😐 Okay","😕 Not for us"],t:"17:14"},{u:"😍 Loved it",t:"17:15"}],{date:"Sep 21 (Mon)",fact:"Feedback: Loved it"}),
+ g([{b:"Wonderful! 🛍️ You shop on Blinkit · here’s ₹40 off the full 750 g pack there.\n\nCoupon: BV40",opts:["Shop on Blinkit"],t:"17:15"}],{fact:"Purchase intent: Blinkit tapped"}),
+ w({kind:"shop", site:{name:"blinkit",color:"#D64A29"}, url:"blinkit.com/prn/cadbury-bournvita-pro-750g", coupon:"Coupon BV40 applied · ₹40 off", img:"../../mdlz-hub/converge/brand-bournvita.jpg", k:"CADBURY", n:"Cadbury Bournvita Nutritious Milk Drink Powder, Biscuity Vanilla (2–6 years)", rating:"4.7 · 1,884 reviews", was:"₹3,650", now:"₹3,285", deliv:"Express shipping · 3–5 days", cta:"Add to cart", alts:["Amazon.in","Flipkart"]},{panel:"purchase",fact:"Store visit · attributed to utm_source=meta"})
+]};
+</script>
+<script src="../shared/chatpage.js?v=2"></script>
+<template id="__bundler_thumbnail" data-bg-color="#7B3F00"><svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#7B3F00"/><g fill="none" stroke="#E4A400" stroke-width="24" stroke-linecap="round"><rect x="470" y="300" width="260" height="180" rx="18"/><path d="M600 300v180M470 360h260"/></g><text x="600" y="600" font-family="Arial,sans-serif" font-size="40" font-weight="700" fill="#fff" text-anchor="middle">BOURNVITA SAMPLING</text></svg></template>
+</body></html>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Mondelez — Website Sampling Demo</title>
+<meta name="viewport" content="width=1360"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,600;1,700&display=swap" rel="stylesheet">
+<style>
+:root{--brand:#4F2170;--gold:#E4A400}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#2b2b2b;font-family:'Poppins',Arial,sans-serif;color:#1a1a1a;min-height:100vh}
+body{overflow-x:auto}#root{min-height:100vh}
+a{color:#4F2170}a:hover{color:#E4A400}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(228,164,0,0.25)}50%{box-shadow:0 0 0 8px rgba(228,164,0,0.06)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+@keyframes popIn{from{opacity:0;transform:scale(0.7)}to{opacity:1;transform:scale(1)}}
+@keyframes driveTruckRL{from{right:-90px}to{right:50%}}
+</style>
+<template id="__bundler_thumbnail" data-bg-color="#4F2170">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#4F2170"/>
+    <circle cx="600" cy="360" r="120" fill="#E4A400"/>
+    <text x="600" y="385" font-family="Arial,sans-serif" font-size="72" font-weight="900" fill="#4F2170" text-anchor="middle">M</text>
+    <text x="600" y="560" font-family="Arial,sans-serif" font-size="18" letter-spacing="5" fill="#fff" opacity="0.6" text-anchor="middle">WEBSITE SAMPLING DEMO</text>
+  </svg>
+</template>
+</head>
+<body>
+<div id="__asset-preload" style="display:none" aria-hidden="true"><img data-asset="mdlz/lite-fs-logo.png" src="mdlz/lite-fs-logo.png" alt="" /><img data-asset="mdlz/lite-mdlz-logo.png" src="mdlz/lite-mdlz-logo.png" alt="" /><img data-asset="mdlz/mini-aarav.png" src="mdlz/mini-aarav.png" alt="" /><img data-asset="mdlz/mini-ad-ig.png" src="mdlz/mini-ad-ig.png" alt="" /><img data-asset="mdlz/mini-cadbury-nav.png" src="mdlz/mini-cadbury-nav.png" alt="" /><img data-asset="mdlz/mini-hero-silk.png" src="mdlz/mini-hero-silk.png" alt="" /><img data-asset="mdlz/mini-prod-dairymilk.png" src="mdlz/mini-prod-dairymilk.png" alt="" /></div>
+<script>
+(function(){
+  var MAP={};
+  function build(){
+    var box=document.getElementById("__asset-preload"); if(!box) return;
+    [].forEach.call(box.querySelectorAll("img[data-asset]"),function(im){
+      var k=im.getAttribute("data-asset"), v=im.getAttribute("src");
+      if(v&&v!==k) MAP[k]=v;
+    });
+  }
+  function fixOne(el){
+    var s=el.getAttribute("src")||"";
+    if(MAP[s]) el.setAttribute("src",MAP[s]);
+  }
+  function sweep(root){
+    if(!root||!root.querySelectorAll) return;
+    if(root.tagName==="IMG") fixOne(root);
+    [].forEach.call(root.querySelectorAll("img"),fixOne);
+  }
+  build(); sweep(document);
+  new MutationObserver(function(muts){
+    for(var i=0;i<muts.length;i++){
+      var m=muts[i];
+      if(m.type==="attributes"&&m.target.tagName==="IMG") fixOne(m.target);
+      for(var j=0;j<m.addedNodes.length;j++) sweep(m.addedNodes[j]);
+    }
+  }).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:["src"]});
+})();
+</script>
+
+
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script>window.DEMO_MODE="website";</script>
+<script type="text/babel" src="mdlz-hub/shared.jsx"></script>
+<script type="text/babel" src="mdlz-hub/scenes.jsx"></script>
+<script type="text/babel" src="mdlz-hub/webform.jsx"></script>
+<script type="text/babel" src="mdlz-hub/journey.jsx"></script>
+</body>
+</html>

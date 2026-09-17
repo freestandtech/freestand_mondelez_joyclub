@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Cadbury · receipt on WhatsApp → UPI cashback</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../mdlz-hub/flow/kit.css">
+<style>
+.fullshot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.vf{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:150px;height:150px;border-radius:18px;z-index:12;box-shadow:0 0 0 2000px rgba(6,10,22,.42)}
+.vf i{position:absolute;width:26px;height:26px;border:3px solid #F2C94C}
+.vf i:nth-child(1){left:-2px;top:-2px;border-right:none;border-bottom:none;border-radius:10px 0 0 0}
+.vf i:nth-child(2){right:-2px;top:-2px;border-left:none;border-bottom:none;border-radius:0 10px 0 0}
+.vf i:nth-child(3){left:-2px;bottom:-2px;border-right:none;border-top:none;border-radius:0 0 0 10px}
+.vf i:nth-child(4){right:-2px;bottom:-2px;border-left:none;border-top:none;border-radius:0 0 10px 0}
+.strow{display:grid;grid-template-columns:1fr auto auto auto;gap:10px;align-items:center;padding:7px 0;border-top:1px solid #F1F4F9;font-size:11.5px;animation:fadeInUp .3s both}
+.strow:first-of-type{border-top:none}
+.strow .nm{font-weight:600;display:flex;align-items:center;gap:8px;min-width:0}
+.strow .nm b{width:20px;height:20px;border-radius:6px;background:#EAF0FB;color:#0A49B7;font-size:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:700}
+.strow .v{font-weight:700;color:#052762;text-align:right;width:62px}
+.strow .p{color:#6B7280;text-align:right;width:52px}
+.strow .t{font-size:9.5px;font-weight:700;border-radius:999px;padding:3px 8px;background:#E6F6EA;color:#1E7A38;white-space:nowrap}
+.strow .t.q{background:#F2E8F9;color:#4F2170}.strow .t.k{background:#FDF3DC;color:#8a6d00}
+.legend{display:flex;gap:14px;font-size:10.5px;color:#6B7280;margin-top:8px}
+.legend i{width:9px;height:9px;border-radius:3px;display:inline-block;margin-right:5px}
+#rail{display:none}
+#caption{left:26px;right:26px;top:26px;bottom:auto;height:auto;background:none;color:#111827;border-radius:0;padding:0;display:block}
+#caption .tag{display:none}
+#caption .tt{font-size:31px;font-weight:800;letter-spacing:-0.9px;line-height:1.14;color:#0E1B34}
+#caption .ss{margin:5px 0 0;font-size:14.5px;font-weight:600;color:#6B7280;opacity:1;white-space:normal}
+.phone{left:52px;top:112px;width:318px;height:690px;border-radius:52px}
+.scr{border-radius:41px}
+#rc{left:398px;right:26px;top:112px;bottom:30px}
+.browser{left:52px;top:112px;width:760px;height:690px}
+body.wide #rc{left:838px}
+/* customer profile panel */
+.pfc{padding:0;overflow:hidden;display:flex;flex-direction:column}
+.pfh{display:flex;align-items:center;gap:14px;padding:14px 18px;border-bottom:1px solid #EEF1F7;background:#FBFCFE}
+.pfh .av{width:54px;height:54px;border-radius:999px;overflow:hidden;flex-shrink:0;background:#EAF0FB;display:flex;align-items:center;justify-content:center;color:#8A93A6;font-size:20px;font-weight:800}
+.pfh .av img{width:100%;height:100%;object-fit:cover;object-position:38% 30%}
+.pfh .nm{font-size:19px;font-weight:700;letter-spacing:-0.3px}
+.pfh .mt{font-size:12.5px;color:#6B7280;font-weight:600;margin-top:3px}
+.pfh .rt{margin-left:auto;font-size:10px;font-weight:800;letter-spacing:1.2px;border-radius:999px;padding:6px 11px;background:#EAF0FB;color:#0A49B7;white-space:nowrap}
+.prs{padding:4px 18px 12px}
+.pr{display:grid;grid-template-columns:168px 1fr auto;gap:12px;align-items:center;padding:7px 0;border-top:1px solid #F1F4F9;animation:fadeInUp .3s both}
+.pr:first-child{border-top:none}
+.pr .f{font-size:10.5px;font-weight:800;letter-spacing:0.9px;color:#8A93A6;text-transform:uppercase}
+.pr .v{font-size:14.5px;font-weight:600;color:#0B1F3F;min-width:0}
+.pr.w .v{color:#A6AEBC;font-weight:500}
+.pr .s{font-size:9.5px;font-weight:800;letter-spacing:0.6px;border-radius:999px;padding:4px 9px;white-space:nowrap;background:#E6F6EA;color:#1E7A38}
+.pr.w .s{background:#F1F4F9;color:#98A1B0}
+.pr.n .s{background:#FDF3DC;color:#8a6d00}
+</style>
+</head><body>
+<div id="__asset-preload" style="display:none" aria-hidden="true"><img data-asset="s1-store-s.jpg" src="s1-store-s.jpg" alt="" /><img data-asset="s3-invite-s.jpg" src="s3-invite-s.jpg" alt="" /><img data-asset="s4-receipt-s.jpg" src="s4-receipt-s.jpg" alt="" /><img data-asset="s5-cashback-s.jpg" src="s5-cashback-s.jpg" alt="" /><img data-asset="../../mdlz/qr-scan.png" src="../../mdlz/qr-scan.png" alt="" /><img data-asset="../../mdlz/lite-mdlz-logo.png" src="../../mdlz/lite-mdlz-logo.png" alt="" /><img data-asset="../../mdlz/lite-fs-logo.png" src="../../mdlz/lite-fs-logo.png" alt="" /><img data-asset="../../mdlz-hub/strat/dp-cadbury-round.png" src="../../mdlz-hub/strat/dp-cadbury-round.png" alt="" /></div>
+<script>
+(function(){var MAP={};
+function build(){var box=document.getElementById("__asset-preload");if(!box)return;[].forEach.call(box.querySelectorAll("img[data-asset]"),function(im){var k=im.getAttribute("data-asset"),v=im.getAttribute("src");if(v&&v!==k)MAP[k]=v;});}
+function fixOne(el){var s=el.getAttribute("src")||"";if(MAP[s])el.setAttribute("src",MAP[s]);}
+function sweep(root){if(!root||!root.querySelectorAll)return;if(root.tagName==="IMG")fixOne(root);[].forEach.call(root.querySelectorAll("img"),fixOne);}
+build();sweep(document);
+new MutationObserver(function(muts){for(var i=0;i<muts.length;i++){var m=muts[i];if(m.type==="attributes"&&m.target.tagName==="IMG")fixOne(m.target);for(var j=0;j<m.addedNodes.length;j++)sweep(m.addedNodes[j]);}}).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:["src"]});})();
+</script>
+<template id="__bundler_thumbnail" data-bg-color="#4F2170">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#4F2170"/><g fill="none" stroke="#E4A400" stroke-width="22" stroke-linecap="round"><rect x="470" y="200" width="200" height="280" rx="16"/><path d="M510 260h120M510 320h120M510 380h70"/><circle cx="740" cy="560" r="60"/><path d="M712 560h56M740 532v56"/></g><text x="600" y="720" font-family="Arial,sans-serif" font-size="40" font-weight="700" fill="#fff" text-anchor="middle">Receipt → UPI cashback</text></svg>
+</template>
+<div id="bar-title" style="display:none"></div>
+<div id="rail"></div>
+<div class="phone"><div class="scr" id="scr"></div><div class="nt"></div></div>
+<div class="browser"><div class="bh"><div class="dots"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i></div><div class="url"><span style="opacity:.55">🔒</span><span id="burl"></span></div></div><div class="bb" id="bb"></div></div>
+<div id="rc"></div>
+<div id="caption"><div class="tag" id="cap-tag"></div><div class="tt" id="cap-t"></div><div class="ss" id="cap-s"></div></div>
+<script src="../../mdlz-hub/flow/kit.js"></script>
+<script src="../shared/profbox.js?v=2"></script>
+<script>
+const CB={logo:"../../mdlz-hub/strat/dp-cadbury-round.png",name:"Cadbury India",sub:"✓ Verified business · online",bg:"#075E54"};
+function shot(src,alt,extra){return '<div class="scroll"><img class="fullshot" src="'+src+'" alt="'+alt+'"/>'+(extra||"")+'</div>';}
+const STORES=[["Reliance SMART",24180,"18.8%","Modern trade"],["DMart",19640,"15.3%","Modern trade"],["Apna Bazaar & local kirana",17220,"13.4%","Kirana"],["More Retail",12905,"10.0%","Modern trade"],["7-Eleven / Twenty4Seven",11460,"8.9%","Convenience"],["Spencer's Retail",9310,"7.2%","Modern trade"],["Blinkit / Zepto / Instamart",8940,"7.0%","Q-commerce"],["Star Bazaar & others",24785,"19.4%","Mixed"]];
+const STEPS=[
+{label:"At the counter",cap:"The purchase Mondelez cannot see",meta:"9:38 AM · Express neighbourhood store, Andheri West · ₹120 basket, paid in cash",
+ screen:()=>shot("s1-store-s.jpg","Shopper at the counter with a Cadbury bag and a printed till receipt"),
+ right:()=>prof("Unknown shopper","No profile · no contact · no consent",false,[["Name","Not known","w","-"],["Mobile","Not known","w","-"],["Store bought in","Not known","w","-"],["Cadbury SKU","Not known","w","-"],["Basket","Not known","w","-"],["City · pincode","Not known","w","-"],["UPI handle","Not known","w","-"],["Joy Club","Not a member","n","-"]],0,"A Dairy Milk 100 g sells and the trail ends at the till. The retailer keeps the basket; Mondelez gets a sell-out number weeks later and no person behind it.")},
+
+{label:"QR on pack",cap:"She scans the QR on the wrapper",meta:"9:40 AM · pack QR → click-to-WhatsApp · utm_source=onpack_qr",
+ screen:()=>shot("../../mdlz/qr-scan.png","Scanning the QR code printed on the Cadbury wrapper with a phone camera"),
+ right:()=>prof("Unknown shopper","Scan registered · thread not opened yet",false,[["Name","Not known","w","-"],["Mobile","Arrives with her first reply","w","PENDING"],["Store bought in","Not known","w","-"],["Cadbury SKU","Dairy Milk 100 g (from QR)","","FROM PACK"],["Basket","Not known","w","-"],["City · pincode","Not known","w","-"],["UPI handle","Not known","w","-"],["Joy Club","Not a member","n","NEXT"]],8,"The QR carries the SKU, the batch and a UTM string, and opens WhatsApp with a pre-filled message · no app, no landing page, no form.")},
+
+{label:"WhatsApp invite",cap:"The chat opens and asks for the receipt",meta:"9:41 AM · opt-in taken in the first message · Andheri West, Mumbai",
+ screen:()=>shot("s3-invite-s.jpg","Cadbury India WhatsApp message asking to upload the receipt"),
+ right:()=>prof("Meena Shah","+91 98200 31122 · opt-in taken on first reply",true,[["Name","Meena Shah","","FROM WHATSAPP"],["Mobile","+91 98200 31122","","VERIFIED BY WHATSAPP"],["Store bought in","Not known yet","w","PENDING"],["Cadbury SKU","Not known yet","w","PENDING"],["Basket","Not known yet","w","PENDING"],["City · pincode","Not known yet","w","PENDING"],["UPI handle","Not known yet","w","PENDING"],["Joy Club","Not a member","n","NEXT"]],22,"A pack QR opened this thread. All Mondelez has so far is a consented mobile number · the purchase behind it is still invisible.")},
+
+{label:"Receipt uploaded",cap:"She photographs the till receipt in the chat",meta:"9:42 AM · OCR verified in 19 seconds · bill 4067-7890",
+ screen:()=>shot("s4-receipt-s.jpg","Receipt photo uploaded in WhatsApp and verified by Cadbury"),
+ right:()=>prof("Meena Shah","+91 98200 31122 · receipt 4067-7890 read",true,[["Name","Meena Shah","","FROM WHATSAPP"],["Mobile","+91 98200 31122","","VERIFIED"],["Store bought in","RelianceSMART · Axis Mall, Andheri (W)","","FROM RECEIPT"],["Cadbury SKU","Dairy Milk 100 g · ₹70","","FROM RECEIPT"],["Basket","₹120 · Lay's 52 g + Coke 600 ml","","CO-PURCHASE"],["City · pincode","Mumbai 400058","","FROM RECEIPT"],["UPI handle","Not known yet","w","PENDING"],["Joy Club","Not a member","n","NEXT"]],58,"One photo fills six fields: the retailer, the Cadbury SKU, the rest of the basket, the city and the bill number that stops a second claim.")},
+
+{label:"UPI cashback",cap:"₹50 lands in her Google Pay",meta:"9:47 AM · UTR 4471882109 · five minutes from claim to cash",
+ screen:()=>shot("s5-cashback-s.jpg","₹50 Cadbury cashback received in Google Pay"),
+ right:()=>prof("Meena Shah","meena@upi · ₹50 paid · UTR 4471882109",true,[["Name","Meena Shah","","FROM UPI"],["Mobile","+91 98200 31122","","VERIFIED"],["Store bought in","RelianceSMART · Axis Mall, Andheri (W)","","FROM RECEIPT"],["Cadbury SKU","Dairy Milk 100 g · ₹70","","FROM RECEIPT"],["Basket","₹120 · Lay's 52 g + Coke 600 ml","","CO-PURCHASE"],["City · pincode","Mumbai 400058","","FROM RECEIPT"],["UPI handle","meena@upi · ₹50 paid","","CONFIRMED"],["Joy Club","Not a member","n","NEXT"]],78,"The payout rail also confirms who she is: the UPI handle returns a verified name against the same mobile number.")},
+
+{label:"Auto-enrolled",cap:"The cashback message enrolls her in Joy Club",meta:"9:47 AM · same thread, no signup form",
+ screen:()=>wa(CB,[
+   {s:"in",t:"💸 <b>₹50 sent to meena@upi</b>\nUTR 4471882109 · instant",tm:"9:47"},
+   {s:"in",t:"You’re now a <b>Cadbury Joy Club</b> member 💜\nNo signup · your receipt did it.",note:"250 welcome points · 1 receipt logged · Silver tier at 3 receipts",btns:["Open my Joy Club card"],tm:"9:47"},
+   {s:"out",t:"Received! 🙌",tm:"9:48"},
+   {s:"in",t:"Next receipt earns ₹50 again, and a Silk bar at 3 receipts 🍫",tm:"9:48"}],{biz:true}),
+ right:()=>prof("Meena Shah","Joy Club · JC-88142 · Bronze · consented on WhatsApp",true,[["Name","Meena Shah","","FROM UPI"],["Mobile","+91 98200 31122","","VERIFIED"],["Store bought in","RelianceSMART · Axis Mall, Andheri (W)","","FROM RECEIPT"],["Cadbury SKU","Dairy Milk 100 g · ₹70","","FROM RECEIPT"],["Basket","₹120 · Lay's 52 g + Coke 600 ml","","CO-PURCHASE"],["City · pincode","Mumbai 400058","","FROM RECEIPT"],["UPI handle","meena@upi · ₹50 paid","","CONFIRMED"],["Joy Club","JC-88142 · Bronze · 300 pts","","AUTO-ENROLLED"]],92,"The claim is the enrollment. One thread now carries the payout, the points ledger and the next offer · with no signup step anywhere.")},
+
+{label:"Her Joy Club card",cap:"One profile, visible to her and to Mondelez",meta:"A loyalty member built from a till receipt",
+ screen:()=>joy('<div class="jc-h1">Hi Meena 👋</div><div class="jc-sub">₹50 credited · 1 receipt logged</div>'
+  +'<div class="pts"><div class="r1"><span>JOY CLUB · BRONZE</span><span class="nx">1 / 3 RECEIPTS</span></div><div class="big">300 pts</div><div class="bar"><i style="width:33%"></i></div><div class="lbl">2 more receipts → Silk 150 g free</div></div>'
+  +'<div class="jc-sec">Your activity</div>'
+  +'<div class="jc-row"><div class="th">🧾</div><div><div class="t">Dairy Milk 100 g · ₹70</div><div class="s">RelianceSMART, Andheri (W) · 16 Sep</div></div><div class="jc-pill ok">₹50</div></div>'
+  +'<div class="jc-row" style="animation-delay:.08s"><div class="th">💸</div><div><div class="t">UPI cashback paid</div><div class="s">meena@upi · UTR 4471882109</div></div><div class="jc-pill ok">DONE</div></div>'
+  +'<div class="jc-row" style="animation-delay:.16s"><div class="th">🎁</div><div><div class="t">Refer a friend</div><div class="s">They claim, you both get ₹50</div></div><div class="jc-pill new">NEW</div></div>',"Home","Joy Club · Bronze"),
+ right:()=>prof("Meena Shah","Joy Club · JC-88142 · Bronze · 300 pts",true,[["Name","Meena Shah","","FIRST-PARTY"],["Mobile","+91 98200 31122","","CONSENTED"],["Store bought in","RelianceSMART · Axis Mall, Andheri (W)","","JBP INPUT"],["Cadbury SKU","Dairy Milk 100 g · ₹70","","SKU-LEVEL"],["Basket","₹120 · Lay's 52 g + Coke 600 ml","","BASKET SIGNAL"],["City · pincode","Mumbai 400058","","GEO"],["UPI handle","meena@upi · ₹50 paid","","PAYMENT RAIL"],["Joy Club","JC-88142 · Bronze · 300 pts","","MEMBER"]],100,"Cohorts she now sits in: RelianceSMART buyer · Mumbai 400058 · Dairy Milk 100 g · salty-snack co-purchaser · UPI payer · reachable on WhatsApp.")},
+
+{label:"Back to Mondelez",wide:true,url:"app.freestand.in/destinations/mondelez-cdp",cap:"Profiles, cohorts and store data delivered, not exported",meta:"Same day · CDP + ad platforms",
+ screen:()=>consoleUI("Destinations","Delivery to Mondelez","104,882 profiles · 24 mapped fields · store & SKU attached",
+  '<div class="pc"><div class="h">Mondelez CDP</div><div class="lr"><span class="n">104,882 receipt profiles · 24 fields incl. store, SKU, basket</span><span class="d">Sep 21 18:04</span><span class="ok">DELIVERED</span></div><div class="lr"><span class="n">119,212 verified receipt records</span><span class="d">daily 18:00</span><span class="ok">SCHEDULED</span></div></div>'
+  +'<div class="two-col" style="margin-top:12px"><div class="pc"><div class="h">Saved audiences</div><div class="lr"><span class="n">Reliance SMART buyers · Mumbai</span><span class="wt">24,180</span></div><div class="lr"><span class="n">Kirana-only buyers</span><span class="wt">17,220</span></div><div class="lr"><span class="n">Q-commerce switchers</span><span class="wt">8,940</span></div><div class="lr"><span class="n">Repeat claimants · 2+ receipts</span><span class="wt">19,406</span></div></div>'
+  +'<div class="pc"><div class="h">Activated on</div><div class="lr"><span class="n">Meta &amp; Instagram · lookalikes</span><span class="ok">SYNCED</span></div><div class="lr"><span class="n">Google &amp; GPay Ads</span><span class="ok">SYNCED</span></div><div class="lr"><span class="n">WhatsApp · Joy Club re-engagement</span><span class="ok">LIVE</span></div><div class="lr"><span class="n">Blinkit &amp; Zepto retail media</span><span class="ok">SYNCED</span></div></div></div>'
+  +'<div class="pc" style="margin-top:12px"><div class="h">What the next campaign inherits</div>'
+  +hbars([["Reachable on WhatsApp",100,"104,882"],["With store + SKU",96,"100,688"],["With UPI handle",93,"97,540"],["With city & pincode",89,"93,344"]],100)+'</div>',
+  ["All synced","#E9FBF0","#128C4A"]),
+ right:()=>head("Owned, not rented","The data sits in Mondelez systems the same day · and every future campaign starts from these 104,882 people")
+  +kpis([["24","mapped fields"],["4","saved cohorts"],["0","manual exports"]])
+  +card("Repeatable",'<div class="li"><i></i>Same rail works for Oreo, Bournvita, 5 Star</div><div class="li"><i></i>Receipt logic swaps by SKU, not by build</div><div class="li"><i></i>Cashback budget adjusts per store cohort</div>')}
+];
+const COH2=["Mumbai · Andheri West","RelianceSMART shopper","Dairy Milk 100 g buyer","₹120 basket · paid cash","UPI · Google Pay","Joy Club · Bronze"];
+function prof(name,sub,photo,rows,pct,note){
+ return profBox({name:name,sub:sub,photo:photo?"../../mdlz/opt/meena.jpg":"",initial:"?",rows:rows,pct:pct,note:note,
+  src:"Cadbury India · WhatsApp receipt claim",
+  cohorts:pct>=100?COH2:(pct>=70?COH2.slice(0,4):(pct>=45?COH2.slice(0,2):[]))});
+}
+mountFlow({title:"Enrollment 2 · Cadbury · receipt on WhatsApp → UPI cashback",steps:STEPS});
+</script>
+</body></html>
