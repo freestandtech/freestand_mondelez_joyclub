@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Commerce · post-order referral</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="kit.css">
+</head><body>
+<div id="__asset-preload" style="display:none" aria-hidden="true"><img data-asset="../../mdlz/flow-commerce-order.jpg" src="../../mdlz/flow-commerce-order.jpg" alt="" /><img data-asset="../../mdlz/flow-oreo-avatar.png" src="../../mdlz/flow-oreo-avatar.png" alt="" /><img data-asset="../../mdlz/lite-fs-logo.png" src="../../mdlz/lite-fs-logo.png" alt="" /><img data-asset="../../mdlz/lite-mdlz-logo.png" src="../../mdlz/lite-mdlz-logo.png" alt="" /><img data-asset="../enrich/mini/f1a.png" src="../enrich/mini/f1a.png" alt="" /><img data-asset="../enrich/mini/f1b.png" src="../enrich/mini/f1b.png" alt="" /><img data-asset="../enrich/mini/f2a.png" src="../enrich/mini/f2a.png" alt="" /><img data-asset="../enrich/mini/f2b.png" src="../enrich/mini/f2b.png" alt="" /><img data-asset="../enrich/mini/f3a.png" src="../enrich/mini/f3a.png" alt="" /><img data-asset="../enrich/mini/f5a.png" src="../enrich/mini/f5a.png" alt="" /><img data-asset="../enrich/mini/f5b.png" src="../enrich/mini/f5b.png" alt="" /><img data-asset="../enrich/mini/f6a.png" src="../enrich/mini/f6a.png" alt="" /><img data-asset="../enrich/mini/f6b.png" src="../enrich/mini/f6b.png" alt="" /><img data-asset="../enrich/mini/f7a.png" src="../enrich/mini/f7a.png" alt="" /></div>
+<script>
+(function(){
+  var MAP={};
+  function build(){
+    var box=document.getElementById("__asset-preload"); if(!box) return;
+    [].forEach.call(box.querySelectorAll("img[data-asset]"),function(im){
+      var k=im.getAttribute("data-asset"), v=im.getAttribute("src");
+      if(v&&v!==k) MAP[k]=v;
+    });
+  }
+  function fixOne(el){
+    var s=el.getAttribute("src")||"";
+    if(MAP[s]) el.setAttribute("src",MAP[s]);
+  }
+  function sweep(root){
+    if(!root||!root.querySelectorAll) return;
+    if(root.tagName==="IMG") fixOne(root);
+    [].forEach.call(root.querySelectorAll("img"),fixOne);
+  }
+  build(); sweep(document);
+  new MutationObserver(function(muts){
+    for(var i=0;i<muts.length;i++){
+      var m=muts[i];
+      if(m.type==="attributes"&&m.target.tagName==="IMG") fixOne(m.target);
+      for(var j=0;j<m.addedNodes.length;j++) sweep(m.addedNodes[j]);
+    }
+  }).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:["src"]});
+})();
+</script>
+
+
+<template id="__bundler_thumbnail" data-bg-color="#0A5FB4">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#0A5FB4"/><g fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round"><circle cx="450" cy="320" r="80"/><circle cx="750" cy="320" r="80"/><path d="M330 520c30-70 70-100 120-100s90 30 120 100M630 520c30-70 70-100 120-100s90 30 120 100"/></g><text x="600" y="700" font-family="Arial,sans-serif" font-size="42" font-weight="700" fill="#fff" text-anchor="middle">Commerce referral</text></svg>
+</template>
+<style id="fs-shell">
+#topbar,#caption{display:none!important}
+#hd{position:absolute;left:26px;right:26px;top:20px;z-index:4}
+#hd .h1x{font-size:33px;font-weight:800;letter-spacing:-1.1px;line-height:1.14;color:#0E1729}
+#hd .h1x em{font-style:normal;color:#0A49B7}
+.phone,.browser{top:100px!important}
+#rc{top:100px!important;bottom:24px!important}
+#stage{top:100px!important;bottom:24px!important}
+</style>
+<div id="hd"><div class="h1x" id="hd-t"></div></div>
+<div id="topbar">
+  <img class="md" src="../../mdlz/lite-mdlz-logo.png" alt="Mondelez"/>
+  <div class="t" id="bar-title"></div>
+  <img class="fs" src="../../mdlz/lite-fs-logo.png" alt="FreeStand"/>
+</div>
+<div id="rail"></div>
+<div class="phone"><div class="scr" id="scr"></div><div class="nt"></div></div>
+<div id="rc"></div>
+<div id="caption"><div class="tag" id="cap-tag"></div><div class="tt" id="cap-t"></div><div class="ss" id="cap-s"></div></div>
+<script src="kit.js"></script>
+<script>
+const OR={logo:"../../mdlz/flow-oreo-avatar.png",name:"Oreo India",sub:"online",bg:"#0A5FB4"};
+const FR=[["../enrich/mini/f2a.png"],["../enrich/mini/f1b.png"],["../enrich/mini/f5a.png"],["../enrich/mini/f3a.png"],["../enrich/mini/f7a.png"],["../enrich/mini/f6a.png"],["../enrich/mini/f2b.png"],["../enrich/mini/f1a.png"],["../enrich/mini/f5b.png"],["../enrich/mini/f6b.png"]];
+
+const STEPS=[
+{label:"Post-order screen",cap:"Oreo placed on the order-tracking screen",meta:"Food delivery · while you wait",
+ screen:()=>'<div class="scroll"><img class="tall" src="../../mdlz/flow-commerce-order.jpg" alt="Post-order tracking screen with Oreo Joy Club banner"/>'
+  +'<div class="tap" style="left:2px;top:250px;width:240px;height:132px"></div>'
+  +'<div class="taplb" style="left:56px;top:392px">Tap → Join Joy Club</div></div>',
+ right:()=>head("The dead 23 minutes","The order is placed · the banner competes with nothing")
+  +data([["Placement","Post-order tracking screen","","AD SERVER"],["Moment","Order placed, 23 min wait","n","CONTEXT"],["Offer","Join Joy Club · rewards, drops","","CAMPAIGN"],["Destination","Oreo WhatsApp","g","OWNED"]])
+  +kpis([["23 min","captive window"],["3.7%","CTR"],["0","checkout friction"]])},
+
+{label:"WhatsApp consent",cap:"Consent taken before anything is stored",meta:"Partner customer → consented member",
+ screen:()=>wa(OR,[
+   {s:"out",t:"Join Joy Club",tm:"13:22"},
+   {s:"in",t:"Welcome 💙 One wallet across 14 brands. First, your consent.",note:"We'll store your name, mobile and the partner app you joined from. Delete it any time in the app.",btns:["✅ I agree","Read the policy"],tm:"13:22"},
+   {s:"out",t:"✅ I agree",tm:"13:23"},
+   {s:"in",t:"Consent recorded ✓\nYou're member JC-91208 · 100 welcome points.",tm:"13:23"}]),
+ right:()=>head("The only way in","Delivery platforms do not share their customer data")
+  +data([["Name","Kiara Sethi","g","DECLARED"],["Mobile","+91 99202 31184","g","WA VERIFIED"],["Joined from","Food delivery · post-order","","PARTNER"],["Consent","Storage + messaging","g","LOGGED"]])
+  +meter(38,"PROFILE BUILT")},
+
+{label:"Refer 10 friends",cap:"Free sample earned by referring 10 friends",meta:"The member runs the acquisition",
+ screen:()=>wa(OR,[
+   {s:"in",t:"Want a free Oreo sample pack? 🍪\nGet 10 friends to join Joy Club with your link · they each get 100 points.",btns:["🔗 Share my link"],tm:"13:25",
+    extra:'<div class="slots" style="grid-template-columns:repeat(10,1fr);gap:3px">'+FR.map((f,i)=>'<div class="slot" style="font-size:8px;border-radius:5px">'+(i+1)+'</div>').join("")+'</div>'},
+   {s:"out",t:"🔗 Share my link",tm:"13:26",extra:'<div class="wa-att"><div class="ico">↗</div><div>joy.club/r/JC-91208 · 3 groups</div></div>'}]),
+ right:()=>head("Ten friends, not one","A single referral is a favour. Ten is a campaign.")
+  +data([["Referral link","joy.club/r/JC-91208","","ISSUED"],["Target","10 joins for 1 sample","n","TASK SET"],["Shared to","3 WhatsApp groups","","OBSERVED"]])
+  +kpis([["10","invites needed"],["1","free sample"],["100","pts per friend"]])},
+
+{label:"10 joined",cap:"All ten friends joined and consented",meta:"1 banner tap → 11 consented profiles",
+ screen:()=>wa(OR,[
+   {s:"in",t:"10 of 10 joined 🎉\nYour free Oreo sample pack is on its way.",tm:"19:40",
+    extra:'<div class="slots" style="grid-template-columns:repeat(10,1fr);gap:3px">'+FR.map((f,i)=>'<div class="slot f" style="animation-delay:'+(i*0.05)+'s;border-radius:5px"><img src="'+f[0]+'"/></div>').join("")+'</div>'},
+   {s:"out",t:"That was fast · they were all in the Diwali group",tm:"19:41"}]),
+ right:()=>head("One tap became eleven","Each friend arrives with their own consent and thread")
+  +data([["New members","10 · each consented","g","ENROLLED"],["Referral lineage","All traced to JC-91208","","ATTRIBUTED"],["Cluster signal","Shared group · Mumbai","n","DERIVED"],["Points issued","1,100 across 11 members","g","CREDITED"]])
+  +kpis([["11","profiles"],["₹18","per profile"],["100%","consented"]])},
+
+{label:"Sample shipped",cap:"Gratification delivered in Joy Club",meta:"1 pack shipped · 11 members active",
+ screen:()=>joy('<div class="jc-h1">Hi Kiara 👋</div><div class="jc-sub">Your referral reward is confirmed</div>'
+  +'<div class="pts"><div class="r1"><span>JOY STARTER</span><span class="nx">10 / 10 REFERRALS</span></div><div class="big">1,100 pts</div><div class="bar"><i style="width:100%"></i></div><div class="lbl">100 welcome + 1,000 referral points</div></div>'
+  +'<div class="jc-sec">Your rewards</div>'
+  +'<div class="jc-row" style="animation-delay:0.08s"><div class="th">🍪</div><div><div class="t">Free Oreo sample pack</div><div class="s">Double Stuff trio · ships tomorrow</div></div><div class="jc-pill ok">UNLOCKED</div></div>'
+  +'<div class="jc-row" style="animation-delay:0.16s"><div class="th">👥</div><div><div class="t">10 friends joined</div><div class="s">Referral challenge complete</div></div><div class="jc-pill new">DONE</div></div>','Rewards','JC-91208 · Joy Starter'),
+ right:()=>head("Sampling paid for by referrals","One pack shipped, eleven contactable people created")
+  +data([["Sample","Oreo Double Stuff trio","g","SHIPPING"],["Address","400053 · Andheri West","g","VERIFIED"],["Joined from","Food delivery · post-order","","TAGGED"],["Next","12-month re-engagement flow","n","QUEUED"]])
+  +meter(76,"PROFILE BUILT")},
+];
+mountFlow({title:"Commerce · post-order referral",steps:STEPS});
+</script>
+</body></html>

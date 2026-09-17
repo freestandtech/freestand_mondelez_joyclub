@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>ROI extraction — one consumer, five returns</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}html,body{margin:0;padding:0;width:1280px;height:832px;overflow:hidden;font-family:Inter,Arial,sans-serif;background:#F7F8FB;color:#111827;-webkit-font-smoothing:antialiased}
+a{color:#0A49B7}a:hover{color:#E4A400}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes grow{from{width:0}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(228,164,0,.6)}70%{box-shadow:0 0 0 9px rgba(228,164,0,0)}100%{box-shadow:0 0 0 0 rgba(228,164,0,0)}}
+#topbar{position:absolute;left:0;top:0;right:0;height:66px;background:linear-gradient(100deg,#052762,#0A49B7);display:flex;align-items:center;padding:0 26px;gap:16px}
+#topbar img.md{height:40px;background:#fff;border-radius:9px;padding:4px}
+#topbar img.fs{height:25px;filter:brightness(0) invert(1);margin-left:auto}
+#topbar .t{color:#fff;font-size:20px;font-weight:600;letter-spacing:-0.2px}
+#caption{position:absolute;left:22px;right:22px;bottom:14px;height:56px;background:#052762;color:#fff;border-radius:12px;padding:0 22px;display:flex;gap:16px;align-items:center}
+#caption .tag{background:#E4A400;color:#0B1F3F;border-radius:7px;padding:6px 12px;font-size:12px;font-weight:700;letter-spacing:1.1px;white-space:nowrap}
+#caption .tt{font-size:19px;font-weight:600}
+#caption .ss{margin-left:auto;font-size:14px;font-weight:500;opacity:.85;white-space:nowrap}
+#rail{position:absolute;left:24px;right:24px;top:80px;height:40px;display:grid;gap:8px;grid-template-columns:repeat(7,1fr)}
+.st{border:1px solid #E3E7EF;background:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;gap:7px;font-size:12.5px;font-weight:600;color:#6B7280;cursor:pointer;padding:0 8px;white-space:nowrap;overflow:hidden}
+.st b{width:18px;height:18px;border-radius:999px;background:#EEF1F7;color:#6B7280;font-size:10.5px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.st.on{background:#052762;border-color:#052762;color:#fff}.st.on b{background:#E4A400;color:#0B1F3F}.st.past{background:#F1F4F9}
+#lc{position:absolute;left:24px;top:136px;bottom:84px;width:298px;display:flex;flex-direction:column;gap:12px}
+#mc{position:absolute;left:334px;right:366px;top:136px;bottom:84px;display:flex;flex-direction:column;gap:12px;min-height:0}
+#rc{position:absolute;right:24px;top:136px;bottom:84px;width:330px;display:flex;flex-direction:column;gap:12px}
+.card{background:#fff;border:1px solid #E3E7EF;border-radius:15px;padding:14px 16px}
+.hdr{font-size:10.5px;font-weight:700;letter-spacing:1.3px;color:#8A93A6;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.hdr .c{margin-left:auto;letter-spacing:.4px;color:#0A49B7}
+/* left — consumer */
+.who{display:flex;gap:12px;align-items:center;margin-top:12px}
+.who img{width:60px;height:60px;border-radius:999px;object-fit:cover;border:3px solid #EAF0FB;flex-shrink:0}
+.who .nm{font-size:18px;font-weight:700;letter-spacing:-.3px}
+.who .pin{font-size:12px;color:#5B6472;margin-top:3px;font-weight:500}
+.route{display:flex;align-items:center;gap:6px;margin-top:12px;flex-wrap:wrap}
+.route span{background:#EAF0FB;color:#0A49B7;border-radius:999px;padding:4px 9px;font-size:11px;font-weight:600;white-space:nowrap}
+.route i{font-style:normal;color:#9AA3B2;font-size:12px}
+.cac{margin-top:12px;background:#052762;color:#fff;border-radius:12px;padding:11px 14px;display:flex;align-items:center;gap:12px}
+.cac .k{font-size:10px;font-weight:700;letter-spacing:1.1px;opacity:.8}
+.cac .v{font-size:26px;font-weight:800;letter-spacing:-.6px;line-height:1;margin-top:4px}
+.cac .s{margin-left:auto;font-size:10.5px;opacity:.75;text-align:right;line-height:1.4}
+.as{flex:1;min-height:0;display:flex;flex-direction:column}
+.asr{display:flex;flex-direction:column;margin-top:8px;flex:1;justify-content:space-between}
+.ar{display:flex;align-items:center;gap:10px;padding:8px 8px;border-radius:10px;border:1px solid transparent;margin:0 -8px}
+.ar .ic{width:30px;height:30px;border-radius:9px;background:#F1F4F9;color:#6B7280;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ar .f{font-size:10px;font-weight:700;letter-spacing:.8px;color:#8A93A6;text-transform:uppercase}
+.ar .v{font-size:12.5px;font-weight:600;color:#0B1F3F;margin-top:1px;line-height:1.3}
+.ar .u{margin-left:auto;font-size:9.5px;font-weight:700;letter-spacing:.6px;border-radius:999px;padding:3px 8px;white-space:nowrap;background:#F1F4F9;color:#8A93A6;flex-shrink:0}
+.ar.on{background:#FFF8E1;border-color:#F2D98A}
+.ar.on .ic,.ar.on .u{background:#E4A400;color:#0B1F3F}
+/* middle */
+.kick{font-size:11px;font-weight:700;letter-spacing:1.4px;color:#0A49B7;text-transform:uppercase}
+.h1{font-size:26px;font-weight:700;letter-spacing:-.6px;line-height:1.15;margin-top:5px}
+.sub{font-size:13.5px;color:#5B6472;line-height:1.5;margin-top:6px;font-weight:500;text-wrap:pretty}
+.panel{flex:1;min-height:0;display:flex;flex-direction:column;gap:10px;animation:fadeInUp .35s both}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;min-height:0}
+.sc{background:#fff;border:1px solid #E3E7EF;border-radius:14px;padding:13px 14px;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.sc .h{font-size:10px;font-weight:700;letter-spacing:1.1px;color:#8A93A6;text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.sc .t{font-size:15px;font-weight:700;margin-top:6px;line-height:1.25;letter-spacing:-.2px}
+.sc .d{font-size:12px;color:#5B6472;line-height:1.45;margin-top:6px}
+.kpi{display:grid;gap:10px;flex-shrink:0}
+.kpi>div{background:#fff;border:1px solid #E3E7EF;border-radius:13px;padding:11px 10px;text-align:center}
+.kpi .v{font-size:22px;font-weight:800;color:#052762;letter-spacing:-.4px;line-height:1}
+.kpi .l{font-size:11px;color:#6B7280;margin-top:5px}
+.kpi.g .v{color:#128C4A}
+.stat{margin-top:auto;padding-top:10px;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:#128C4A}
+.stat b{font-size:20px;font-weight:800;letter-spacing:-.4px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{font-size:11.5px;font-weight:600;border-radius:8px;padding:5px 10px;background:#EAF0FB;color:#0A49B7}
+.chip.g{background:#E9FBF0;color:#128C4A}.chip.p{background:#F2E8F9;color:#4F2170}
+.hb{display:flex;align-items:center;gap:8px;font-size:11.5px;margin-top:7px}
+.hb .lb{width:150px;color:#374151;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.2}
+.hb .lb small{display:block;font-weight:500;color:#8A93A6;font-size:10px}
+.hb .tr{flex:1;height:9px;background:#EEF1F7;border-radius:5px;overflow:hidden}
+.hb .tr i{display:block;height:100%;background:#0A49B7;border-radius:5px;animation:grow .8s ease-out both}
+.hb .nn{width:34px;text-align:right;font-weight:700;color:#052762}
+.ins{padding:9px 0;border-top:1px solid #F1F4F9}
+.ins:first-of-type{border-top:none}
+.ins .sg{font-size:12.5px;font-weight:700;color:#0B1F3F;line-height:1.3}
+.ac{font-size:11.5px;color:#128C4A;font-weight:600;margin-top:3px;display:flex;gap:5px;align-items:center}
+.flow{display:flex;align-items:stretch;gap:8px;flex-shrink:0}
+.nd{flex:1;background:#fff;border:1px solid #E3E7EF;border-radius:12px;padding:10px 12px;min-width:0;animation:fadeInUp .3s both}
+.nd .k{font-size:9.5px;font-weight:700;letter-spacing:1px;color:#8A93A6;text-transform:uppercase}
+.nd .t{font-size:13px;font-weight:700;margin-top:4px;line-height:1.25}
+.nd .n{font-size:18px;font-weight:800;color:#052762;margin-top:4px;letter-spacing:-.3px}
+.nd .s{font-size:10.5px;color:#6B7280;margin-top:2px;line-height:1.35}
+.nd.px{background:#052762;border-color:#052762;color:#fff}.nd.px .k{color:rgba(255,255,255,.7)}.nd.px .n{color:#E4A400}.nd.px .s{color:rgba(255,255,255,.75)}
+.arr{align-self:center;color:#9AA3B2;flex-shrink:0;display:flex}
+.ad{display:flex;gap:11px;align-items:flex-start;margin-top:10px}
+.ad img{width:64px;height:64px;border-radius:10px;object-fit:cover;flex-shrink:0;border:1px solid #E3E7EF}
+.ad .b{font-size:9.5px;font-weight:800;letter-spacing:.6px;color:#8A93A6;text-transform:uppercase}
+.ad .c{font-size:12.5px;line-height:1.4;color:#1F2937;margin-top:3px;font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:6px;background:#0A49B7;color:#fff;border-radius:7px;padding:5px 10px;font-size:10.5px;font-weight:700;margin-top:6px}
+.btn.y{background:#F8CB46;color:#1a1a1a}
+.wa{background:#EFE7DE;border-radius:12px;padding:10px;margin-top:10px}
+.msg{background:#fff;border-radius:8px;border-top-left-radius:0;padding:7px 9px 5px;font-size:11.5px;line-height:1.42;box-shadow:0 1px .5px rgba(11,20,26,.13)}
+.msg .tm{font-size:9px;color:#8A9A93;float:right;margin:4px 0 0 8px}
+.wbtn{margin-top:4px;background:#fff;color:#0B7FD4;border-radius:7px;padding:6px;text-align:center;font-size:11px;font-weight:600;box-shadow:0 1px .5px rgba(11,20,26,.13)}
+.lst{margin-top:8px}
+.lr{display:flex;align-items:center;gap:9px;padding:8px 0;border-top:1px solid #F1F4F9;font-size:12px}
+.lr:first-child{border-top:none}
+.lr .n{font-weight:600;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.2}
+.lr .n small{display:block;color:#8A93A6;font-weight:500;font-size:10.5px}
+.lr .d{color:#8A93A6;font-size:11px;white-space:nowrap;font-weight:600}
+.lr .ok{font-size:9.5px;font-weight:700;color:#1E7A38;background:#E6F6EA;border-radius:999px;padding:3px 7px;white-space:nowrap}
+.prod{height:96px;display:flex;align-items:center;justify-content:center;background:#F7F8FB;border-radius:10px;margin-top:8px;flex-shrink:0}
+.prod img{height:84px;width:auto;max-width:100%;object-fit:contain}
+.rate{display:flex;align-items:baseline;gap:8px;margin-top:6px}
+.rate b{font-size:30px;font-weight:800;color:#052762;letter-spacing:-.8px}
+.rate span{font-size:11.5px;color:#6B7280;font-weight:500}
+.chw{position:relative;margin-top:8px}
+.mos{position:relative;height:14px;margin-top:4px}
+.mos span{position:absolute;transform:translateX(-50%);font-size:10px;color:#8A93A6;font-weight:600}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:10px;flex-shrink:0}
+.cp{border-radius:14px;padding:14px 16px;border:1px solid #E3E7EF;background:#fff}
+.cp.g{background:#052762;color:#fff;border-color:#052762}
+.cp .h{font-size:10px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;color:#8A93A6}
+.cp.g .h{color:rgba(255,255,255,.75)}
+.cp .v{font-size:34px;font-weight:800;letter-spacing:-1px;line-height:1;margin-top:8px;color:#6B7280}
+.cp.g .v{color:#E4A400}
+.cp .m{font-size:12px;margin-top:6px;font-weight:500;color:#6B7280}
+.cp.g .m{color:rgba(255,255,255,.85)}
+.cp .bar{height:8px;border-radius:5px;background:#EEF1F7;margin-top:10px;overflow:hidden}
+.cp.g .bar{background:rgba(255,255,255,.2)}
+.cp .bar i{display:block;height:100%;border-radius:5px;background:#9AA3B2;animation:grow .9s ease-out both}
+.cp.g .bar i{background:#4ADE80}
+.agg{background:#052762;color:#fff;border-radius:14px;padding:12px 16px;display:flex;align-items:center;gap:14px;flex-shrink:0}
+.agg .k{font-size:9.5px;font-weight:700;letter-spacing:1.2px;opacity:.7}
+.agg .v{font-size:13px;font-weight:600;margin-top:3px}
+.agg .v b{color:#E4A400;font-weight:800;font-size:16px}
+.agg .nx{margin-left:auto;font-size:11px;font-weight:700;background:rgba(255,255,255,.12);border-radius:999px;padding:7px 12px;display:flex;align-items:center;gap:6px;white-space:nowrap}
+/* timeline */
+.tlw{position:relative;height:150px;margin:8px 46px 0;flex-shrink:0}
+.tl{position:absolute;left:0;right:0;top:78px;height:4px;background:#E3E7EF;border-radius:2px}
+.tl i{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,#E4A400,#0A49B7 30%,#128C4A);border-radius:2px;animation:grow 1.2s ease-out both}
+.tk{position:absolute;top:74px;width:1px;height:12px;background:#D5DBE6}
+.rcpt{position:absolute;top:70px;width:3px;height:20px;border-radius:2px;background:#E3E7EF;transform:translateX(-50%)}
+.rcpt.on{background:#128C4A}
+.mk{position:absolute;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;z-index:2}
+.mk.dn{top:73px}.mk.up{flex-direction:column-reverse;bottom:63px}
+.mk .dot{width:14px;height:14px;border-radius:999px;background:#fff;border:3px solid #C9D2E2;flex-shrink:0}
+.mk .lb{font-size:10.5px;font-weight:700;color:#9AA3B2;white-space:nowrap;text-align:center;line-height:1.25}
+.mk .lb small{display:block;font-weight:600;font-size:9.5px;color:#B0B8C4}
+.mk.on .dot{background:#0A49B7;border-color:#0A49B7;box-shadow:0 0 0 4px rgba(10,73,183,.14)}
+.mk.on .lb{color:#0B1F3F}.mk.on .lb small{color:#6B7280}
+.mk.acq .dot{background:#E4A400;border-color:#E4A400;box-shadow:none;animation:pulse 1.8s infinite}
+.mk.fin.on .dot{background:#128C4A;border-color:#128C4A;box-shadow:0 0 0 4px rgba(18,140,74,.14)}
+/* right — ledger */
+.lg{flex:1;min-height:0;display:flex;flex-direction:column}
+.lrow{display:flex;align-items:center;gap:11px;padding:10px 0;border-top:1px solid #F1F4F9}
+.lrow:first-of-type{border-top:none;margin-top:4px}
+.lrow .ic{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:#F1F4F9;color:#9AA3B2;border:1.5px dashed #D5DBE6}
+.lrow .t{font-size:13px;font-weight:700;color:#9AA3B2;line-height:1.2}
+.lrow .v{font-size:11.5px;color:#9AA3B2;margin-top:3px;font-weight:500;line-height:1.35}
+.lrow.done .ic{background:#E9FBF0;color:#128C4A;border:none}
+.lrow.done .t{color:#0B1F3F}.lrow.done .v{color:#128C4A;font-weight:600}
+.lrow.act .ic{background:#E4A400;color:#0B1F3F;border:none;animation:pulse 1.8s infinite}
+.lrow.act .t{color:#0B1F3F}.lrow.act .v{color:#8a6d00;font-weight:600}
+.bd{margin-left:auto;font-size:10px;font-weight:700;letter-spacing:.6px;border-radius:999px;padding:3px 8px;background:#F1F4F9;color:#9AA3B2;white-space:nowrap;flex-shrink:0}
+.bd.live{background:#E4A400;color:#0B1F3F}
+.bd.ok{background:#E9FBF0;color:#128C4A;padding:4px 6px;display:flex}
+.ltv{background:#052762;color:#fff;border-radius:15px;padding:14px 16px;flex-shrink:0}
+.ltv .k{font-size:10px;font-weight:700;letter-spacing:1.2px;opacity:.75}
+.ltv .row{display:flex;align-items:center;gap:10px;margin-top:9px;font-size:11.5px}
+.ltv .row .lb{width:32px;font-weight:700;opacity:.8}
+.ltv .row .tr{flex:1;height:9px;border-radius:5px;background:rgba(255,255,255,.18);overflow:hidden}
+.ltv .row .tr i{display:block;height:100%;border-radius:5px;animation:grow .9s ease-out both}
+.ltv .row .n{width:60px;text-align:right;font-weight:800;font-size:13px}
+.ltv .big{display:flex;align-items:baseline;gap:8px;margin-top:10px}
+.ltv .big b{font-size:28px;font-weight:800;letter-spacing:-.8px;color:#E4A400}
+.ltv .big span{font-size:11.5px;opacity:.8;line-height:1.35}
+.ltv .hint{font-size:11.5px;opacity:.75;margin-top:10px;line-height:1.4}
+</style></head><body>
+<div id="__asset-preload" style="display:none" aria-hidden="true"><img data-asset="../../mdlz/lite-fs-logo.png" src="../../mdlz/lite-fs-logo.png" alt="" /><img data-asset="../../mdlz/lite-mdlz-logo.png" src="../../mdlz/lite-mdlz-logo.png" alt="" /><img data-asset="../../mdlz/mini-aarav.png" src="../../mdlz/mini-aarav.png" alt="" /><img data-asset="../../mdlz/lite-ad-cadbury.png" src="../../mdlz/lite-ad-cadbury.png" alt="" /><img data-asset="../../mdlz/mini-ad-ig.png" src="../../mdlz/mini-ad-ig.png" alt="" /><img data-asset="../../mdlz/mini-hero-silk.png" src="../../mdlz/mini-hero-silk.png" alt="" /></div>
+<script>
+(function(){
+  var MAP={};
+  function build(){
+    var box=document.getElementById("__asset-preload"); if(!box) return;
+    [].forEach.call(box.querySelectorAll("img[data-asset]"),function(im){
+      var k=im.getAttribute("data-asset"), v=im.getAttribute("src");
+      if(v&&v!==k) MAP[k]=v;
+    });
+  }
+  function fixOne(el){
+    var s=el.getAttribute("src")||"";
+    if(MAP[s]) el.setAttribute("src",MAP[s]);
+  }
+  function sweep(root){
+    if(!root||!root.querySelectorAll) return;
+    if(root.tagName==="IMG") fixOne(root);
+    [].forEach.call(root.querySelectorAll("img"),fixOne);
+  }
+  build(); sweep(document);
+  new MutationObserver(function(muts){
+    for(var i=0;i<muts.length;i++){
+      var m=muts[i];
+      if(m.type==="attributes"&&m.target.tagName==="IMG") fixOne(m.target);
+      for(var j=0;j<m.addedNodes.length;j++) sweep(m.addedNodes[j]);
+    }
+  }).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:["src"]});
+})();
+</script>
+<template id="__bundler_thumbnail" data-bg-color="#052762">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#052762"/><g fill="none" stroke="#E4A400" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"><path d="M380 500L520 380l110 80 190-170"/><path d="M740 290h80v80"/></g><text x="600" y="600" font-family="Arial,sans-serif" font-size="46" font-weight="700" fill="#fff" text-anchor="middle">ROI extraction</text><text x="600" y="660" font-family="Arial,sans-serif" font-size="22" letter-spacing="5" fill="#fff" opacity="0.6" text-anchor="middle">MONDELEZ × FREESTAND</text></svg>
+</template>
+<div id="topbar">
+  <img class="md" src="../../mdlz/lite-mdlz-logo.png" alt="Mondelez"/>
+  <div class="t">ROI extraction — one consumer, five returns</div>
+  <img class="fs" src="../../mdlz/lite-fs-logo.png" alt="FreeStand"/>
+</div>
+<div id="rail"></div>
+<div id="lc"></div>
+<div id="mc"></div>
+<div id="rc"></div>
+<div id="caption"><div class="tag" id="cap-tag"></div><div class="tt" id="cap-t"></div><div class="ss" id="cap-s"></div></div>
+<script>
+const I={
+ pixel:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>',
+ map:'<path d="M12 21s-6.5-5.7-6.5-11a6.5 6.5 0 0113 0c0 5.3-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/>',
+ store:'<path d="M4 9.5L5.5 4h13L20 9.5M4 9.5h16v10.5H4z"/><path d="M9.5 20v-6h5v6"/>',
+ launch:'<path d="M12 3c3 2.5 4.5 6 4.5 9.5L12 16l-4.5-3.5C7.5 9 9 5.5 12 3z"/><path d="M7.5 12.5L5 15l2 1M16.5 12.5L19 15l-2 1M12 16v5"/>',
+ receipt:'<path d="M6 3h12v18l-2-1.5L14 21l-2-1.5L10 21l-2-1.5L6 21z"/><path d="M9 8h6M9 12h6M9 16h4"/>',
+ chat:'<path d="M4 5.5h16v10H9l-5 4z"/><path d="M8.5 10.5h7"/>',
+ user:'<circle cx="12" cy="8.5" r="3.6"/><path d="M5 20c1.4-4 4-5.6 7-5.6s5.6 1.6 7 5.6"/>',
+ shield:'<path d="M12 3l7 3v6c0 4.5-3 7.8-7 9-4-1.2-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/>',
+ check:'<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+ arrow:'<path d="M5 12h14M13 6l6 6-6 6"/>',
+ cart:'<path d="M3 4h2l2.5 11h11L21 7H6.2"/><circle cx="9" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/>'
+};
+function ic(n,s,c){return '<svg width="'+(s||16)+'" height="'+(s||16)+'" viewBox="0 0 24 24" fill="none" stroke="'+(c||"currentColor")+'" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0">'+I[n]+'</svg>';}
+
+const STEPS=[
+ {label:"Acquired",kick:"Month 0 · Acquired",h1:"Acquired. Most sampling stops here.",sub:"One sample, one pixel event, one open WhatsApp thread — and ₹92 spent. FreeStand treats this as month zero of a 24-month return curve, not the end of a campaign.",cap:"Acquired for ₹92 — now the returns begin",meta:"Month 0 · 1 consumer · 5 returns queued"},
+ {label:"Pixel reuse",kick:"Month 1 · Pixel reuse",h1:"One claim event seeds every paid channel",sub:"The FreeStand pixel fires when Aarav claims. That event becomes an audience Mondelez owns — reused for CPAS with retailers and for retargeting, with no audience rent.",cap:"Pixel reused for CPAS and retargeting",meta:"Month 1 · Meta × Blinkit · Google"},
+ {label:"Demand insights",kick:"Month 2 · Demand insights",h1:"Every claim is a demand signal with a pincode",sub:"84,406 claims plotted by pincode show where demand actually lives — by SKU, hour and affluence band. Media and distribution follow the map instead of guessing.",cap:"Demand mapped by pincode, SKU and hour",meta:"Month 2 · 84,406 claims · 1,912 pincodes"},
+ {label:"Activations",kick:"Month 3 · Offline & retail",h1:"Activate where the demand already is",sub:"Top-demand pincodes get the promoter stalls and in-store displays. Claimers within 2 km — Aarav included — get the invite on the WhatsApp thread we already have.",cap:"Offline and retail activations in demand hotspots",meta:"Month 3 · Bandra West"},
+ {label:"Launches & NPD",kick:"Month 6 · Launches & NPD",h1:"Launch to an owned audience, then listen",sub:"New SKUs go first to the cohort most likely to buy them — no media, no retailer margin, no new sign-up. Their feedback becomes the next R&D brief.",cap:"Launch seeding and NPD signal from the owned base",meta:"Month 6 · Silk Hazelnut"},
+ {label:"Receipts",kick:"Months 1–24 · Receipts",h1:"Receipts turn a sampler into a measured customer",sub:"Every bill Aarav scans in WhatsApp earns Joy Club points — and gives Mondelez a real, SKU-level purchase history instead of a modelled one.",cap:"Receipts build a real, SKU-level purchase history",meta:"Months 1–24 · 14 receipts"},
+ {label:"Real LTV",kick:"Month 24 · Real LTV",h1:"₹92 in. ₹3,120 back — if he stays engaged.",sub:"The five returns compound only while Aarav keeps answering. Re-engagement is the difference between a sampler and a customer — which is the next chapter.",cap:"Real LTV: 34× the cost of acquisition",meta:"Month 24 · if re-engaged"}
+];
+const ASSETS=[
+ {ic:"pixel",f:"Pixel event",v:"sample_claimed · Meta, Google",on:[1]},
+ {ic:"chat",f:"WhatsApp",v:"Opted in · thread open",on:[3,4,5,6]},
+ {ic:"map",f:"Pincode",v:"400050 · Bandra West",on:[2,3]},
+ {ic:"user",f:"Persona",v:"Premium self-treater · A2",on:[4]},
+ {ic:"receipt",f:"Receipts",v:"0 scanned yet",v2:"14 scanned · 24 months",on:[5,6]},
+ {ic:"shield",f:"Consent",v:"First-party · DPDP",on:[]}
+];
+const RET=[
+ {ic:"pixel",t:"Pixel reuse",m:"M1",v:"CPAS ROAS 4.2× · lookalike CAC −38%"},
+ {ic:"map",t:"Demand insights",m:"M2",v:"Media & distribution re-weighted by pincode"},
+ {ic:"store",t:"Offline & retail activations",m:"M3",v:"3.1× footfall · 27% coupon redemption"},
+ {ic:"launch",t:"Launches & NPD",m:"M6",v:"41k day-1 trials · ₹0 media · R&D brief"},
+ {ic:"receipt",t:"Receipts → LTV",m:"M1–24",v:"14 receipts · ₹3,120 tracked spend"}
+];
+const RC=[[1,"Silk Fruit & Nut",180],[2,"Silk Bubbly",95],[4,"Bournvita 500g",260],[5,"Silk Hazelnut · launch",190],[7,"Oreo family pack",120],[8,"Silk gifting · Rakhi",450],[10,"Silk Hazelnut",190],[11,"Celebrations · Diwali",520],[13,"Bournvita 500g",265],[15,"Silk Bubbly",95],[17,"Silk Hazelnut",190],[19,"Oreo",120],[22,"Silk gifting",230],[24,"Bournvita 500g",215]];
+const MK=[{m:0,t:"Acquired",s:"M0 · ₹92 sample",k:"acq"},{m:1,t:"Pixel reuse",s:"M1 · CPAS, retarget",k:1},{m:2,t:"Demand map",s:"M2 · by pincode",k:2},{m:3,t:"Activations",s:"M3 · stalls, stores",k:3},{m:6,t:"Launch & NPD",s:"M6 · Silk Hazelnut",k:4},{m:24,t:"Real LTV",s:"M24 · ₹3,120",k:5}];
+
+function kpis(arr,cls){return '<div class="kpi '+(cls||"")+'" style="grid-template-columns:repeat('+arr.length+',1fr)">'+arr.map(k=>'<div><div class="v">'+k[0]+'</div><div class="l">'+k[1]+'</div></div>').join("")+'</div>';}
+function chips(arr,cls){return '<div class="chips">'+arr.map(c=>'<span class="chip '+(cls||"")+'">'+c+'</span>').join("")+'</div>';}
+function hbars(rows){return rows.map((r,i)=>'<div class="hb"><div class="lb">'+r[0]+'<small>'+r[1]+'</small></div><div class="tr"><i style="width:'+r[2]+'%;animation-delay:'+(i*.05)+'s"></i></div><div class="nn">'+r[2]+'</div></div>').join("");}
+function hbars2(rows){return rows.map((r,i)=>'<div class="hb"><div class="lb" style="width:126px">'+r[0]+'</div><div class="tr"><i style="width:'+r[1]+'%;animation-delay:'+(i*.05)+'s"></i></div><div class="nn">'+r[1]+'%</div></div>').join("");}
+function ins(rows){return rows.map(r=>'<div class="ins"><div class="sg">'+r[0]+'</div><div class="ac">'+ic("arrow",12)+r[1]+'</div></div>').join("");}
+function stores(rows){return '<div class="lst">'+rows.map(r=>'<div class="lr">'+ic("store",15,"#0A49B7")+'<div class="n">'+r[0]+'<small>'+r[1]+'</small></div><div class="d">'+r[2]+'</div><div class="ok">LIVE</div></div>').join("")+'</div>';}
+function tx(m){return m<=6?m/6*60:60+(m-6)/18*40;}
+function timeline(s){
+ let h='<div class="tlw"><div class="tl"><i style="width:'+(s===6?100:1.5)+'%"></i></div>';
+ [0,1,2,3,6,12,18,24].forEach(m=>{h+='<div class="tk" style="left:'+tx(m)+'%"></div>';});
+ RC.forEach(r=>{h+='<div class="rcpt'+(s===6?" on":"")+'" style="left:'+tx(r[0])+'%"></div>';});
+ MK.forEach((x,i)=>{const lit=s===6||x.k==="acq";h+='<div class="mk '+(i%2?"up":"dn")+(lit?" on":"")+(x.k==="acq"?" acq":"")+(x.k===5?" fin":"")+'" style="left:'+tx(x.m)+'%"><div class="dot"></div><div class="lb">'+x.t+'<small>'+x.s+'</small></div></div>';});
+ return h+'</div>';
+}
+function chart(){
+ const W=550,H=170,base=H-6,step=W/24,bw=12,maxA=520,maxC=3120;let cum=0;const pts=[[0,base]];
+ const bars=RC.map((r,i)=>{const x=(r[0]-.5)*step-bw/2,h=r[2]/maxA*96;return '<rect x="'+x.toFixed(1)+'" y="'+(base-h).toFixed(1)+'" width="'+bw+'" height="'+h.toFixed(1)+'" rx="3" fill="#0A49B7" opacity=".8" style="animation:fadeInUp .4s '+(i*.05)+'s both"><title>M'+r[0]+' · '+r[1]+' · ₹'+r[2]+'</title></rect>';}).join("");
+ RC.forEach(r=>{cum+=r[2];pts.push([(r[0]-.5)*step,base-cum/maxC*(base-14)]);});
+ const last=pts[pts.length-1];
+ return '<div class="chw"><svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" style="width:100%;height:170px;display:block;overflow:visible">'+bars
+  +'<polyline points="'+pts.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(" ")+'" fill="none" stroke="#128C4A" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.4s .2s ease-out forwards"/>'
+  +'<circle cx="'+last[0].toFixed(1)+'" cy="'+last[1].toFixed(1)+'" r="4.5" fill="#128C4A" stroke="#fff" stroke-width="2" style="animation:fadeInUp .3s 1.5s both"/></svg>'
+  +'<div class="mos">'+[1,6,12,18,24].map(m=>'<span style="left:'+((m-.5)/24*100)+'%">M'+m+'</span>').join("")+'</div></div>';
+}
+
+const VIEWS=[
+ ()=>kpis([["₹92","spent to acquire"],["₹0","returned so far"],["6","assets now held"],["24","months of runway"]])
+  +'<div class="sc" style="flex:1"><div class="h">The next 24 months</div>'+timeline(0)+'<div class="d" style="margin-top:auto">Five returns queued — each one reuses something the acquisition already produced. Nothing new is asked of Aarav.</div></div>',
+ ()=>'<div class="flow">'
+  +'<div class="nd px"><div class="k">Pixel event</div><div class="t">sample_claimed</div><div class="n">84,406</div><div class="s">this season · Meta + Google</div></div><div class="arr">'+ic("arrow",16)+'</div>'
+  +'<div class="nd"><div class="k">Custom audience</div><div class="t">Sample claimers</div><div class="n">76,810</div><div class="s">91% matched on Meta</div></div><div class="arr">'+ic("arrow",16)+'</div>'
+  +'<div class="nd"><div class="k">Lookalike 1%</div><div class="t">People like Aarav</div><div class="n">2.1M</div><div class="s">Tier-1 · A1–A2 · self-treaters</div></div><div class="arr">'+ic("arrow",16)+'</div>'
+  +'<div class="nd"><div class="k">Exclusion</div><div class="t">Already bought</div><div class="n">12,180</div><div class="s">suppressed via receipts</div></div></div>'
+  +'<div class="two">'
+  +'<div class="sc"><div class="h">CPAS · Meta × Blinkit</div><div class="ad"><img src="../../mdlz/lite-ad-cadbury.png" alt="Cadbury Silk ad"/><div><div class="b">Sponsored · Cadbury Silk</div><div class="c">Silk Hazelnut, ₹30 off — at your door in 10 minutes.</div><div class="btn y">'+ic("cart",12)+'Buy on Blinkit</div></div></div><div class="d">Retailer-catalogue ads served only to sample claimers and their lookalikes.</div><div class="stat"><b>4.2×</b>ROAS · vs 1.6× on cold audiences</div></div>'
+  +'<div class="sc"><div class="h">Retargeting · Instagram + Google</div><div class="ad"><img src="../../mdlz/mini-ad-ig.png" alt="Instagram ad"/><div><div class="b">Sponsored · cadbury.in</div><div class="c">Loved the sample, Aarav? Your Silk is waiting.</div><div class="btn">Shop on cadbury.in</div></div></div><div class="d">Claimed but not yet bought → one nudge, then the receipt exclusion switches him off.</div><div class="stat"><b>2.8×</b>CTR vs cold · CAC −38% on lookalikes</div></div>'
+  +'</div>',
+ ()=>'<div class="two">'
+  +'<div class="sc"><div class="h">Claims per 10k households · top pincodes</div>'+hbars([["Mumbai · Bandra West","400050",100],["Bengaluru · Koramangala","560034",86],["Delhi · Kamla Nagar","110007",74],["Pune · Baner","411045",61],["Hyderabad · Banjara Hills","500034",55],["Lucknow · Gomti Nagar","226010",41]])+'<div class="d" style="margin-top:auto">Index · Bandra West = 100 · 84,406 claims across 1,912 pincodes</div></div>'
+  +'<div class="sc"><div class="h">What the map says</div>'+ins([["Silk over-indexes 1.6× in Tier-1 West","Shift 18% of Silk media to Mumbai & Pune"],["Bournvita claims cluster in Tier-2 North","Lucknow, Kanpur move up the distribution list"],["Claims peak Fri–Sun, 7–10 pm","CPAS dayparted to evenings"],["A2 band claims 2.3× more than C","Premium SKUs to A1–A2 pincodes only"]])+'</div>'
+  +'</div>'
+  +'<div class="sc" style="flex:none"><div class="h">Feeds into</div>'+chips(["Media plan","Distribution priority","Promoter routing","Launch geos","CPAS dayparting","Retailer JBPs"])+'</div>',
+ ()=>'<div class="two">'
+  +'<div class="sc"><div class="h">Offline activation · promoter stalls</div><div class="t">Silk Hazelnut tasting weekend — Bandra West</div><div class="d">Top-3 demand pincodes → 3 stalls · Linking Road, Pali Hill, Hill Road · Sat–Sun</div>'
+  +'<div class="wa"><div class="msg">Hi Aarav — Silk Hazelnut tasting at Linking Road this Saturday, 5–9 pm. Show this message for a full bar.<span class="tm">11:20</span></div><div class="wbtn">Save the date</div></div>'
+  +'<div class="stat"><b>3.1×</b>footfall vs blind placement</div></div>'
+  +'<div class="sc"><div class="h">Retail activation · in-store</div><div class="t">Display + QR in the 3 stores Aarav actually shops</div>'
+  +stores([["Reliance Smart","Linking Road","0.8 km"],["Nature\u2019s Basket","Pali Hill","1.2 km"],["DMart","Bandra Reclamation","1.9 km"]])
+  +'<div class="d">Store coupon on WhatsApp to claimers within 2 km. The store QR brings new claimers back into the loop.</div>'
+  +'<div class="stat"><b>27%</b>coupon redemption in-store</div></div>'
+  +'</div>',
+ ()=>'<div class="two">'
+  +'<div class="sc"><div class="h">Launch seeding</div><div class="prod"><img src="../../mdlz/mini-hero-silk.png" alt="Silk Hazelnut"/></div><div class="t">Silk Hazelnut · first taste, day 1</div><div class="d">Sent to 1,84,406 premium self-treaters on WhatsApp — Aarav included. No media, no retailer margin, no new sign-up.</div><div class="stat"><b>41k</b>day-1 trials · ₹0 media</div></div>'
+  +'<div class="sc"><div class="h">NPD signal · post-trial</div><div class="rate"><b>4.6</b><span>/ 5 · 38,204 ratings in WhatsApp</span></div>'
+  +hbars2([["Would buy again",78],["Want a smaller pack",31],["Too sweet",12]])
+  +'<div class="h" style="margin-top:12px">Vote for the next flavour</div>'+chips(["Salted caramel 44%","Pistachio 31%","Orange peel 25%"],"p")
+  +'<div class="ac" style="margin-top:auto;padding-top:10px">'+ic("arrow",12)+'Brief to R&amp;D: Salted caramel · 60 g pack · Tier-1 West first</div></div>'
+  +'</div>',
+ ()=>'<div class="sc" style="flex:none"><div class="h">Aarav · receipts scanned in WhatsApp<span style="margin-left:auto;color:#128C4A">cumulative spend · ₹3,120</span></div>'+chart()+'</div>'
+  +kpis([["14","receipts"],["₹223","avg basket"],["7 wk","between purchases"],["₹3,120","24-month spend"]],"g")
+  +'<div class="sc" style="flex:1"><div class="h">What the receipts say</div>'+chips(["Silk 51%","Bournvita 24%","Celebrations 17%","Oreo 8%","Gifting peaks Aug & Oct","Blinkit 43% of baskets","Every scan = Joy Club points"])+'</div>',
+ ()=>'<div class="cmp">'
+  +'<div class="cp g"><div class="h">Re-engaged · Joy Club + Magic Flow</div><div class="v">₹3,120</div><div class="m">14 receipts · 34× CAC · still answering at month 24</div><div class="bar"><i style="width:100%"></i></div></div>'
+  +'<div class="cp"><div class="h">Sampled, then forgotten</div><div class="v">₹260</div><div class="m">2 receipts · 2.8× CAC · silent after month 4</div><div class="bar"><i style="width:8%"></i></div></div>'
+  +'</div>'
+  +'<div class="sc" style="flex:1"><div class="h">24 months · five returns from one acquisition</div>'+timeline(6)+'</div>'
+  +'<div class="agg"><div><div class="k">ACROSS THE SEASON</div><div class="v">84,406 consumers × ₹3,120 → <b>₹26.3 Cr</b> tracked spend — if re-engaged</div></div><div class="nx">Next · Customer engagement '+ic("arrow",14)+'</div></div>'
+];
+
+function left(s){
+ const rows=ASSETS.map(a=>{const on=a.on.includes(s);const v=(a.v2&&s>=5)?a.v2:a.v;return '<div class="ar'+(on?" on":"")+'"><div class="ic">'+ic(a.ic,15)+'</div><div style="min-width:0"><div class="f">'+a.f+'</div><div class="v">'+v+'</div></div><div class="u">'+(on?"IN USE":"HELD")+'</div></div>';}).join("");
+ return '<div class="card"><div class="hdr">Acquired consumer<span class="c">Digital sampling</span></div>'
+  +'<div class="who"><img src="../../mdlz/mini-aarav.png" alt="Aarav Mehta"/><div><div class="nm">Aarav Mehta</div><div class="pin">PIN 400050 · Bandra West, Mumbai</div></div></div>'
+  +'<div class="route"><span>Instagram ad</span><i>→</i><span>WhatsApp</span><i>→</i><span>Silk sample</span></div>'
+  +'<div class="cac"><div><div class="k">COST TO ACQUIRE</div><div class="v">₹92</div></div><div class="s">sample + delivery<br/>+ media</div></div></div>'
+  +'<div class="card as"><div class="hdr">What we now hold<span class="c">'+ASSETS.filter(a=>a.on.includes(s)).length+' in use</span></div><div class="asr">'+rows+'</div></div>';
+}
+function right(s){
+ const rows=RET.map((r,k)=>{const st=(s===6||s>k+1)?"done":(s===k+1?"act":"");
+  const badge=st==="done"?'<div class="bd ok">'+ic("check",12)+'</div>':st==="act"?'<div class="bd live">LIVE</div>':'<div class="bd">'+r.m+'</div>';
+  return '<div class="lrow '+st+'"><div class="ic">'+ic(r.ic,16)+'</div><div style="min-width:0;flex:1"><div class="t">'+r.t+'</div><div class="v">'+(st?r.v:"Queued · "+r.m)+'</div></div>'+badge+'</div>';}).join("");
+ const done=RET.filter((r,k)=>s===6||s>k+1).length, known=s>=5;
+ return '<div class="card lg"><div class="hdr">Return ledger · 24 months<span class="c">'+done+' / 5 unlocked</span></div>'+rows+'</div>'
+  +'<div class="ltv"><div class="k">REAL LTV · FROM RECEIPTS</div>'
+  +'<div class="row"><div class="lb">CAC</div><div class="tr"><i style="width:3%;background:#E4A400"></i></div><div class="n">₹92</div></div>'
+  +'<div class="row"><div class="lb">LTV</div><div class="tr">'+(known?'<i style="width:100%;background:#4ADE80"></i>':"")+'</div><div class="n">'+(known?"₹3,120":"—")+'</div></div>'
+  +(known?'<div class="big"><b>34×</b><span>return on acquisition cost<br/>14 receipts · measured, not modelled</span></div>':'<div class="hint">Measured from receipts, not modelled — known by month 24.</div>')+'</div>';
+}
+const rail=document.getElementById("rail");
+function show(){
+ const s=Math.max(0,Math.min(STEPS.length-1,parseInt(location.hash.slice(1)||"0",10)||0)), M=STEPS[s];
+ rail.innerHTML=STEPS.map((x,j)=>'<div class="st'+(j===s?" on":(j<s?" past":""))+'" onclick="location.hash='+j+'"><b>'+(j+1)+'</b>'+x.label+'</div>').join("");
+ document.getElementById("lc").innerHTML=left(s);
+ document.getElementById("mc").innerHTML='<div><div class="kick">'+M.kick+'</div><div class="h1">'+M.h1+'</div><div class="sub">'+M.sub+'</div></div><div class="panel">'+VIEWS[s]()+'</div>';
+ document.getElementById("rc").innerHTML=right(s);
+ document.getElementById("cap-tag").textContent="STEP "+String(s+1).padStart(2,"0");
+ document.getElementById("cap-t").textContent=M.cap;
+ document.getElementById("cap-s").textContent=M.meta;
+}
+window.addEventListener("hashchange",show); show();
+</script>
+</body></html>

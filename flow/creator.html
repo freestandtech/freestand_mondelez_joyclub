@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Creator engagement · Cadbury Celebrations</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="kit.css">
+</head><body>
+<div id="__asset-preload" style="display:none" aria-hidden="true"><img data-asset="../../mdlz/flow-celeb-avatar.png" src="../../mdlz/flow-celeb-avatar.png" alt="" /><img data-asset="../../mdlz/flow-creator-story.jpg" src="../../mdlz/flow-creator-story.jpg" alt="" /><img data-asset="../../mdlz/lite-fs-logo.png" src="../../mdlz/lite-fs-logo.png" alt="" /><img data-asset="../../mdlz/lite-mdlz-logo.png" src="../../mdlz/lite-mdlz-logo.png" alt="" /></div>
+<script>
+(function(){
+  var MAP={};
+  function build(){
+    var box=document.getElementById("__asset-preload"); if(!box) return;
+    [].forEach.call(box.querySelectorAll("img[data-asset]"),function(im){
+      var k=im.getAttribute("data-asset"), v=im.getAttribute("src");
+      if(v&&v!==k) MAP[k]=v;
+    });
+  }
+  function fixOne(el){
+    var s=el.getAttribute("src")||"";
+    if(MAP[s]) el.setAttribute("src",MAP[s]);
+  }
+  function sweep(root){
+    if(!root||!root.querySelectorAll) return;
+    if(root.tagName==="IMG") fixOne(root);
+    [].forEach.call(root.querySelectorAll("img"),fixOne);
+  }
+  build(); sweep(document);
+  new MutationObserver(function(muts){
+    for(var i=0;i<muts.length;i++){
+      var m=muts[i];
+      if(m.type==="attributes"&&m.target.tagName==="IMG") fixOne(m.target);
+      for(var j=0;j<m.addedNodes.length;j++) sweep(m.addedNodes[j]);
+    }
+  }).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:["src"]});
+})();
+</script>
+
+
+<template id="__bundler_thumbnail" data-bg-color="#4F2170">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#4F2170"/><g fill="none" stroke="#F2C94C" stroke-width="24" stroke-linecap="round"><circle cx="600" cy="330" r="110"/><path d="M430 520c40-90 100-130 170-130s130 40 170 130"/></g><text x="600" y="700" font-family="Arial,sans-serif" font-size="42" font-weight="700" fill="#fff" text-anchor="middle">Creator engagement</text></svg>
+</template>
+<style id="fs-shell">
+#topbar,#caption{display:none!important}
+#hd{position:absolute;left:26px;right:26px;top:20px;z-index:4}
+#hd .h1x{font-size:33px;font-weight:800;letter-spacing:-1.1px;line-height:1.14;color:#0E1729}
+#hd .h1x em{font-style:normal;color:#0A49B7}
+.phone,.browser{top:100px!important}
+#rc{top:100px!important;bottom:24px!important}
+#stage{top:100px!important;bottom:24px!important}
+</style>
+<div id="hd"><div class="h1x" id="hd-t"></div></div>
+<div id="topbar">
+  <img class="md" src="../../mdlz/lite-mdlz-logo.png" alt="Mondelez"/>
+  <div class="t" id="bar-title"></div>
+  <img class="fs" src="../../mdlz/lite-fs-logo.png" alt="FreeStand"/>
+</div>
+<div id="rail"></div>
+<div class="phone"><div class="scr" id="scr"></div><div class="nt"></div></div>
+<div id="rc"></div>
+<div id="caption"><div class="tag" id="cap-tag"></div><div class="tt" id="cap-t"></div><div class="ss" id="cap-s"></div></div>
+<script src="kit.js"></script>
+<script>
+const CB={logo:"../../mdlz/flow-celeb-avatar.png",name:"Celebrations",sub:"Cadbury India · online",bg:"#4F2170"};
+
+const STEPS=[
+{label:"Creator story",cap:"A creator asks for a nostalgic memory",meta:"Instagram story · Celebrations",
+ screen:()=>'<div class="scroll"><img src="../../mdlz/flow-creator-story.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block" alt="Creator story about Cadbury Celebrations"/>'
+  +'<div class="story"><div class="bars"><i class="a"></i><i class="a"></i><i></i><i></i></div>'
+  +'<div class="who"><img src="'+CB.logo+'"/><div><div class="h">@thecelebrationsguy</div><div class="m">Paid partnership · Celebrations</div></div></div>'
+  +'<div class="caption">Exclusive rewards for the Celebrations memory you still think about.</div>'
+  +'<div class="cta" style="animation:pulseRing 1.9s infinite">Share your memory →</div></div></div>',
+ right:()=>head("The media buy is a person","A creator asks for a memory · not a follow, not a click")
+  +data([["Creator","@thecelebrationsguy","","PAID PARTNER"],["Ask","Nostalgic Celebrations memory","n","UGC PROMPT"],["Incentive","Exclusive reward, no purchase","","CAMPAIGN"],["Destination","Brand WhatsApp","g","OWNED"]])
+  +kpis([["312K","story reach"],["6.8%","swipe-up"],["0","landing pages"]])},
+
+{label:"Branded WhatsApp",cap:"Swipe-up lands in the brand's WhatsApp",meta:"Creator reach → owned channel",
+ screen:()=>wa(CB,[
+   {s:"out",t:"Came from @thecelebrationsguy 💜",tm:"20:41"},
+   {s:"in",t:"26 Diwalis in Indian homes. Tell us about yours · a photo or 30-sec video, plus one line.",note:"We'll store your name, mobile and the content, and may feature it with your permission.",btns:["📷 Record video","✍️ Type my memory"],tm:"20:41"}],{biz:true}),
+ right:()=>head("Creator traffic, kept","The swipe-up does not die with the campaign")
+  +data([["Name","Aarav Mehta","g","DECLARED"],["Mobile","+91 98210 44712","g","WA VERIFIED"],["Attribution","Creator story · @thecelebrationsguy","","TAGGED"],["Consent","Storage + feature rights","g","LOGGED"]])
+  +meter(36,"PROFILE BUILT")},
+
+{label:"UGC submitted",cap:"Memory submitted and auto-moderated",meta:"Video + caption · 18s to clear",
+ screen:()=>wa(CB,[
+   {s:"out",t:"Diwali 2004 · Dad brought home the purple box every year",tm:"20:44",extra:'<div class="wa-att"><div class="ico">▶</div><div>memory-diwali.mp4 · 0:28</div></div>'},
+   {s:"in",t:"Got it ✓\nBrand visible · no other logos · safe · original.",tm:"20:44"},
+   {s:"in",t:"You're entry #8,412 on the Celebrations Memory Wall.",btns:["Track my entry"],tm:"20:44"}]),
+ right:()=>head("The memory arrives as data","Moderated, tagged and attributed automatically")
+  +data([["Asset","memory-diwali.mp4 · 0:28","g","UPLOAD"],["Occasion","Diwali","n","AUTO-TAGGED"],["Relationship","Father","n","AUTO-TAGGED"],["Decade","2000s","n","AUTO-TAGGED"],["Rights","Cleared for paid re-use","g","CONSENT"]],"5 of 19 fields")
+  +meter(62,"PROFILE BUILT")},
+
+{label:"Reward issued",cap:"Approved · exclusive reward unlocked",meta:"Claim happens inside Joy Club",
+ screen:()=>wa(CB,[
+   {s:"in",t:"Your memory is live on the wall 💜",tm:"21:02"},
+   {s:"in",t:"Reward unlocked: Celebrations Heritage Tin · 26 years of packaging, 1,000 made.",btns:["🎁 Claim in Joy Club","See the wall"],tm:"21:02"},
+   {s:"out",t:"🎁 Claim in Joy Club",tm:"21:03"}]),
+ right:()=>head("The reward buys the membership","Exclusive, not discounted · and claimed inside Joy Club")
+  +data([["Reward","Heritage Tin · 1 of 1,000","","ISSUED"],["Claim route","Joy Club enrolment","n","REQUIRED"],["Points","+650","g","CREDITED"]])
+  +kpis([["1,000","tins"],["73%","claim → join"],["0","coupons issued"]])},
+
+{label:"Claim in Joy Club",cap:"Reward claimed on the Joy Club platform",meta:"Creator traffic → Joy Club member",
+ screen:()=>joy('<div class="jc-h1">Hi Aarav 👋</div><div class="jc-sub">Your reward is ready to claim</div>'
+  +'<div class="pts"><div class="r1"><span>JOY STARTER</span><span class="nx">350 TO SILVER</span></div><div class="big">650 pts</div><div class="bar"><i style="width:65%"></i></div><div class="lbl">Earned from your Celebrations memory</div></div>'
+  +'<div class="jc-sec">Your rewards</div>'
+  +'<div class="jc-row" style="animation-delay:0.08s"><div class="th">🎁</div><div><div class="t">Celebrations Heritage Tin</div><div class="s">Entry #8,412 · ships in 5 days</div></div><div class="jc-pill ok">CLAIMED</div></div>'
+  +'<div class="jc-row" style="animation-delay:0.16s"><div class="th">🎬</div><div><div class="t">Memory on the wall</div><div class="s">Rights granted for re-use</div></div><div class="jc-pill new">LIVE</div></div>','Rewards','JC-84120 · Joy Starter'),
+ right:()=>head("What one story left behind","A member, a content asset and a reason they care")
+  +data([["Membership","JC-84120 · Joy Starter","g","CREATED"],["Acquisition source","@thecelebrationsguy","","ATTRIBUTED"],["Emotional trigger","Diwali · father · 2000s","n","DECLARED"],["Content asset","1 video, rights cleared","g","OWNED"]])
+  +kpis([["15.3K","new members"],["4.2K","content assets"],["₹41","cost per member"]])},
+];
+mountFlow({title:"Creator engagement · Cadbury Celebrations",steps:STEPS});
+</script>
+</body></html>

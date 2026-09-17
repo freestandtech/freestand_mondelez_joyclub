@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Enrollment 2 — Cadbury UPI cashback</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="strat.css">
+</head><body>
+<div id="__asset-preload" style="display:none" aria-hidden="true"><img data-asset="../../mdlz/lite-fs-logo.png" src="../../mdlz/lite-fs-logo.png" alt="" /><img data-asset="../../mdlz/lite-mdlz-logo.png" src="../../mdlz/lite-mdlz-logo.png" alt="" /><img data-asset="../../mdlz/opt/ad-cadbury.jpg" src="../../mdlz/opt/ad-cadbury.jpg" alt="" /><img data-asset="../../mdlz/opt/scan-photo.jpg" src="../../mdlz/opt/scan-photo.jpg" alt="" /><img data-asset="../../mdlz/opt/ugc-1.jpg" src="../../mdlz/opt/ugc-1.jpg" alt="" /></div>
+<script>
+(function(){var MAP={};function build(){var box=document.getElementById("__asset-preload");if(!box)return;[].forEach.call(box.querySelectorAll("img[data-asset]"),function(im){var k=im.getAttribute("data-asset"),v=im.getAttribute("src");if(v&&v!==k)MAP[k]=v;});}
+function fixOne(el){var s=el.getAttribute("src")||"";if(MAP[s])el.setAttribute("src",MAP[s]);}
+function sweep(root){if(!root||!root.querySelectorAll)return;if(root.tagName==="IMG")fixOne(root);[].forEach.call(root.querySelectorAll("img"),fixOne);}
+build();sweep(document);new MutationObserver(function(m){for(var i=0;i<m.length;i++){if(m[i].type==="attributes"&&m[i].target.tagName==="IMG")fixOne(m[i].target);for(var j=0;j<m[i].addedNodes.length;j++)sweep(m[i].addedNodes[j]);}}).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:["src"]});})();
+</script>
+<template id="__bundler_thumbnail" data-bg-color="#4F2170">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#4F2170"/><g fill="none" stroke="#E4A400" stroke-width="16"><path d="M420 250h360v300H420z"/><path d="M470 330h260M470 400h180"/></g><text x="600" y="700" font-family="Arial,sans-serif" font-size="40" font-weight="700" fill="#fff" text-anchor="middle">Cadbury · UPI cashback</text></svg>
+</template>
+<div id="topbar">
+  <img class="md" src="../../mdlz/lite-mdlz-logo.png" alt="Mondelez"/>
+  <div class="t" id="bar-title"></div>
+  <img class="fs" src="../../mdlz/lite-fs-logo.png" alt="FreeStand"/>
+</div>
+<div id="rail"></div>
+<div id="stage"></div>
+<div id="caption"><div class="tag" id="cap-tag"></div><div class="tt" id="cap-t"></div><div class="ss" id="cap-s"></div></div>
+<script src="strat.js"></script>
+<script>
+const AC="#4F2170";
+window.PAGE={
+ title:"Enrollment 2 — Cadbury: receipt → UPI cashback",
+ accent:AC,
+ steps:[
+ {label:"On-pack invite",
+  left:()=>imgPhone("../../mdlz/opt/ad-cadbury.jpg","On-pack + social: “Snap your bill, get cashback on UPI”",true),
+  kick:"Step 1 · The hook",
+  title:"Cashback on UPI is the fastest reason to share a receipt",
+  sub:"No points to understand, no app to install — money lands in the account the shopper already uses.",
+  body:()=>'<div class="card">'+chk([["Cash beats points at entry","A ₹25 UPI credit converts far better than an abstract balance"],["Every pack is the media","On-pack QR plus a paid social layer — no incremental placement cost"],["WhatsApp does the work","Scan opens the thread that will own the relationship afterwards"]],AC)+'</div>'
+   +'<div class="card">'+kvs([["Entry points","On-pack QR · Meta · GPay"],["Reward","2% back, min ₹25"],["Payout rail","UPI · instant"],["Median time to cash","38 seconds"]],2)+'</div>',
+  cap:["STEP 01","Snap your bill, get cashback on UPI","On-pack QR + paid social"]},
+
+ {label:"Receipt upload",
+  left:()=>wa({name:"Cadbury India",sub:"Verified business · WhatsApp",msgs:[
+    ["b","Hi! Snap the bill with any <b>Cadbury</b> product on it and I’ll send cashback straight to your UPI 💜"],
+    ["u","🧾 Photo · Smart Bazaar ₹206"],
+    ["b","Reading your bill…\n✓ Dairy Milk Silk 60 g · ₹95\n✓ Store: Smart Bazaar, Linking Rd\n✓ Bill no. unique"]]}),
+  kick:"Step 2 · Verification",
+  title:"OCR reads the bill, fraud checks clear it, in seconds",
+  sub:"SKU, store, price and bill number are extracted and matched — the consumer just sees a tick.",
+  body:()=>'<div class="card">'+chk([["OCR + SKU match","Line items matched to the Mondelez catalogue, not to keywords"],["Duplicate & fraud checks","Bill number, GST id, image hash and device history"],["Store resolved to a real outlet","Chain, branch and pincode — trade-level demand data"]],AC)+'</div>'
+   +'<div class="card"><div class="hdr">Extracted from one photo</div>'+kvs([["SKU","Dairy Milk Silk 60 g"],["Value","₹95"],["Store","Smart Bazaar · Linking Rd"],["Basket","₹206 · 3 items"]],3)+'</div>',
+  cap:["STEP 02","OCR, SKU match and fraud checks","Median 6 seconds"]},
+
+ {label:"UPI payout",
+  left:()=>wa({name:"Cadbury India",sub:"online",msgs:[
+    ["b","Verified ✓ Where should the cashback go?"],
+    ["u","meena@upi"],
+    ["b","💸 <b>₹25 sent to meena@upi</b>\nUTR 4471882109 · instant\n\nYou’re now in <b>Joy Club · Cadbury</b> — earn more for posts and referrals."],
+    ["u","Received! 🙌"]]}),
+  kick:"Step 3 · Paid & enrolled",
+  title:"Cash out in one tap — and enrolled without a single form",
+  sub:"The UPI handle also becomes a durable identity key, linking future receipts to the same profile.",
+  body:()=>'<div class="card">'+chk([["Instant payout builds trust","Money first, programme second — enrollment is a by-product"],["UPI handle = identity anchor","Ties household purchases together across stores and time"],["Zero-form membership","Name, number, store, SKU and consent are already on file"]],AC)+'</div>'
+   +stat4([["₹25","average cashback","2% of basket",AC],["38 s","claim to cash","median",AC],["91%","enroll on first payout","no form",AC],["4.3","receipts per member","90 days",AC]]),
+  cap:["STEP 03","₹25 on UPI, membership granted silently","91% enroll on first payout"]},
+
+ {label:"Earned rewards",
+  left:()=>wa({name:"Cadbury India",sub:"Joy Club · Cadbury",msgs:[
+    ["b","Want to earn more? Post a <b>#DairyMilkMoment</b> for ₹50, or refer a friend for ₹75."],
+    ["u","📸 Posted!<div class=\"card-in-chat\"><img src=\"../../mdlz/opt/ugc-1.jpg\" alt=\"\"/></div>"],
+    ["b","Gorgeous 💜 Verified ✓ <b>₹50 sent</b> · UTR 4471893344"],
+    ["b","Your link brought 3 friends in — <b>₹225 more</b> on the way 🎉"]]}),
+  kick:"Step 4 · Participation",
+  title:"Cashback turns shoppers into advocates",
+  sub:"UGC, reviews and referrals all pay in the same currency, so participation compounds without discounting the pack.",
+  body:()=>'<div class="card"><div class="hdr">Earn menu · paid in UPI cash</div>'
+   +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">'
+   +[["📸 Post UGC","₹50"],["🤝 Refer a friend","₹75"],["⭐ Rate &amp; review","₹25"],["🧾 Upload receipt","2% back"]]
+     .map(a=>'<div style="border:1px solid #E7EAF1;border-radius:11px;padding:10px 12px;display:flex;align-items:center"><span style="font-size:12.5px;font-weight:700;flex:1">'+a[0]+'</span><span style="font-size:13px;font-weight:800;color:'+AC+'">'+a[1]+'</span></div>').join("")
+   +'</div></div>'
+   +'<div class="card">'+chk([["Advocacy instead of price-off","Reward is paid for an action, not shaved off the MRP"],["Rights and handles captured","Campaign-tag posting grants reuse; the handle joins the profile"],["Referral loop is self-funding","Each ₹75 referral arrives already receipt-verified"]],AC)+'</div>',
+  cap:["STEP 04","UGC and referrals paid as cashback","Advocacy, not discounting"]},
+
+ {label:"FreeStand analytics",
+  full:()=>console5("Analytics","Cadbury · Receipt Cashback + Participation","Sept 2026 · All-India · UPI payouts",
+    k4([["Receipts verified","186,402","↑ 96% pass rate"],["Cashback paid","₹46.6L","avg ₹25"],["Members enrolled","169,624","91% of payouts"],["Participation actions","74,890","UGC · referral · review"]])
+    +'<div class="g2">'
+    +pan("Where the cashback budget goes",bars([["Receipt cashback",46.6,"#4F2170"],["UGC rewards",12.4,"#7A41A6"],["Referral payouts",9.8,"#C9487E"],["Review rewards",3.1,"#E4A400"]],50,"L"))
+    +pan("Action mix per member",pie([{l:"Receipt only",v:47,c:"#4F2170"},{l:"Receipt + UGC",v:26,c:"#7A41A6"},{l:"+ Referral",v:18,c:"#C9487E"},{l:"All four",v:9,c:"#E4A400"}])
+      +'<div style="height:10px"></div>'
+      +pie([{l:"Verified pass",v:96,c:"#128C4A"},{l:"Duplicate",v:3,c:"#E4A400"},{l:"Rejected",v:1,c:"#C0392B"}]))
+    +'</div>'
+    +'<div class="g3">'
+    +pan("Top SKUs on verified bills",tbl(["SKU","Bills","Avg ₹"],[["Dairy Milk Silk 60 g","48,210","95"],["Dairy Milk 13 g","39,880","20"],["Oreo 120 g","28,415","55"],["5 Star combo","19,204","40"],["Celebrations box","12,640","399"]]))
+    +pan("Store chains verified",bars([["Smart Bazaar",31,"#4F2170"],["D-Mart",24,"#7A41A6"],["Blinkit / Zepto",21,"#C9487E"],["Local GT",24,"#E4A400"]],35,"%"))
+    +pan("Live payout stream",feed([["₹25 → meena@upi · UTR ✓","now"],["UGC verified · ₹50 sent","9s"],["Referral 3/3 · ₹225 queued","24s"],["Duplicate bill blocked","41s"],["₹25 → rahul@ybl · UTR ✓","1m"],["Review verified · ₹25 sent","2m"]]))
+    +'</div>'),
+  cap:["ANALYTICS","Cadbury: cashback, participation and payout integrity","Live in the FreeStand console"]},
+]};
+mountStrat();
+</script>
+</body></html>

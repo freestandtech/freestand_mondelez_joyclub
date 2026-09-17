@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Re-engagement · Mondelez × FreeStand</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}html,body{margin:0;padding:0;width:1280px;height:832px;overflow:hidden;font-family:Poppins,Arial,sans-serif;background:#FBF9FD;color:#16121c;-webkit-font-smoothing:antialiased}
+a{color:#4F2170}a:hover{color:#E4A400}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes popIn{from{opacity:0;transform:scale(0.8)}to{opacity:1;transform:scale(1)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+@keyframes dash{to{stroke-dashoffset:-24}}
+@keyframes glowG{0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,0.5)}50%{box-shadow:0 0 0 12px rgba(37,211,102,0)}}
+#topbar{position:absolute;left:0;top:0;right:0;height:66px;background:linear-gradient(100deg,#2E1145,#4F2170);display:flex;align-items:center;padding:0 26px;gap:16px;z-index:5}
+#topbar img.md{height:36px;background:#fff;border-radius:9px;padding:4px}
+#topbar img.fs{height:26px;filter:brightness(0) invert(1);margin-left:auto}
+#topbar .t{color:#fff;font-size:20px;font-weight:700}
+#topbar .s{color:rgba(255,255,255,0.7);font-size:12.5px;margin-top:2px}
+#stage{position:absolute;left:0;right:0;top:66px;bottom:76px}
+#caption{position:absolute;left:24px;right:24px;bottom:14px;height:62px;background:#4F2170;color:#fff;border-radius:12px;padding:0 22px;display:flex;gap:16px;align-items:center;z-index:9}
+#caption .tag{background:#E4A400;color:#2E1145;border-radius:7px;padding:7px 12px;font-size:12.5px;font-weight:900;letter-spacing:1.2px;flex-shrink:0}
+#caption .tt{font-size:19px;font-weight:700}
+#caption .ss{margin-left:auto;font-size:14px;font-weight:500;opacity:0.85}
+/* ── Magic Flow (recreated from product UI) ── */
+.mf{position:absolute;inset:0;display:flex;background:#fff;font-family:Poppins,Arial,sans-serif;color:#111827}
+.mf-side{width:252px;flex-shrink:0;border-right:1px solid #E5E7EB;display:flex;flex-direction:column;background:#fff;position:relative}
+.mf-scroll{flex:1;overflow:hidden;padding:0 12px 8px;display:flex;flex-direction:column;gap:8px}
+.mf-brand{display:flex;align-items:center;gap:10px;padding:14px 14px 12px}
+.mf-brand .l{width:34px;height:34px;border-radius:8px;background:#0D2A6B;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mf-brand .n{font-size:17px;font-weight:700;line-height:1.1}
+.mf-brand .s{font-size:11px;color:#6B7280;margin-top:2px}
+.mf-sech{display:flex;align-items:center;gap:7px;padding:6px 2px 0;font-size:13px;font-weight:600;color:#374151}
+.mf-sech .c{background:#F3F4F6;color:#6B7280;border-radius:999px;padding:1px 8px;font-size:11px;font-weight:600}
+.mf-sech .cv{margin-left:auto;color:#9CA3AF}
+.nodecard{border:1px solid #E5E7EB;border-radius:12px;padding:10px 11px;display:flex;gap:10px;align-items:flex-start;background:#fff}
+.nodecard .ic{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.nodecard .n{font-size:13.5px;font-weight:600;display:flex;align-items:center;gap:6px}
+.nodecard .tag{font-size:9.5px;font-weight:600;border-radius:4px;padding:2px 6px;background:#EFF4FF;color:#5A6B8C}
+.nodecard .tag.ws{background:#F3F4F6;color:#6B7280}
+.nodecard .d{font-size:11.5px;color:#6B7280;margin-top:3px;line-height:1.35;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mf-foot{border-top:1px solid #F3F4F6;padding:10px 14px;display:flex;flex-direction:column;gap:5px}
+.mf-foot div{display:flex;align-items:center;gap:7px;font-size:11px;color:#6B7280}
+.mf-foot .lk{color:#2563EB;font-weight:500}
+.mf-collapse{position:absolute;right:-11px;top:50%;transform:translateY(-50%);width:22px;height:54px;background:#fff;border:1px solid #E5E7EB;border-radius:6px;display:flex;align-items:center;justify-content:center;z-index:4}
+.mf-main{flex:1;display:flex;flex-direction:column;min-width:0}
+.mf-top{height:56px;border-bottom:1px solid #E5E7EB;display:flex;align-items:center;gap:10px;padding:0 14px;flex-shrink:0;overflow:hidden}
+.mf-top .ttl{font-size:15.5px;font-weight:700;white-space:nowrap;width:166px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis}
+.mf-top .sv{display:flex;align-items:center;gap:6px;font-size:11.5px;color:#16A34A;line-height:1.2;flex-shrink:0;white-space:nowrap}
+.mf-top .v{display:flex;align-items:center;gap:6px;font-size:12px;color:#4B5563;border-left:1px solid #E5E7EB;padding-left:11px;flex-shrink:0;white-space:nowrap}
+.mf-top .v .draft{background:#FEF3C7;color:#92400E;border-radius:4px;padding:2px 7px;font-size:11px;font-weight:700;letter-spacing:0.3px}
+.mf-top .v .live{background:#DCFCE7;color:#15803D;border-radius:4px;padding:2px 7px;font-size:11px;font-weight:700;letter-spacing:0.3px}
+.seg{display:flex;gap:2px;border:1.5px solid #2563EB;border-radius:8px;padding:2px;background:#fff}
+.seg div{display:flex;align-items:center;gap:5px;padding:6px 11px;font-size:12.5px;font-weight:600;color:#1D4ED8;border-radius:6px;white-space:nowrap}
+.seg div.on{background:#1D4ED8;color:#fff}
+.tb{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:500;padding:7px 8px;border-radius:7px;white-space:nowrap;flex-shrink:0}
+.tb.ai{color:#2563EB}
+.tb.al{color:#111827}
+.btnP{background:#0F4CBD;color:#fff;border-radius:8px;padding:8px 13px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0}
+.btnP.pub{background:#15803D}
+.btnW{background:#fff;color:#16A34A;border:1px solid #A7E3BE;border-radius:8px;padding:8px 12px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0}
+.mf-top .end{display:flex;align-items:center;gap:10px;color:#6B7280;padding-left:2px;flex-shrink:0}
+.canvas{flex:1;position:relative;background:#fff;background-image:radial-gradient(#D8DCE3 1.1px,transparent 1.1px);background-size:22px 22px;overflow:hidden}
+.cvtools{position:absolute;left:22px;top:20px;display:flex;gap:10px;align-items:center}
+.cvtools .grp{background:#fff;border:1px solid #EEF0F3;border-radius:10px;box-shadow:0 4px 12px rgba(17,24,39,0.08);display:flex;align-items:center}
+.cvtools .grp .b{padding:9px 11px;color:#4B5563}
+.cvtools .srch{background:#fff;border:1px solid #EEF0F3;border-radius:10px;box-shadow:0 4px 12px rgba(17,24,39,0.08);display:flex;align-items:center;gap:9px;padding:9px 12px;width:238px}
+.cvtools .srch .p{flex:1;font-size:13.5px;color:#9CA3AF}
+.cvtools .srch .k{background:#F3F4F6;color:#6B7280;border-radius:5px;padding:2px 7px;font-size:11px;font-weight:600}
+.zoom{position:absolute;left:22px;bottom:18px;background:#fff;border:1px solid #EEF0F3;border-radius:10px;box-shadow:0 4px 12px rgba(17,24,39,0.08);display:flex;flex-direction:column}
+.zoom .b{padding:8px 9px;color:#4B5563;border-bottom:1px solid #F3F4F6}
+.zoom .b:last-child{border-bottom:none}
+.mini{position:absolute;right:20px;bottom:18px;width:132px;height:86px;background:#fff;border:1px solid #EEF0F3;border-radius:6px;box-shadow:0 4px 12px rgba(17,24,39,0.08)}
+.mini i{position:absolute;left:16px;top:22px;width:44px;height:34px;background:#3B82F6;border-radius:2px}
+.nStart{position:absolute;border-radius:14px;background:#EAFBF1;border:1px solid #BBEACF;padding:14px 15px;width:250px}
+.nStart .h{display:flex;align-items:center;gap:10px}
+.nStart .h .pl{width:30px;height:30px;border-radius:999px;background:#DCF5E5;display:flex;align-items:center;justify-content:center}
+.nStart .h .t{font-size:19px;font-weight:700;color:#111827}
+.nStart .k{font-size:10.5px;font-weight:600;letter-spacing:1.1px;color:#6B8F7C;margin:13px 0 7px}
+.trg{background:#fff;border:1px solid #CFEBDB;border-radius:10px;padding:9px 11px;display:flex;gap:10px;align-items:center}
+.trg .ic{width:28px;height:28px;border-radius:999px;background:#25D366;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.trg .n{font-size:13.5px;font-weight:600}
+.trg .d{font-size:11px;color:#6B7280;margin-top:1px}
+.pillg{display:block;text-align:center;border:1px solid #BBEACF;background:#fff;color:#15803D;border-radius:8px;padding:8px 10px;font-size:12.5px;font-weight:600;margin-top:9px}
+.trgpill{display:inline-block;border:1px solid #BBEACF;background:#fff;color:#15803D;border-radius:7px;padding:5px 10px;font-size:11.5px;font-weight:600;margin-top:9px}
+.handle{position:absolute;width:11px;height:11px;border-radius:999px;background:#111827}
+.nBox{position:absolute;border-radius:12px;background:#fff;border:1px solid #E5E7EB;padding:11px 13px;width:206px;box-shadow:0 4px 14px rgba(17,24,39,0.07);animation:popIn 0.3s both}
+.nBox .h{display:flex;align-items:center;gap:9px}
+.nBox .ic{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.nBox .n{font-size:13.5px;font-weight:700}
+.nBox .d{font-size:11.5px;color:#6B7280;margin-top:5px;line-height:1.35}
+.addpanel{position:absolute;right:24px;top:74px;width:296px;background:#fff;border:1px solid #E5E7EB;border-radius:12px;box-shadow:0 18px 44px rgba(17,24,39,0.18);padding:14px 14px 8px}
+.addpanel .h{display:flex;align-items:center;gap:9px;font-size:15.5px;font-weight:700;margin-bottom:11px}
+.addpanel .h .x{margin-left:auto;color:#6B7280}
+.addpanel .srch{border:2px solid #2563EB;border-radius:8px;padding:9px 11px;font-size:13px;color:#9CA3AF;display:flex;align-items:center;gap:8px}
+.addpanel .k{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:1.1px;color:#9CA3AF;margin:13px 0 6px}
+.addpanel .k i{flex:1;height:1px;background:#F0F1F4}
+.addrow{display:flex;gap:10px;align-items:flex-start;padding:9px 9px;border-radius:9px}
+.addrow.on{background:#F5F7FB}
+.addrow .ic{width:26px;height:26px;border-radius:999px;background:#25D366;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.addrow .n{font-size:13.5px;font-weight:600}
+.addrow .d{font-size:11px;color:#6B7280;margin-top:2px;line-height:1.35}
+.addrow .cv{margin-left:auto;color:#9CA3AF;flex-shrink:0}
+.livebar{position:absolute;right:24px;top:20px;background:#EAFBF1;border:1px solid #BBEACF;border-radius:10px;padding:11px 15px;font-size:13.5px;font-weight:600;color:#15803D;display:flex;align-items:center;gap:8px}
+/* ── calendar ── */
+#cal{position:absolute;left:22px;right:22px;top:12px;height:84px;display:grid;grid-template-columns:repeat(12,1fr);gap:7px}
+.mo{border:1px solid #E4DBEE;background:#fff;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;transition:transform 0.12s}
+.mo:hover{transform:translateY(-2px);border-color:#C9B6DC}
+.mo .m{font-size:16px;font-weight:700;letter-spacing:0.4px}
+.mo .k{font-size:10.5px;font-weight:600;color:#8b8394;text-align:center;line-height:1.2;padding:0 4px}
+.mo.on{background:linear-gradient(150deg,#3A1758,#4F2170);border-color:#4F2170;color:#fff;box-shadow:0 8px 22px rgba(79,33,112,0.28)}
+.mo.on .k{color:#F2C94C}
+.mo.past{background:#F3EEF8}
+/* phone */
+.ph{position:absolute;left:40px;top:120px;width:352px;height:552px;border-radius:34px;background:#111;box-shadow:0 0 0 2px #2b2b2b,0 18px 44px rgba(30,15,60,0.3);padding:10px}
+.phs{width:100%;height:100%;border-radius:26px;background:#ECE5DD;overflow:hidden;display:flex;flex-direction:column}
+.wah{background:#075E54;padding:11px 13px;display:flex;align-items:center;gap:10px;flex-shrink:0}
+.wah img{width:34px;height:34px;border-radius:999px;background:#fff;object-fit:contain;padding:2px}
+.wah .n{font-size:14.5px;font-weight:700;color:#fff}
+.wah .s{font-size:10.5px;color:rgba(255,255,255,0.75)}
+.wab{flex:1;overflow-y:auto;padding:12px}
+.wab::-webkit-scrollbar{width:0}
+.bot,.usr{display:flex;margin-bottom:9px}
+.usr{justify-content:flex-end}
+.bot>div{background:#fff;border-radius:0 12px 12px 12px;padding:10px 13px;font-size:14px;line-height:1.5;max-width:88%;box-shadow:0 1px 2px rgba(0,0,0,0.09);white-space:pre-wrap;animation:fadeInUp 0.35s both}
+.usr>div{background:#DCF8C6;border-radius:12px 0 12px 12px;padding:10px 13px;font-size:14px;max-width:80%;box-shadow:0 1px 2px rgba(0,0,0,0.09);animation:fadeInUp 0.35s 0.12s both}
+.qr{margin-top:8px;border:1.5px solid #4F2170;color:#4F2170;border-radius:9px;padding:8px 10px;text-align:center;font-size:12.5px;font-weight:600}
+.daystamp{text-align:center;margin:2px 0 10px}
+.daystamp span{font-size:11px;font-weight:700;letter-spacing:1px;color:#5a7a75;background:rgba(255,255,255,0.85);padding:4px 12px;border-radius:8px}
+/* right pane */
+#rp{position:absolute;left:428px;right:24px;top:120px;bottom:8px;display:flex;flex-direction:column;gap:14px}
+.mhead{font-size:34px;font-weight:700;letter-spacing:-0.6px;line-height:1.1}
+.msub{font-size:17px;color:#6d6478;margin-top:6px}
+.trio{display:flex;gap:12px}
+.trio .c{flex:1;background:#fff;border:1px solid #E9E2F2;border-radius:14px;padding:14px 16px}
+.trio .k{font-size:11px;font-weight:700;letter-spacing:1.2px;color:#9c8fae;text-transform:uppercase}
+.trio .v{font-size:17px;font-weight:700;margin-top:6px;line-height:1.25}
+.big3{display:flex;gap:12px;margin-top:auto}
+.big3 .c{flex:1;background:#fff;border:1px solid #E9E2F2;border-radius:14px;padding:16px;text-align:center}
+.big3 .v{font-size:30px;font-weight:900;color:#4F2170;line-height:1}
+.big3 .l{font-size:13px;color:#8b8394;margin-top:6px}
+.flywheel{height:252px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+</style></head><body>
+<div id="__asset-preload" style="display:none" aria-hidden="true"><img data-asset="../../mdlz/lite-fs-logo.png" src="../../mdlz/lite-fs-logo.png" alt="" /><img data-asset="../../mdlz/lite-mdlz-logo.png" src="../../mdlz/lite-mdlz-logo.png" alt="" /><img data-asset="../enrich/mini/f1a.png" src="../enrich/mini/f1a.png" alt="" /></div>
+<script>
+(function(){
+  var MAP={};
+  function build(){
+    var box=document.getElementById("__asset-preload"); if(!box) return;
+    [].forEach.call(box.querySelectorAll("img[data-asset]"),function(im){
+      var k=im.getAttribute("data-asset"), v=im.getAttribute("src");
+      if(v&&v!==k) MAP[k]=v;
+    });
+  }
+  function fixOne(el){
+    var s=el.getAttribute("src")||"";
+    if(MAP[s]) el.setAttribute("src",MAP[s]);
+  }
+  function sweep(root){
+    if(!root||!root.querySelectorAll) return;
+    if(root.tagName==="IMG") fixOne(root);
+    [].forEach.call(root.querySelectorAll("img"),fixOne);
+  }
+  build(); sweep(document);
+  new MutationObserver(function(muts){
+    for(var i=0;i<muts.length;i++){
+      var m=muts[i];
+      if(m.type==="attributes"&&m.target.tagName==="IMG") fixOne(m.target);
+      for(var j=0;j<m.addedNodes.length;j++) sweep(m.addedNodes[j]);
+    }
+  }).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:["src"]});
+})();
+</script>
+
+
+<template id="__bundler_thumbnail" data-bg-color="#4F2170">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#4F2170"/><g transform="translate(600 360) scale(14)" fill="none" stroke="#E4A400" stroke-width="1.6" stroke-linecap="round"><path transform="translate(-12 -12)" d="M4 6h16v10H9l-5 4z"/></g><text x="600" y="600" font-family="Arial,sans-serif" font-size="46" font-weight="700" fill="#fff" text-anchor="middle">Re-engage</text><text x="600" y="660" font-family="Arial,sans-serif" font-size="22" letter-spacing="5" fill="#fff" opacity="0.6" text-anchor="middle">MONDELEZ × FREESTAND</text></svg>
+</template>
+
+<style id="fs-shell">
+#topbar,#caption{display:none!important}
+#hd{position:absolute;left:26px;right:26px;top:20px;z-index:4}
+#hd .h1x{font-size:33px;font-weight:800;letter-spacing:-1.1px;line-height:1.14;color:#0E1729}
+#hd .h1x em{font-style:normal;color:#0A49B7}
+#stage{top:100px!important;bottom:24px!important}
+#aiband{position:absolute;left:26px;right:26px;top:62px;height:30px;display:none;align-items:center;gap:12px;z-index:5}
+#aiband.on{display:flex}
+#aiband .k{font-size:8.5px;font-weight:800;letter-spacing:1.5px;color:#0A49B7;background:#EAF0FB;border-radius:999px;padding:5px 10px;white-space:nowrap}
+#aiband .t{font-size:12.5px;font-weight:600;color:#4A5468;line-height:1.3}
+#aiband .t b{color:#0E1729;font-weight:800}
+
+</style>
+<div id="hd"><div class="h1x" id="hd-t"></div></div>
+<div id="aiband"><span class="k">ALL THE BRAND DOES</span><span class="t">Audience in: the <b>6 enriched cohorts</b> from Mondelez 1PD (switch-ready, lapsed samplers, gifting-prone…). Mondelez writes the <b>questions</b>; Magic Flow’s AI builds the journey · nodes, branching, timing, offers · from the profiles FreeStand already holds.</span></div>
+<div id="topbar">
+  <img class="md" src="../../mdlz/lite-mdlz-logo.png" alt="Mondelez"/>
+  <div><div class="t">Re-engagement · always-on, 12 months</div><div class="s">Built in Magic Flow · delivered on WhatsApp</div></div>
+  <img class="fs" src="../../mdlz/lite-fs-logo.png" alt="FreeStand"/>
+</div>
+<div id="stage"></div>
+<div id="caption"><div class="tag" id="cap-tag"></div><div class="tt" id="cap-t"></div><div class="ss" id="cap-s"></div></div>
+<script>
+const MONTHS=[
+ {m:"JAN",k:"New year",title:"January · New year reset",sub:"Replenishment nudge",trigger:"34 days since purchase",channel:"WhatsApp",offer:"₹30 off Silk",
+  msgs:[["bot","New year, same silk 🍫\nRunning low? ₹30 off today on Blinkit.",["🛒 Order now"]],["usr","Ordered! 🍫"]]},
+ {m:"FEB",k:"Valentine's",title:"February · Valentine's",sub:"Gifting occasion",trigger:"Gifting-prone cohort",channel:"WhatsApp",offer:"Silk Heart pack",
+  msgs:[["bot","Say it with Silk 💜\nPersonalised Heart pack, delivered by 14 Feb.",["Send a gift"]]]},
+ {m:"MAR",k:"Holi",title:"March · Holi",sub:"Festive pack",trigger:"Festive calendar",channel:"WhatsApp",offer:"Celebrations ₹50 off",
+  msgs:[["bot","Holi hai! 🎨\n₹50 off Celebrations at your nearest store.",["Find store"]]]},
+ {m:"APR",k:"Recipes",title:"April · Summer recipes",sub:"Content, not an offer",trigger:"Recipe engagement",channel:"WhatsApp",offer:"+20 pts to save",
+  msgs:[["bot","Too hot for a bar? ☀️\nCold Coffee Dairy Milk Shake · 5 mins.",["View recipe"]],["usr","Saved 👌"]]},
+ {m:"MAY",k:"Kids",title:"May · School holidays",sub:"Cross-sell",trigger:"Kids-occasion signal",channel:"WhatsApp",offer:"Bournvita trial",
+  msgs:[["bot","Holidays at home? 🧒\nFree Bournvita trial pack for Joy Club members.",["Claim free pack"]]]},
+ {m:"JUN",k:"New launch",title:"June · New launch trial",sub:"Sampling, again",trigger:"Persona match 0.91",channel:"WhatsApp",offer:"Free &More Biscoff",
+  msgs:[["bot","New: Cadbury &More Biscoff 🍪\nYou get it free, before shelves.",["Yes, send it!"]],["usr","Yes, send it!"]]},
+ {m:"JUL",k:"Receipts",title:"July · Receipt bonus",sub:"Purchase panel",trigger:"Monsoon lull",channel:"WhatsApp",offer:"2× points",
+  msgs:[["bot","Double points week 🧾\nUpload any Mondelez bill for 2× points.",["Upload receipt"]]]},
+ {m:"AUG",k:"Rakhi",title:"August · Raksha Bandhan",sub:"Peak gifting",trigger:"Festive + gifting cohort",channel:"WhatsApp",offer:"Rakhi gift card",
+  msgs:[["bot","Rakhi ready? 🎀\nCelebrations gift box + ₹250 gift card at 500 pts.",["Redeem now"]]]},
+ {m:"SEP",k:"Birthday",title:"September · Birthday month",sub:"Personal trigger",channel:"WhatsApp",trigger:"DOB on profile",offer:"2× points all month",
+  msgs:[["bot","Happy birthday, Aarav! 🎂\n2× points all month + a free bar on us.",["Claim my bar"]],["usr","Thank you! 🎉"]]},
+ {m:"OCT",k:"Diwali",title:"October · Diwali",sub:"Biggest basket",trigger:"High-CLTV · A2",channel:"WhatsApp",offer:"Festive hamper",
+  msgs:[["bot","Diwali hampers are live ✨\nYours at 1,500 pts · you have 1,625.",["Redeem hamper"]],["usr","Redeemed 🎁"]]},
+ {m:"NOV",k:"Reorder",title:"November · Post-festive reorder",sub:"Replenishment",trigger:"Basket cycle model",channel:"WhatsApp",offer:"1-tap reorder",
+  msgs:[["bot","Stocked out after Diwali? 🛒\nSame basket, one tap.",["Reorder basket"]]]},
+ {m:"DEC",k:"Tier up",title:"December · Tier upgrade",sub:"Retention",trigger:"Nearing Bliss tier",channel:"WhatsApp",offer:"Joy Bliss unlock",
+  msgs:[["bot","One receipt from Joy Bliss 🏆\nUnlock early access + quarterly free packs.",["See my tier"]]]},
+];
+/* ── Magic Flow screens (1:1 with product UI) ── */
+const P={
+ gift:'<path d="M3 8h18v3H3zM5 11v9h14v-9M12 8v12M12 8c-1 -3 -5 -4 -5 -1.5S10 8 12 8zm0 0c1 -3 5 -4 5 -1.5S14 8 12 8z"/>',
+ layers:'<path d="M12 3 3 7.5l9 4.5 9-4.5z"/><path d="M3 12l9 4.5 9-4.5"/><path d="M3 16.5 12 21l9-4.5"/>',
+ chat:'<path d="M4 5h16v11H9l-5 4z"/>',
+ person:'<circle cx="12" cy="9" r="3.2"/><path d="M5.5 20c0-3.3 2.9-5 6.5-5s6.5 1.7 6.5 5"/>',
+ list:'<path d="M8 7h12M8 12h12M8 17h12"/><circle cx="4.5" cy="7" r="1.1"/><circle cx="4.5" cy="12" r="1.1"/><circle cx="4.5" cy="17" r="1.1"/>',
+ bolt:'<path d="M13 2 5 14h6l-1 8 8-12h-6z"/>',
+ back:'<path d="M15 18l-6-6 6-6"/>',
+ chevR:'<path d="M9 18l6-6-6-6"/>',
+ chevU:'<path d="M6 15l6-6 6 6"/>',
+ refresh:'<path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 5v6h-6"/>',
+ clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/>',
+ pencil:'<path d="M4 20h4L20 8l-4-4L4 16z"/>',
+ eye:'<path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/>',
+ sparkle:'<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M18.5 16.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/>',
+ grid:'<rect x="3.5" y="3.5" width="7" height="7" rx="1"/><rect x="13.5" y="3.5" width="7" height="7" rx="1"/><rect x="3.5" y="13.5" width="7" height="7" rx="1"/><rect x="13.5" y="13.5" width="7" height="7" rx="1"/>',
+ upload:'<path d="M12 16V4"/><path d="M7 9l5-5 5 5"/><path d="M4 16v3h16v-3"/>',
+ wa:'<path d="M12 2.8a9 9 0 0 0-7.7 13.7L3 21.5l5.1-1.3A9 9 0 1 0 12 2.8z"/><path d="M8.7 8.2c.4-.9 1-.7 1.4-.2l.9 1.4-.8.9c.5 1.1 1.4 2 2.5 2.5l.9-.8 1.4.9c.5.4.7 1-.2 1.4-1.6.8-3.6-.3-4.9-1.6S7.9 9.8 8.7 8.2z"/>',
+ search:'<circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/>',
+ undo:'<path d="M9 7H16a5 5 0 1 1 0 10h-6"/><path d="M12 4L9 7l3 3"/>',
+ redo:'<path d="M15 7H8a5 5 0 1 0 0 10h6"/><path d="M12 4l3 3-3 3"/>',
+ plus:'<path d="M12 5v14M5 12h14"/>',
+ minus:'<path d="M5 12h14"/>',
+ expand:'<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>',
+ lock:'<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8.5 11V8a3.5 3.5 0 0 1 7 0v3"/>',
+ play:'<path d="M9 6l9 6-9 6z" fill="currentColor" stroke="none"/>',
+ qr:'<rect x="3.5" y="3.5" width="6" height="6" rx="1"/><rect x="14.5" y="3.5" width="6" height="6" rx="1"/><rect x="3.5" y="14.5" width="6" height="6" rx="1"/><path d="M14.5 14.5h3v3h-3zM20.5 14.5v3M17.5 20.5h3"/>',
+ drag:'<circle cx="9" cy="6" r="1.3"/><circle cx="15" cy="6" r="1.3"/><circle cx="9" cy="12" r="1.3"/><circle cx="15" cy="12" r="1.3"/><circle cx="9" cy="18" r="1.3"/><circle cx="15" cy="18" r="1.3"/>',
+ x:'<path d="M6 6l12 12M18 6L6 18"/>',
+ bulb:'<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.8V16h7v-2.2A6 6 0 0 0 12 3z"/>',
+ dots:'<circle cx="5" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="19" cy="12" r="1.4"/>',
+ tree:'<rect x="9" y="3" width="6" height="5" rx="1"/><rect x="3" y="15" width="6" height="5" rx="1"/><rect x="15" y="15" width="6" height="5" rx="1"/><path d="M12 8v4M6 15v-3h12v3"/>',
+ filter:'<path d="M3 5h18l-7 8v6l-4-2v-4z"/>',
+ split:'<path d="M4 12h6l4-6h6M14 18h6"/><path d="M10 12l4 6"/>',
+ star:'<path d="M12 4l2.4 5.2 5.6.6-4.2 3.8 1.2 5.6L12 16.4 6.9 19.2 8.1 13.6 4 9.8l5.6-.6z"/>',
+ pinoff:'<path d="M5 5l14 14"/><path d="M15 4l5 5-3 1-1 4-4-4-5 5 1-6-4-1z"/>',
+};
+function ic(n,s,c,w){ return '<svg width="'+(s||16)+'" height="'+(s||16)+'" viewBox="0 0 24 24" fill="none" stroke="'+(c||"currentColor")+'" stroke-width="'+(w||1.7)+'" stroke-linecap="round" stroke-linejoin="round">'+P[n]+'</svg>'; }
+function mfSide(){
+  const tpl=[["Name","System","Collect and validate user's name"],["DOB","System","Collect and validate date of birth"],["Address","System","Collect and validate user's address"]];
+  const inter=[["Question","Ask users a question and wait for their reply"],["Quick Reply","Question with button options"],["List","Interactive list menu"]];
+  return '<div class="mf-side"><div class="mf-brand"><div class="l">'+ic("gift",19,"#fff",1.5)+'</div><div><div class="n">Magic Flow</div><div class="s">A Freestand Product</div></div></div>'
+  +'<div class="mf-scroll">'
+  +'<div class="mf-sech">'+ic("layers",15,"#374151")+'Templates <span class="c">4</span><span class="cv">'+ic("chevU",15,"#9CA3AF")+'</span></div>'
+  +tpl.map(t=>'<div class="nodecard"><div class="ic" style="background:#0D2A6B">'+ic("layers",15,"#fff",1.6)+'</div><div style="min-width:0"><div class="n">'+t[0]+'<span class="tag">'+t[1]+'</span></div><div class="d">'+t[2]+'</div></div></div>').join("")
+  +'<div class="nodecard"><div class="ic" style="background:#7C5CBF">'+ic("layers",15,"#fff",1.6)+'</div><div style="min-width:0;flex:1"><div class="n">Collect Feedback<span class="tag ws">Workspace</span><span style="margin-left:auto;display:flex;gap:6px;color:#9CA3AF">'+ic("pencil",13,"#9CA3AF")+ic("pinoff",13,"#9CA3AF")+'</span></div><div class="d">5 nodes in FreeStand Sampling …</div></div></div>'
+  +'<div class="mf-sech">'+ic("chat",15,"#374151")+'Interaction <span class="c">5</span><span class="cv">'+ic("chevU",15,"#9CA3AF")+'</span></div>'
+  +inter.map((t,i)=>'<div class="nodecard"><div class="ic" style="background:#22C55E">'+ic(i===2?"list":"chat",15,"#fff",1.7)+'</div><div style="min-width:0"><div class="n">'+t[0]+'</div><div class="d">'+t[1]+'</div></div></div>').join("")
+  +'</div>'
+  +'<div class="mf-foot"><div>'+ic("bulb",13,"#9CA3AF")+'Drag nodes or templates to canvas</div><div>'+ic("sparkle",13,"#2563EB")+'<span class="lk">Templates</span> are double-clickable to edit</div></div>'
+  +'<div class="mf-collapse">'+ic("back",14,"#6B7280")+'</div></div>';
+}
+function mfTop(live){
+  return '<div class="mf-top">'+ic("back",19,"#111827")
+  +'<div class="ttl">Customer engagem…</div>'
+  +'<div class="sv">'+ic("refresh",14,"#16A34A")+'Changes<br>saved</div>'
+  +'<div class="v">'+ic("clock",15,"#4B5563")+'v1 <span class="'+(live?"live":"draft")+'">'+(live?"LIVE":"DRAFT")+'</span>'+ic("chevU",14,"#9CA3AF")+'</div>'
+  +'<div class="seg" style="margin-left:6px"><div class="on">'+ic("pencil",14,"#fff")+'Edit</div><div>'+ic("eye",14,"#1D4ED8")+'View</div></div>'
+  +'<div class="tb ai" style="margin-left:auto">'+ic("sparkle",15,"#2563EB")+'AI</div>'
+  +'<div class="tb al">'+ic("grid",15,"#111827")+'Auto-layout</div>'
+  +'<div class="btnP'+(live?" pub":"")+'">'+ic("upload",15,"#fff")+(live?"Published":"Publish")+'</div>'
+  +'<div class="btnW">'+ic("wa",15,"#16A34A")+'WhatsApp</div>'
+  +'<div class="end">'+ic("tree",17,"#6B7280")+ic("dots",17,"#6B7280")+'</div></div>';
+}
+function cvTools(){
+  return '<div class="cvtools"><div class="grp"><div class="b">'+ic("undo",17,"#4B5563")+'</div><div class="b">'+ic("redo",17,"#4B5563")+'</div></div>'
+  +'<div class="srch">'+ic("search",16,"#9CA3AF")+'<div class="p">Search nodes</div><div class="k">⌘K</div></div></div>'
+  +'<div class="zoom"><div class="b">'+ic("plus",16,"#4B5563")+'</div><div class="b">'+ic("minus",16,"#4B5563")+'</div><div class="b">'+ic("expand",16,"#4B5563")+'</div><div class="b">'+ic("lock",16,"#4B5563")+'</div></div>'
+  +'<div class="mini"><i></i></div>';
+}
+function startNode(x,y,withAdd){
+  return '<div class="nStart" style="left:'+x+'px;top:'+y+'px">'
+  +'<div class="h"><div class="pl">'+ic("play",15,"#15803D")+'</div><div class="t">Start</div><div style="margin-left:auto">'+ic("pencil",15,"#4B5563")+'</div></div>'
+  +'<div class="k">STARTS WHEN</div>'
+  +'<div class="trg"><div class="ic">'+ic("wa",15,"#fff",1.7)+'</div><div style="flex:1"><div class="n">User clicks a link</div><div class="d">WhatsApp URL</div></div>'+ic("qr",16,"#9CA3AF")+'</div>'
+  +'<div style="text-align:center"><span class="trgpill">Customer engagement for mondlez</span></div>'
+  +(withAdd?'<div class="pillg">+ Add Trigger</div>':"")
+  +'<div class="handle" style="right:-6px;top:50%"></div></div>';
+}
+function addPanel(){
+  const rows=[["Name","Collect and validate user's name (flow template with built-in validation)",true],["Email","Collect and validate user's email (flow template with built-in validation)"],["DOB","Collect and validate date of birth (flow template with built-in validation)"],["Address","Collect and validate user's address (flow template with built-in validation)"]];
+  return '<div class="addpanel"><div class="h">'+ic("drag",16,"#9CA3AF")+'Add Node<span class="x">'+ic("x",16,"#6B7280")+'</span></div>'
+  +'<div class="srch">'+ic("search",15,"#9CA3AF")+'Search...</div>'
+  +'<div class="k">'+ic("layers",13,"#9CA3AF")+'TEMPLATES<i></i></div>'
+  +rows.map(r=>'<div class="addrow'+(r[2]?" on":"")+'"><div class="ic">'+ic("person",14,"#fff",1.8)+'</div><div style="flex:1"><div class="n">'+r[0]+'</div><div class="d">'+r[1]+'</div></div>'+(r[2]?'<span class="cv">'+ic("chevR",15,"#9CA3AF")+'</span>':"")+'</div>').join("")
+  +'<div class="k">'+ic("chat",13,"#9CA3AF")+'INTERACTION<i></i></div>'
+  +'<div class="addrow"><div class="ic">'+ic("chat",14,"#fff",1.8)+'</div><div style="flex:1"><div class="n">Question</div><div class="d">Ask users a question and wait for their text reply</div></div></div></div>';
+}
+function mfBuild(){
+  return '<div class="mf">'+mfSide()+'<div class="mf-main">'+mfTop(false)
+  +'<div class="canvas">'+cvTools()+startNode(74,148,true)+addPanel()+'</div></div></div>';
+}
+function mfDone(){
+  const boxes=[["filter","#0D2A6B","Cohort filter","A2 · high CLTV · reachable",372,200],
+    ["clock","#0D2A6B","Wait","Until occasion date",372,300],
+    ["chat","#22C55E","WhatsApp message","Month template + button",372,400],
+    ["split","#0D2A6B","Branch","Clicked / ignored",646,400],
+    ["star","#7C5CBF","Award points","Joy Club ledger",646,500]];
+  const lines=[[324,236,372,236],[470,271,470,300],[470,371,470,400],[578,436,646,436],[749,471,749,500]];
+  return '<div class="mf">'+mfSide()+'<div class="mf-main">'+mfTop(true)
+  +'<div class="canvas">'+cvTools()
+  +'<svg style="position:absolute;inset:0;width:100%;height:100%"><defs><marker id="ar" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7z" fill="#C7CCD6"/></marker></defs>'
+  +lines.map(l=>'<path d="M'+l[0]+' '+l[1]+' L'+l[2]+' '+l[3]+'" stroke="#C7CCD6" stroke-width="2" fill="none" marker-end="url(#ar)"/>').join("")+'</svg>'
+  +startNode(74,148,false)
+  +boxes.map((b,i)=>'<div class="nBox" style="left:'+b[4]+'px;top:'+b[5]+'px;animation-delay:'+(i*0.09)+'s"><div class="h"><div class="ic" style="background:'+b[1]+'">'+ic(b[0],14,"#fff",1.7)+'</div><div class="n">'+b[2]+'</div></div><div class="d">'+b[3]+'</div><div class="handle" style="right:-6px;top:50%"></div></div>').join("")
+  +'<div class="livebar">'+ic("upload",15,"#15803D")+'Live · 12 monthly touchpoints</div>'
+  +'</div></div></div>';
+}
+function calendar(idx){
+  return '<div id="cal">'+MONTHS.map((x,i)=>'<div class="mo'+(i===idx?" on":(i<idx?" past":""))+'" onclick="location.hash='+(i+2)+'"><div class="m">'+x.m+'</div><div class="k">'+x.k+'</div></div>').join("")+'</div>';
+}
+function monthView(i){
+  const d=MONTHS[i];
+  return calendar(i)
+  +'<div class="ph"><div class="phs">'
+  +'<div class="wah"><img src="../../mdlz/lite-mdlz-logo.png"/><div><div class="n">Mondelez India</div><div class="s">✓ Verified business</div></div></div>'
+  +'<div class="wab"><div class="daystamp"><span>'+d.m+' 2026</span></div>'
+  +d.msgs.map(m=>m[0]==="bot"
+     ?'<div class="bot"><div>'+m[1].replace(/&/g,"&amp;")+(m[2]?m[2].map(b=>'<div class="qr">'+b+'</div>').join(""):"")+'</div></div>'
+     :'<div class="usr"><div>'+m[1]+'</div></div>').join("")
+  +'</div></div></div>'
+  +'<div id="rp"><div><div class="mhead">'+d.title+'</div><div class="msub">'+d.sub+'</div></div>'
+  +'<div class="trio">'
+  +'<div class="c"><div class="k">Trigger</div><div class="v">'+d.trigger+'</div></div>'
+  +'<div class="c"><div class="k">Channel</div><div class="v">'+d.channel+'</div></div>'
+  +'<div class="c"><div class="k">Offer</div><div class="v">'+d.offer.replace(/&/g,"&amp;")+'</div></div></div>'
+  +'<div class="big3"><div class="c"><div class="v">2</div><div class="l">messages / month max</div></div>'
+  +'<div class="c"><div class="v">84%</div><div class="l">read in 24h</div></div>'
+  +'<div class="c"><div class="v">9.4%</div><div class="l">converted</div></div></div></div>';
+}
+function outcomes(){
+  const camps=[["Jan","Website sampling","Dairy Milk 50g"],["Apr","Recipe content","Saved 2 recipes"],["Jun","New launch trial","&More Biscoff"],["Jul","Receipt bonus","3 bills uploaded"],["Aug","Rakhi gifting","Celebrations box"],["Oct","Diwali hamper","Redeemed 1,500 pts"]];
+  const buys=[["Silk Hazelnut 58g","₹199","Blinkit"],["Dairy Milk 50g ×2","₹90","Blinkit"],["&More Biscoff","₹120","BigBasket"],["Celebrations Premium","₹499","Amazon"],["Oreo 2-pack","₹60","Local store"]];
+  const fb=[["5/5","Hazelnut crunch is unreal","Jun · post-trial"],["4/5","Gifted the Rakhi box, loved it","Aug · feedback"]];
+  return '<div style="position:absolute;inset:0;padding:22px 26px;display:flex;flex-direction:column;gap:14px">'
+  +'<div style="display:flex;gap:18px;align-items:center;background:#fff;border:1px solid #E9E2F2;border-left:5px solid #E4A400;border-radius:18px;padding:16px 22px">'
+  +'<img src="../enrich/mini/f1a.png" style="width:92px;height:92px;border-radius:999px;object-fit:cover;border:3px solid #EDE4F5"/>'
+  +'<div><div style="font-size:30px;font-weight:700;letter-spacing:-0.5px">Aarav Mehta</div>'
+  +'<div style="font-size:14.5px;color:#6d6478;margin-top:4px;white-space:nowrap">+91 98210 44712 · Bandra West 400050 · Joy Club Gold</div></div>'
+  +'<div style="margin-left:auto;display:flex;gap:14px">'
+  +[["₹4,820","12-month LTV"],["A2","financial group"],["6","campaigns"],["1,625","Joy Club pts"]]
+   .map(x=>'<div style="text-align:center;min-width:118px"><div style="font-size:30px;font-weight:900;color:#4F2170;line-height:1">'+x[0]+'</div><div style="font-size:12.5px;color:#8b8394;margin-top:5px">'+x[1]+'</div></div>').join("")
+  +'</div></div>'
+  +'<div style="flex:1;display:grid;grid-template-columns:1.05fr 1fr 1fr;gap:14px;min-height:0">'
+  +panel("Campaigns participated",camps.map(c=>'<div style="display:flex;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid #F2EDF7"><div style="font-size:13px;font-weight:800;color:#4F2170;width:38px">'+c[0]+'</div><div style="flex:1"><div style="font-size:15px;font-weight:600">'+c[1].replace(/&/g,"&amp;")+'</div><div style="font-size:12px;color:#8b8394;margin-top:1px">'+c[2].replace(/&/g,"&amp;")+'</div></div></div>').join(""))
+  +panel("Purchases",buys.map(b=>'<div style="display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid #F2EDF7"><div style="flex:1"><div style="font-size:15px;font-weight:600">'+b[0].replace(/&/g,"&amp;")+'</div><div style="font-size:12px;color:#8b8394;margin-top:1px">'+b[2]+'</div></div><div style="font-size:16.5px;font-weight:800;color:#4F2170">'+b[1]+'</div></div>').join("")
+    +'<div style="display:flex;justify-content:space-between;align-items:baseline;padding-top:10px"><div style="font-size:12.5px;font-weight:700;letter-spacing:1px;color:#9c8fae">VERIFIED TOTAL</div><div style="font-size:23px;font-weight:900;color:#4F2170">₹968</div></div>')
+  +panel("Feedback",fb.map(f=>'<div style="padding:9px 0;border-bottom:1px solid #F2EDF7"><div style="font-size:14px;font-weight:700;color:#E4A400">'+"★★★★★".slice(0,parseInt(f[0])) +'<span style="color:#8b8394;font-weight:600;margin-left:8px">'+f[0]+'</span></div><div style="font-size:15px;font-weight:500;margin-top:5px;line-height:1.3">\u201C'+f[1]+'\u201D</div><div style="font-size:11.5px;color:#8b8394;margin-top:3px">'+f[2]+'</div></div>').join("")
+    +'<div style="display:flex;gap:7px;flex-wrap:wrap;padding-top:10px">'+["Purchase intent: Yes","NPS promoter","2 UGC posts","1 referral"].map((t,i)=>'<span style="font-size:12.5px;font-weight:600;border-radius:6px;padding:5px 10px;background:'+["#F2E8F9","#FDF3DC","#DCE8F2","#E8F6EC"][i]+'">'+t+'</span>').join("")+'</div>')
+  +'</div></div>';
+}
+function panel(title,inner){
+  return '<div style="background:#fff;border:1px solid #E9E2F2;border-radius:18px;padding:16px 20px;display:flex;flex-direction:column;min-height:0">'
+   +'<div style="font-size:12.5px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:#9c8fae;margin-bottom:6px">'+title+'</div>'
+   +'<div style="flex:1;overflow:auto">'+inner+'</div></div>';
+}
+const N=MONTHS.length;
+function show(){
+  const i=Math.max(0,Math.min(N+2,parseInt(location.hash.slice(1)||"0",10)||0));
+  const st=document.getElementById("stage");
+  let cap;
+  if(i===0){ st.innerHTML=mfBuild(); cap=["MAGIC FLOW","Give the questions, AI builds the flow","Drag nodes · no code"]; }
+  else if(i===1){ st.innerHTML=mfDone(); cap=["PUBLISHED","AI built it, 12 touchpoints live","Live on WhatsApp"]; }
+  else if(i<N+2){ const m=i-2; st.innerHTML=monthView(m); cap=["MONTH "+String(m+1).padStart(2,"0"),MONTHS[m].title,MONTHS[m].offer]; }
+  else { st.innerHTML=outcomes(); cap=["PROFILE","One consumer, 12 months on","₹4,820 LTV · 6 campaigns"]; }
+  document.getElementById("aiband").classList.toggle("on",i<2);
+  document.getElementById("stage").style.top=(i<2?"128px":"100px");
+  document.getElementById("cap-tag").textContent=cap[0];
+  (document.getElementById("hd-t")||{}).textContent=cap[1],document.getElementById("cap-t").textContent=cap[1];
+  document.getElementById("cap-s").textContent=cap[2];
+}
+window.addEventListener("hashchange",show); show();
+</script>
+</body></html>

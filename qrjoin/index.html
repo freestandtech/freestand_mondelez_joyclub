@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>QR on pack → Joy Club</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}html,body{margin:0;padding:0;width:1280px;height:832px;overflow:hidden;font-family:Inter,Arial,sans-serif;background:#F7F8FB;color:#111827;-webkit-font-smoothing:antialiased}
+a{color:#0A49B7}a:hover{color:#E4A400}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes popIn{from{opacity:0;transform:scale(0.82)}to{opacity:1;transform:scale(1)}}
+@keyframes scanline{0%{top:43%}50%{top:59%}100%{top:43%}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+#topbar{position:absolute;left:0;top:0;right:0;height:66px;background:linear-gradient(100deg,#052762,#0A49B7);display:flex;align-items:center;padding:0 26px;gap:16px}
+#topbar img.md{height:40px;background:#fff;border-radius:9px;padding:4px}
+#topbar img.fs{height:25px;filter:brightness(0) invert(1);margin-left:auto}
+#topbar .t{color:#fff;font-size:20px;font-weight:600;letter-spacing:-0.2px}
+#caption{position:absolute;left:22px;right:22px;bottom:14px;height:56px;background:#052762;color:#fff;border-radius:12px;padding:0 22px;display:flex;gap:16px;align-items:center}
+#caption .tag{background:#E4A400;color:#0B1F3F;border-radius:7px;padding:6px 12px;font-size:12px;font-weight:700;letter-spacing:1.1px}
+#caption .tt{font-size:19px;font-weight:600}
+#caption .ss{margin-left:auto;font-size:14px;font-weight:500;opacity:0.85}
+/* steps rail */
+#rail{position:absolute;left:24px;right:24px;top:80px;height:40px;display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.st{border:1px solid #E3E7EF;background:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;gap:7px;font-size:12.5px;font-weight:600;color:#6B7280;cursor:pointer;padding:0 8px;white-space:nowrap;overflow:hidden}
+.st b{width:18px;height:18px;border-radius:999px;background:#EEF1F7;color:#6B7280;font-size:10.5px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.st.on{background:#052762;border-color:#052762;color:#fff}
+.st.on b{background:#E4A400;color:#0B1F3F}
+.st.past{background:#F1F4F9}
+/* phone */
+.phone{position:absolute;left:60px;top:140px;width:326px;height:556px;border-radius:36px;background:#111;padding:8px;box-shadow:0 18px 44px rgba(11,31,63,0.24)}
+.scr{width:100%;height:100%;border-radius:28px;overflow:hidden;position:relative;background:#fff;display:flex;flex-direction:column}
+.nt{position:absolute;left:50%;top:14px;transform:translateX(-50%);width:92px;height:20px;border-radius:99px;background:#111;z-index:5}
+.scr img.full{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.scanwrap{position:absolute;inset:0;z-index:2}
+.scanwrap .win{position:absolute;left:33%;right:29%;top:41%;bottom:39%;border-radius:6px;box-shadow:0 0 0 999px rgba(6,10,22,0.34)}
+.scanwrap .brk{position:absolute;width:20px;height:20px;border-color:#F2C94C}
+.scanwrap .ln{position:absolute;left:34%;right:30%;height:3px;border-radius:2px;background:linear-gradient(90deg,transparent,#F2C94C,transparent);box-shadow:0 0 14px rgba(242,201,76,0.95);animation:scanline 2.1s ease-in-out infinite}
+.scanwrap .lb{position:absolute;left:0;right:0;bottom:16px;text-align:center;font-size:12.5px;font-weight:700;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,0.9)}
+/* whatsapp */
+.wah{background:#075E54;padding:13px 14px 11px;display:flex;align-items:center;gap:10px;flex-shrink:0;padding-top:30px}
+.wah img{width:34px;height:34px;border-radius:999px;background:#fff;object-fit:contain;padding:2px}
+.wah .n{font-size:14.5px;font-weight:700;color:#fff}
+.wah .s{font-size:10.5px;color:rgba(255,255,255,0.78)}
+.wab{flex:1;overflow:hidden;background:#ECE5DD;padding:13px}
+.bot,.usr{display:flex;margin-bottom:9px}
+.usr{justify-content:flex-end}
+.bot>div{background:#fff;border-radius:0 12px 12px 12px;padding:10px 13px;font-size:13.5px;line-height:1.5;max-width:90%;box-shadow:0 1px 2px rgba(0,0,0,0.09);white-space:pre-wrap;animation:fadeInUp 0.35s both}
+.usr>div{background:#DCF8C6;border-radius:12px 0 12px 12px;padding:10px 13px;font-size:13.5px;max-width:84%;box-shadow:0 1px 2px rgba(0,0,0,0.09);animation:fadeInUp 0.35s 0.1s both}
+.qr{margin-top:8px;border:1.5px solid #4F2170;color:#4F2170;border-radius:9px;padding:8px 10px;text-align:center;font-size:12.5px;font-weight:600}
+.consent{font-size:11.5px;line-height:1.5;color:#4B5563;background:#F7F4FB;border-radius:8px;padding:8px 10px;margin-top:7px}
+/* joy club app */
+.jch{background:#fff;padding:30px 18px 12px;display:flex;align-items:flex-start;flex-shrink:0}
+.jch img{height:22px}
+.jch .w{margin-left:auto;font-style:italic;font-weight:700;font-size:19px;color:#4F2170;line-height:1}
+.jcb{flex:1;overflow:hidden;background:#F5F4F7;padding:16px 16px 12px}
+.pcard{background:linear-gradient(140deg,#4A1F6B,#5B2A82 60%,#6B3595);border-radius:18px;padding:16px;color:#fff;display:flex;gap:13px;align-items:center;animation:popIn 0.4s both}
+.pcard img{width:66px;height:66px;border-radius:999px;object-fit:cover;border:3px solid rgba(255,255,255,0.55);flex-shrink:0}
+.pcard .nm{font-size:18px;font-weight:700;letter-spacing:-0.2px}
+.pcard .mb{font-size:11px;font-weight:700;letter-spacing:1px;color:#F2C94C;margin-top:3px}
+.pcard .pt{font-size:12.5px;opacity:0.9;margin-top:4px}
+.frow{background:#fff;border-radius:12px;padding:10px 13px;margin-top:10px;display:flex;align-items:center;gap:10px;animation:fadeInUp 0.35s both}
+.frow .k{font-size:10.5px;color:#8b8394;letter-spacing:0.3px}
+.frow .v{font-size:14px;font-weight:600;margin-top:2px}
+.frow .badge{margin-left:auto;font-size:10px;font-weight:700;color:#1E7A38;background:#E6F6EA;border-radius:999px;padding:4px 9px;flex-shrink:0}
+/* members list */
+.mhd{background:#fff;padding:30px 18px 12px;display:flex;align-items:center;flex-shrink:0;gap:10px}
+.mhd .t{font-size:16px;font-weight:700}
+.mhd .c{margin-left:auto;font-size:11px;font-weight:700;color:#4F2170;background:#F2E8F9;border-radius:999px;padding:4px 10px}
+.mrow{background:#fff;border-radius:12px;padding:9px 11px;margin-bottom:8px;display:flex;align-items:center;gap:10px;animation:fadeInUp 0.3s both}
+.mrow img{width:38px;height:38px;border-radius:999px;object-fit:cover;flex-shrink:0}
+.mrow .nm{font-size:13.5px;font-weight:600}
+.mrow .lo{font-size:11px;color:#8b8394;margin-top:1px}
+.mrow .tg{margin-left:auto;font-size:9.5px;font-weight:700;border-radius:999px;padding:3px 8px;flex-shrink:0;white-space:nowrap}
+/* right column */
+#rc{position:absolute;left:420px;right:26px;top:140px;bottom:84px;display:flex;flex-direction:column;gap:14px;min-height:0}
+.h1{font-size:33px;font-weight:700;letter-spacing:-0.6px;line-height:1.12}
+.sub{font-size:16px;color:#5B6472;font-weight:500}
+.card{background:#fff;border:1px solid #E3E7EF;border-radius:16px;padding:15px 17px}
+.hdr{font-size:11px;font-weight:700;letter-spacing:1.3px;color:#8A93A6;text-transform:uppercase;margin-bottom:9px}
+.li{display:flex;gap:9px;align-items:flex-start;font-size:14px;line-height:1.4;color:#1F2937;margin-bottom:7px}
+.li i{width:6px;height:6px;border-radius:999px;background:#0A49B7;flex-shrink:0;margin-top:6px}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi div{background:#fff;border:1px solid #E3E7EF;border-radius:14px;padding:14px 10px;text-align:center}
+.kpi .v{font-size:26px;font-weight:800;color:#052762;line-height:1}
+.kpi .l{font-size:12px;color:#6B7280;margin-top:5px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:12.5px;font-weight:600;border-radius:8px;padding:6px 11px}
+.grow{flex:1;min-height:0;overflow:hidden}
+table.loc{width:100%;border-collapse:collapse;font-size:13.5px}
+table.loc th{text-align:left;font-size:11px;letter-spacing:1px;color:#8A93A6;font-weight:700;text-transform:uppercase;padding:0 0 8px}
+table.loc td{padding:9px 0;border-top:1px solid #F1F4F9;font-weight:500}
+table.loc td.n{font-weight:700;color:#052762;text-align:right}
+.bar{height:7px;border-radius:4px;background:#EEF1F7;overflow:hidden;width:120px}
+.bar i{display:block;height:100%;background:#0A49B7;border-radius:4px}
+</style></head><body>
+<div id="__asset-preload" style="display:none" aria-hidden="true"><img data-asset="../../mdlz/lite-fs-logo.png" src="../../mdlz/lite-fs-logo.png" alt="" /><img data-asset="../../mdlz/lite-mdlz-logo.png" src="../../mdlz/lite-mdlz-logo.png" alt="" /><img data-asset="../../mdlz/mini-shot-qr.png" src="../../mdlz/mini-shot-qr.png" alt="" /><img data-asset="../enrich/mini/f1a.png" src="../enrich/mini/f1a.png" alt="" /><img data-asset="../enrich/mini/f1b.png" src="../enrich/mini/f1b.png" alt="" /><img data-asset="../enrich/mini/f2a.png" src="../enrich/mini/f2a.png" alt="" /><img data-asset="../enrich/mini/f2b.png" src="../enrich/mini/f2b.png" alt="" /><img data-asset="../enrich/mini/f3a.png" src="../enrich/mini/f3a.png" alt="" /><img data-asset="../enrich/mini/f5a.png" src="../enrich/mini/f5a.png" alt="" /><img data-asset="../enrich/mini/f6a.png" src="../enrich/mini/f6a.png" alt="" /><img data-asset="../enrich/mini/f7a.png" src="../enrich/mini/f7a.png" alt="" /></div>
+<script>
+(function(){
+  var MAP={};
+  function build(){
+    var box=document.getElementById("__asset-preload"); if(!box) return;
+    [].forEach.call(box.querySelectorAll("img[data-asset]"),function(im){
+      var k=im.getAttribute("data-asset"), v=im.getAttribute("src");
+      if(v&&v!==k) MAP[k]=v;
+    });
+  }
+  function fixOne(el){
+    var s=el.getAttribute("src")||"";
+    if(MAP[s]) el.setAttribute("src",MAP[s]);
+  }
+  function sweep(root){
+    if(!root||!root.querySelectorAll) return;
+    if(root.tagName==="IMG") fixOne(root);
+    [].forEach.call(root.querySelectorAll("img"),fixOne);
+  }
+  build(); sweep(document);
+  new MutationObserver(function(muts){
+    for(var i=0;i<muts.length;i++){
+      var m=muts[i];
+      if(m.type==="attributes"&&m.target.tagName==="IMG") fixOne(m.target);
+      for(var j=0;j<m.addedNodes.length;j++) sweep(m.addedNodes[j]);
+    }
+  }).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:["src"]});
+})();
+</script>
+
+
+<template id="__bundler_thumbnail" data-bg-color="#4F2170">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#4F2170"/><g fill="none" stroke="#F2C94C" stroke-width="22"><rect x="430" y="250" width="120" height="120" rx="10"/><rect x="650" y="250" width="120" height="120" rx="10"/><rect x="430" y="430" width="120" height="120" rx="10"/><path d="M650 430h60v60h-60zM770 430v60M710 550h60"/></g><text x="600" y="680" font-family="Arial,sans-serif" font-size="42" font-weight="700" fill="#fff" text-anchor="middle">QR on pack → Joy Club</text></svg>
+</template>
+<div id="topbar">
+  <img class="md" src="../../mdlz/lite-mdlz-logo.png" alt="Mondelez"/>
+  <div class="t">QR on pack → Joy Club enrolment</div>
+  <img class="fs" src="../../mdlz/lite-fs-logo.png" alt="FreeStand"/>
+</div>
+<div id="rail"></div>
+<div class="phone"><div class="scr" id="scr"></div><div class="nt"></div></div>
+<div id="rc"></div>
+<div id="caption"><div class="tag" id="cap-tag"></div><div class="tt" id="cap-t"></div><div class="ss" id="cap-s"></div></div>
+<script>
+const MEMBERS=[
+ ["Aarav Mehta","../enrich/mini/f1a.png","Celebrations pack · Phoenix Mall, Mumbai","Pack QR"],
+ ["Meena Sharma","../enrich/mini/f2a.png","Dairy Milk 50g · Kirana, Agra","Pack QR"],
+ ["Rohan Iyer","../enrich/mini/f3a.png","Silk Hazelnut · Blinkit delivery","Pack QR"],
+ ["Priya Nair","../enrich/mini/f5a.png","Joy Club standee · DMart, Kochi","In-store QR"],
+ ["Kabir Shah","../enrich/mini/f6a.png","Oreo 2-pack · Reliance Fresh","Pack QR"],
+ ["Ananya Rao","../enrich/mini/f7a.png","Celebrations gift box · Diwali kiosk","In-store QR"],
+ ["Vikram Sethi","../enrich/mini/f1b.png","5 Star · Big Bazaar, Pune","Pack QR"],
+ ["Sneha Kohli","../enrich/mini/f2b.png","Bournvita jar · More Supermarket","Pack QR"],
+];
+const TG={"Pack QR":"#F2E8F9|#4F2170","In-store QR":"#FDF3DC|#8a6d00"};
+function tg(t){const[a,b]=TG[t].split("|");return '<span class="tg" style="background:'+a+';color:'+b+'">'+t+'</span>';}
+function waHead(){return '<div class="wah"><img src="../../mdlz/lite-mdlz-logo.png"/><div><div class="n">Mondelez India</div><div class="s">✓ Verified business</div></div></div>';}
+function bubbles(list){return '<div class="wab">'+list.map(m=>m[0]==="bot"
+  ?'<div class="bot"><div>'+m[1]+(m[2]?m[2].map(b=>'<div class="qr">'+b+'</div>').join(""):"")+(m[3]?'<div class="consent">'+m[3]+'</div>':"")+'</div></div>'
+  :'<div class="usr"><div>'+m[1]+'</div></div>').join("")+'</div>';}
+
+const SCREENS={
+ scan:()=>'<img class="full" src="../../mdlz/mini-shot-qr.png"/><div class="scanwrap"><div class="win"></div>'
+   +'<div class="brk" style="left:31%;top:39%;border-top:3px solid;border-left:3px solid;border-radius:5px 0 0 0"></div>'
+   +'<div class="brk" style="right:27%;top:39%;border-top:3px solid;border-right:3px solid;border-radius:0 5px 0 0"></div>'
+   +'<div class="brk" style="left:31%;bottom:37%;border-bottom:3px solid;border-left:3px solid;border-radius:0 0 0 5px"></div>'
+   +'<div class="brk" style="right:27%;bottom:37%;border-bottom:3px solid;border-right:3px solid;border-radius:0 0 5px 0"></div>'
+   +'<div class="ln"></div><div class="lb">Scanning QR on pack…</div></div>',
+ ask:()=>waHead()+bubbles([
+   ["usr","I want to join Joy Club"],
+   ["bot","Welcome to Cadbury Joy Club 💜\nOne wallet across 14 Mondelez brands.\n\nBefore we enrol you, we need your consent."]]),
+ consent:()=>waHead()+bubbles([
+   ["bot","To create your membership we'll store your name, mobile number and the pack you scanned.",["✅ I agree","Read policy"],
+    "You can opt out or delete your data any time from the Joy Club app. Consent is logged against your profile."]]),
+ agreed:()=>waHead()+bubbles([
+   ["usr","✅ I agree"],
+   ["bot","Consent recorded ✓\nEnrolling you now…"],
+   ["bot","You're in, Aarav! 🎉\nJoy Club member JC-77104 · 100 welcome points credited.",["Open Joy Club"]]]),
+ profile:()=>'<div class="jch"><img src="../../mdlz/lite-mdlz-logo.png"/><div class="w">Joy Club</div></div>'
+   +'<div class="jcb"><div class="pcard"><img src="../enrich/mini/f1a.png"/><div><div class="nm">Aarav Mehta</div><div class="mb">JOY STARTER · JC-77104</div><div class="pt">100 points</div></div></div>'
+   +'<div class="frow" style="animation-delay:0.1s"><div><div class="k">Mobile</div><div class="v">+91 98210 44712</div></div><div class="badge">VERIFIED</div></div>'
+   +'<div class="frow" style="animation-delay:0.18s"><div><div class="k">Scanned</div><div class="v" style="font-size:13px">Celebrations pack</div></div><div class="badge">PACK QR</div></div>'
+   +'<div class="frow" style="animation-delay:0.26s"><div><div class="k">Location</div><div class="v" style="font-size:13px">Phoenix Mall, Mumbai</div></div></div>'
+   +'<div class="frow" style="animation-delay:0.34s"><div><div class="k">Consent</div><div class="v" style="font-size:13px">Given 11 Sep 2026</div></div><div class="badge">LOGGED</div></div></div>',
+ members:()=>'<div class="mhd"><div class="t">Joy Club members</div><div class="c">56,311</div></div>'
+   +'<div class="jcb" style="padding:12px 14px">'+MEMBERS.map((m,i)=>'<div class="mrow" style="animation-delay:'+(i*0.05)+'s"><img src="'+m[1]+'"/><div style="min-width:0"><div class="nm">'+m[0]+'</div><div class="lo">'+m[2]+'</div></div>'+tg(m[3])+'</div>').join("")+'</div>',
+};
+const RIGHT={
+ scan:()=>'<div><div class="h1">One QR on the pack</div><div class="sub">No app, no form — the camera does the work</div></div>'
+  +'<div class="card"><div class="hdr">What the QR carries</div>'
+  +[["Pack SKU and batch — so the brand knows which product drove the scan"],["Store and city, from the scan location"],["A single destination: the WhatsApp claim flow"]].map(l=>'<div class="li"><i></i><span>'+l[0]+'</span></div>').join("")+'</div>'
+  +'<div class="card"><div class="hdr">Where the QR lives</div><div class="chips">'+["Pack back","Gift box seal","Shelf standee","Promoter card","Kiosk poster"].map(c=>'<span class="chip" style="background:#EAF0FB;color:#0A49B7">'+c+'</span>').join("")+'</div></div>',
+ ask:()=>'<div><div class="h1">The scan opens WhatsApp</div><div class="sub">Same thread, every brand, every campaign</div></div>'
+  +'<div class="card"><div class="hdr">Why WhatsApp</div>'
+  +["91% of enriched profiles are WhatsApp-reachable","No download, no password, no drop-off","The thread stays — every future campaign lands here"].map(l=>'<div class="li"><i></i><span>'+l+'</span></div>').join("")+'</div>'
+  +'<div class="kpi"><div><div class="v">1</div><div class="l">entry point</div></div><div><div class="v">0</div><div class="l">app installs</div></div><div><div class="v">14</div><div class="l">brands</div></div><div><div class="v">8s</div><div class="l">to enrol</div></div></div>',
+ consent:()=>'<div><div class="h1">Consent before data</div><div class="sub">Explicit, logged, reversible</div></div>'
+  +'<div class="card"><div class="hdr">What the consumer agrees to</div>'
+  +["Name, mobile and the pack scanned — stated in plain language","Opt-out and deletion available in the app, not a legal PDF","Consent timestamp stored against the profile"].map(l=>'<div class="li"><i></i><span>'+l+'</span></div>').join("")+'</div>'
+  +'<div class="card"><div class="hdr">Compliance</div><div class="chips">'+["DPDP Act 2023","Consent ledger","Purpose limitation","Right to erasure"].map(c=>'<span class="chip" style="background:#E9FBF0;color:#128C4A">'+c+'</span>').join("")+'</div></div>',
+ agreed:()=>'<div><div class="h1">Enrolled in 8 seconds</div><div class="sub">Membership created from the scan itself</div></div>'
+  +'<div class="card"><div class="hdr">Created automatically</div>'
+  +["Member ID, wallet and tier — no signup screen","100 welcome points credited instantly","Profile stamped with the pack, store and city"].map(l=>'<div class="li"><i></i><span>'+l+'</span></div>').join("")+'</div>'
+  +'<div class="kpi"><div><div class="v">92%</div><div class="l">consent rate</div></div><div><div class="v">100</div><div class="l">welcome pts</div></div><div><div class="v">0</div><div class="l">forms filled</div></div><div><div class="v">JC-77104</div><div class="l">member ID</div></div></div>',
+ profile:()=>'<div><div class="h1">The profile the scan built</div><div class="sub">Declared, verified and attributed</div></div>'
+  +'<div class="card"><div class="hdr">On the profile</div>'
+  +["Name and photo from the Joy Club account","Mobile verified on WhatsApp — reachable from day one","Scan source: which pack, which store, which city"].map(l=>'<div class="li"><i></i><span>'+l+'</span></div>').join("")+'</div>'
+  +'<div class="card"><div class="hdr">Why attribution matters</div><div style="font-size:14px;line-height:1.5;color:#1F2937">Mondelez can finally see which SKU and which store created each member — so trade spend follows the packs that actually recruit.</div></div>',
+ members:()=>'<div><div class="h1">Where the members came from</div><div class="sub">Every member traced to the pack they scanned</div></div>'
+  +'<div class="card grow"><div class="hdr">Scan source — this quarter</div><table class="loc"><tr><th>Source</th><th>Share</th><th style="text-align:right">Members</th></tr>'
+  +[["Celebrations gift boxes",38,"21,398"],["Dairy Milk &amp; Silk bars",27,"15,204"],["In-store standees",19,"10,699"],["Oreo &amp; biscuits",9,"5,068"],["Bournvita &amp; beverages",7,"3,942"]]
+   .map(r=>'<tr><td>'+r[0]+'</td><td><div class="bar"><i style="width:'+(r[1]*2.6)+'%"></i></div></td><td class="n">'+r[2]+'</td></tr>').join("")+'</table></div>'
+  +'<div class="kpi"><div><div class="v">56,311</div><div class="l">members</div></div><div><div class="v">1,842</div><div class="l">stores</div></div><div><div class="v">11</div><div class="l">SKUs scanned</div></div><div><div class="v">96</div><div class="l">cities</div></div></div>',
+};
+const STEPS=[
+ {id:"scan",label:"Scan pack QR",cap:["01","Scan the QR on the pack","Camera → WhatsApp"]},
+ {id:"ask",label:"Join Joy Club",cap:["02","\"I want to join Joy Club\"","Thread opens"]},
+ {id:"consent",label:"Consent",cap:["03","Consent requested in plain language","DPDP compliant"]},
+ {id:"agreed",label:"I agree → enrolled",cap:["04","Consent given — enrolled instantly","JC-77104 · 100 pts"]},
+ {id:"profile",label:"Profile in app",cap:["05","Profile in the Joy Club app","Name · photo · phone · scan source"]},
+ {id:"members",label:"Members & sources",cap:["06","Members and where they scanned","56,311 members · 1,842 stores"]},
+];
+function show(){
+  const i=Math.max(0,Math.min(STEPS.length-1,parseInt(location.hash.slice(1)||"0",10)||0));
+  const s=STEPS[i];
+  document.getElementById("rail").innerHTML=STEPS.map((x,j)=>'<div class="st'+(j===i?" on":(j<i?" past":""))+'" onclick="location.hash='+j+'"><b>'+(j+1)+'</b>'+x.label+'</div>').join("");
+  document.getElementById("scr").innerHTML=SCREENS[s.id]();
+  document.getElementById("rc").innerHTML=RIGHT[s.id]();
+  document.getElementById("cap-tag").textContent="STEP "+s.cap[0];
+  document.getElementById("cap-t").textContent=s.cap[1];
+  document.getElementById("cap-s").textContent=s.cap[2];
+}
+window.addEventListener("hashchange",show); show();
+</script>
+</body></html>

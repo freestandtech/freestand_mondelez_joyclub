@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>A different loyalty strategy per brand</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}html,body{margin:0;padding:0;width:1280px;height:832px;overflow:hidden;font-family:Inter,Arial,sans-serif;background:#F7F8FB;color:#111827;-webkit-font-smoothing:antialiased}
+a{color:#0A49B7}a:hover{color:#E4A400}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+#hd{position:absolute;left:26px;right:26px;top:20px}
+#hd .h1{font-size:40px;font-weight:800;letter-spacing:-1.3px;line-height:1.14}
+#hd .h1 em{font-style:normal;color:#4F2170}
+#cols{position:absolute;left:26px;right:26px;top:96px;bottom:24px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.bcol{border-radius:20px;overflow:hidden;display:flex;flex-direction:column;animation:fadeInUp 0.45s both;background:#fff;border:1px solid #E3E7EF;box-shadow:0 4px 16px rgba(11,31,63,0.07)}
+.bcol .top{padding:13px 20px;color:#fff;display:flex;align-items:center;gap:13px;flex-shrink:0}
+.bcol .top .pk{width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,0.16);overflow:hidden;position:relative;flex-shrink:0}
+.bcol .top .pk img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bcol .top .bn{font-size:23px;font-weight:800;letter-spacing:-0.6px;line-height:1.05}
+.bcol .top .go{font-size:11.5px;font-weight:700;opacity:0.9;margin-top:2px;letter-spacing:0.8px}
+.bcol .in{flex:1;min-height:0;padding:15px 18px 16px;display:flex;gap:16px}
+.mechanic{font-size:19px;font-weight:800;letter-spacing:-0.4px;line-height:1.22}
+.lbl{font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#8A93A3}
+.side{flex:1;min-width:0;display:flex;flex-direction:column;gap:11px}
+.mechbig{display:grid;grid-template-columns:repeat(6,1fr);gap:5px}
+.mechbig div{border:1.5px dashed #D8CFE8;border-radius:10px;text-align:center;padding:9px 2px;font-size:10px;font-weight:700;color:#8A7BA6}
+.mechbig div.on{border-style:solid;border-color:#E8A317;background:#FDF3DC;color:#96670A}
+.mechbig div.free{border-color:#128C4A;background:#E9FBF0;color:#0E6E3B}
+.mechbig div b{display:block;font-size:16px;margin-bottom:1px}
+.earn{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.earn>div{border:1px solid #E7EAF1;border-radius:11px;padding:9px 10px;display:flex;align-items:center;gap:9px;min-width:0;overflow:hidden}
+.earn .tx{min-width:0;display:block}
+.earn>div .ic{width:30px;height:30px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;line-height:1}
+.earn>div .t{font-size:12.5px;font-weight:700;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.earn>div .p{font-size:13px;font-weight:800;margin-top:2px;white-space:nowrap}
+.why{margin-top:auto;border-radius:11px;padding:13px 15px;font-size:13.5px;font-weight:600;line-height:1.45}
+.chk{display:flex;align-items:flex-start;gap:10px;padding:7px 0}
+.chk .d{width:20px;height:20px;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.chk .t{font-size:14.5px;font-weight:700;line-height:1.3}
+/* phone */
+.phone{width:252px;flex-shrink:0;border-radius:30px;background:#111;padding:7px;box-shadow:0 14px 34px rgba(11,31,63,0.26);position:relative}
+.scr{width:100%;height:100%;border-radius:24px;overflow:hidden;position:relative;display:flex;flex-direction:column;background:#ECE5DD}
+.nt{position:absolute;left:50%;top:10px;transform:translateX(-50%);width:74px;height:15px;border-radius:99px;background:#111;z-index:6}
+.wah{background:#F6F5F3;border-bottom:1px solid #E2DED6;padding:26px 11px 8px;display:flex;align-items:center;gap:8px;flex-shrink:0}
+.wah .av{width:28px;height:28px;border-radius:999px;overflow:hidden;flex-shrink:0;position:relative;background:#EEE}
+.wah .av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.wah .n{font-size:11.5px;font-weight:700;color:#111}
+.wah .s{font-size:8.5px;color:#7A7A7A}
+.wab{flex:1;overflow:hidden;padding:8px 9px 6px;display:flex;flex-direction:column;gap:5px;justify-content:flex-end}
+.bot,.usr{display:flex}
+.usr{justify-content:flex-end}
+.bot>div,.usr>div{border-radius:10px;padding:6px 9px;font-size:10.5px;line-height:1.38;max-width:93%;box-shadow:0 1px 1px rgba(0,0,0,0.08);animation:fadeInUp 0.35s both}
+.bot>div{background:#fff;border-top-left-radius:2px}
+.usr>div{background:#DCF8C6;border-top-right-radius:2px}
+.tm{font-size:8px;color:#9AA3B2;text-align:right;margin-top:2px}
+.shot{border-radius:8px;overflow:hidden;margin:-2px -2px 4px;position:relative}
+.shot img{width:100%;display:block;max-height:150px;object-fit:cover;object-position:center 18%}
+.shot.rcpt img{height:110px;object-fit:cover;object-position:center 22%}
+.coupon{margin-top:5px;border-radius:9px;background:linear-gradient(135deg,#4F2170,#7A41A6);color:#fff;padding:9px 10px;position:relative;overflow:hidden}
+.coupon .k{font-size:8px;font-weight:800;letter-spacing:1.2px;opacity:0.85}
+.coupon .v{font-size:21px;font-weight:800;letter-spacing:-0.8px;line-height:1;margin-top:3px}
+.coupon .u{font-size:8.5px;opacity:0.9;margin-top:3px}
+.coupon .upi{position:absolute;right:9px;bottom:8px;background:#fff;color:#0E6E3B;font-size:8px;font-weight:800;border-radius:4px;padding:3px 6px;letter-spacing:0.5px}
+.cta{margin-top:5px;background:#fff;border-radius:9px;padding:8px;text-align:center;font-size:10.5px;font-weight:700;color:#0A49B7;box-shadow:0 1px 1px rgba(0,0,0,0.08)}
+.streak{margin-top:6px;display:flex;gap:3px}
+.streak i{flex:1;height:7px;border-radius:3px;background:#E4DBEE;display:block}
+.streak i.on{background:#E8A317}
+.streak i.free{background:#128C4A}
+.wain{flex-shrink:0;padding:6px 9px 8px;background:#F6F5F3;display:flex;gap:6px;align-items:center}
+.wain .f{flex:1;background:#fff;border-radius:999px;padding:6px 10px;font-size:9px;color:#aaa}
+.wain .b{width:24px;height:24px;border-radius:999px;background:#25D366;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px}
+</style></head><body>
+<div id="__asset-preload" style="display:none" aria-hidden="true"><img data-asset="dp-bournvita.png" src="dp-bournvita.png" alt="" /><img data-asset="dp-cadbury.png" src="dp-cadbury.png" alt="" /><img data-asset="receipt-blinkit.jpg" src="receipt-blinkit.jpg" alt="" /><img data-asset="ugc-cadbury.jpg" src="ugc-cadbury.jpg" alt="" /></div>
+<script>
+(function(){var MAP={};function build(){var box=document.getElementById("__asset-preload");if(!box)return;[].forEach.call(box.querySelectorAll("img[data-asset]"),function(im){var k=im.getAttribute("data-asset"),v=im.getAttribute("src");if(v&&v!==k)MAP[k]=v;});}
+function fixOne(el){var s=el.getAttribute("src")||"";if(MAP[s])el.setAttribute("src",MAP[s]);}
+function sweep(root){if(!root||!root.querySelectorAll)return;if(root.tagName==="IMG")fixOne(root);[].forEach.call(root.querySelectorAll("img"),fixOne);}
+build();sweep(document);new MutationObserver(function(m){for(var i=0;i<m.length;i++){if(m[i].type==="attributes"&&m[i].target.tagName==="IMG")fixOne(m[i].target);for(var j=0;j<m[i].addedNodes.length;j++)sweep(m[i].addedNodes[j]);}}).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:["src"]});})();
+</script>
+<template id="__bundler_thumbnail" data-bg-color="#4F2170">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#4F2170"/><g fill="none" stroke="#E4A400" stroke-width="16"><rect x="180" y="240" width="360" height="300" rx="28"/><rect x="660" y="240" width="360" height="300" rx="28"/></g><text x="600" y="660" font-family="Arial,sans-serif" font-size="40" font-weight="700" fill="#fff" text-anchor="middle">Two brands, two strategies</text></svg>
+</template>
+<div id="hd"><div class="h1">Loyalty program <em>mapped according to the brand</em></div></div>
+<div id="cols"></div>
+<script>
+function tick(c){return '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="'+c+'" stroke-width="3.4"><polyline points="20 6 9 17 4 12"></polyline></svg>';}
+function chk(rows,c){return rows.map(r=>'<div class="chk"><div class="d" style="background:'+c+'1a">'+tick(c)+'</div><div class="t">'+r+'</div></div>').join("");}
+function phone(o){
+  return '<div class="phone"><div class="nt"></div><div class="scr">'
+   +'<div class="wah"><div class="av"><img src="'+o.dp+'" alt=""/></div>'
+   +'<div><div class="n">'+o.name+' <span style="color:#25D366">✔</span></div><div class="s">Business Account</div></div></div>'
+   +'<div class="wab">'+o.msgs.join("")+'</div>'
+   +'<div class="wain"><div class="f">Message…</div><div class="b">🎤</div></div>'
+   +'</div></div>';
+}
+const BV_PH=phone({name:"Bournvita India",dp:"dp-bournvita.png",msgs:[
+ '<div class="usr"><div><div class="shot rcpt"><img src="receipt-blinkit.jpg" alt="Blinkit bill"/></div>Bill · Blinkit ₹512.15<div class="tm">7:24 PM</div></div></div>',
+ '<div class="bot"><div>Verified ✓ <b>Bournvita 750 g · ₹299</b><div class="streak"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="free"></i></div><b>That was your 5th purchase!</b> 🎉<div class="tm">7:24 PM</div></div></div>',
+ '<div class="bot"><div>Here’s your <b>6th Bournvita pack free</b> 🥛\nSend us your address and we’ll ship a <b>500 g pack</b> to you.<div class="tm">7:25 PM</div></div></div>',
+ '<div class="usr"><div>📍 A-504, Sunteck City, Goregaon West, Mumbai 400104<div class="tm">7:26 PM</div></div></div>',
+ '<div class="bot"><div>Shipping today ✈️ <b>BV-88412</b><div class="tm">7:26 PM</div></div></div>',
+]});
+const CD_PH=phone({name:"Cadbury India",dp:"dp-cadbury.png",msgs:[
+ '<div class="bot"><div>Thanks for being part of <b>Cadbury Joy Club</b> 💜<div class="tm">7:24 PM</div></div></div>',
+ '<div class="usr"><div><div class="shot"><img src="ugc-cadbury.jpg" alt="UGC post"/></div>#DairyMilkMoment<div class="tm">7:24 PM</div></div></div>',
+ '<div class="bot"><div>Gorgeous! 💜 Verified ✓\n<div class="coupon"><div class="k">UPI CASHBACK COUPON</div><div class="v">₹50</div><div class="u">meena@upi · UTR 4471893344</div><div class="upi">UPI ⟩</div></div><div class="tm">7:25 PM</div></div></div>',
+ '<div class="bot"><div>Your link brought <b>3 more friends</b> into Joy Club · <b>₹225</b> more on the way 🎉<div class="cta">🔗 Share your link</div><div class="tm">7:25 PM</div></div></div>',
+]});
+const BV='<div class="bcol">'
+ +'<div class="top" style="background:linear-gradient(140deg,#B4591B,#8E3F12)">'
+ +'<div class="pk"><img src="dp-bournvita.png" alt=""/></div>'
+ +'<div><div class="bn">Bournvita</div><div class="go">OBJECTIVE · DRIVE REPEAT PURCHASE</div></div></div>'
+ +'<div class="in">'+BV_PH+'<div class="side">'
+ +'<div><div class="lbl">The mechanic</div><div class="mechanic" style="margin-top:5px">Upload 5 receipts on WhatsApp · <span style="color:#128C4A">the 6th pack is free</span></div></div>'
+ +'<div class="mechbig">'+[1,2,3,4,5].map(n=>'<div class="on"><b>'+n+'</b>done</div>').join("")+'<div class="free"><b>6</b>FREE</div></div>'
+ +'<div>'+chk(["OCR reads every bill · SKU, store, value","Reward paid in product, not in discount"],"#B4591B")+'</div>'
+ +'<div class="why" style="background:#FDF1E6;color:#8E3F12">A health drink is a monthly habit · so the reward buys <b>volume continuity</b>.</div>'
+ +'</div></div></div>';
+const CD='<div class="bcol" style="animation-delay:0.12s">'
+ +'<div class="top" style="background:linear-gradient(140deg,#5B2A82,#3E1560)">'
+ +'<div class="pk"><img src="dp-cadbury.png" alt=""/></div>'
+ +'<div><div class="bn">Cadbury</div><div class="go">OBJECTIVE · DRIVE PARTICIPATION</div></div></div>'
+ +'<div class="in">'+CD_PH+'<div class="side">'
+ +'<div><div class="lbl">The mechanic</div><div class="mechanic" style="margin-top:5px">Earn for UGC &amp; referrals · <span style="color:#4F2170">paid as UPI cashback</span></div></div>'
+ +'<div class="earn">'
+ +[["📸","Post UGC","₹50","#FBE4F2","#C9487E"],["🤝","Referral","₹75","#E9E2F8","#4F2170"],["⭐","Review","₹25","#F1F4F9","#0A49B7"],["🧾","Receipt","2% back","#E9E2F8","#4F2170"]]
+   .map(a=>'<div><div class="ic" style="background:'+a[3]+'">'+a[0]+'</div><div class="tx"><div class="t">'+a[1]+'</div><div class="p" style="color:'+a[4]+'">'+a[2]+'</div></div></div>').join("")
+ +'</div>'
+ +'<div>'+chk(["Cash on UPI in seconds, not points later","Posting grants content reuse rights"],"#4F2170")+'</div>'
+ +'<div class="why" style="background:#F3EAFA;color:#3E1560">Chocolate is impulse and emotion · so the reward buys <b>advocacy</b>.</div>'
+ +'</div></div></div>';
+document.getElementById("cols").innerHTML=BV+CD;
+</script>
+</body></html>

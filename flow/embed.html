@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Platform — microsite embed in 5 minutes</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="kit.css">
+</head><body>
+<div id="__asset-preload" style="display:none" aria-hidden="true"><img data-asset="../../mdlz/lite-cadbury-nav.png" src="../../mdlz/lite-cadbury-nav.png" alt="" /><img data-asset="../../mdlz/lite-fs-logo.png" src="../../mdlz/lite-fs-logo.png" alt="" /><img data-asset="../../mdlz/lite-mdlz-logo.png" src="../../mdlz/lite-mdlz-logo.png" alt="" /></div>
+<script>
+(function(){
+  var MAP={};
+  function build(){
+    var box=document.getElementById("__asset-preload"); if(!box) return;
+    [].forEach.call(box.querySelectorAll("img[data-asset]"),function(im){
+      var k=im.getAttribute("data-asset"), v=im.getAttribute("src");
+      if(v&&v!==k) MAP[k]=v;
+    });
+  }
+  function fixOne(el){
+    var s=el.getAttribute("src")||"";
+    if(MAP[s]) el.setAttribute("src",MAP[s]);
+  }
+  function sweep(root){
+    if(!root||!root.querySelectorAll) return;
+    if(root.tagName==="IMG") fixOne(root);
+    [].forEach.call(root.querySelectorAll("img"),fixOne);
+  }
+  build(); sweep(document);
+  new MutationObserver(function(muts){
+    for(var i=0;i<muts.length;i++){
+      var m=muts[i];
+      if(m.type==="attributes"&&m.target.tagName==="IMG") fixOne(m.target);
+      for(var j=0;j<m.addedNodes.length;j++) sweep(m.addedNodes[j]);
+    }
+  }).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:["src"]});
+})();
+</script>
+
+
+<template id="__bundler_thumbnail" data-bg-color="#052762">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#052762"/><g fill="none" stroke="#E4A400" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"><path d="M470 300l-90 100 90 100M730 300l90 100-90 100M650 270l-100 260"/></g><text x="600" y="700" font-family="Arial,sans-serif" font-size="42" font-weight="700" fill="#fff" text-anchor="middle">Embed in 5 minutes</text></svg>
+</template>
+<div id="topbar">
+  <img class="md" src="../../mdlz/lite-mdlz-logo.png" alt="Mondelez"/>
+  <div class="t" id="bar-title"></div>
+  <img class="fs" src="../../mdlz/lite-fs-logo.png" alt="FreeStand"/>
+</div>
+<div id="rail"></div>
+<div class="phone"><div class="scr" id="scr"></div><div class="nt"></div></div>
+<div class="browser"><div class="bh"><div class="dots"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i></div><div class="url"><span style="opacity:.55">🔒</span><span id="burl"></span></div></div><div class="bb" id="bb"></div></div>
+<div id="rc"></div>
+<div id="caption"><div class="tag" id="cap-tag"></div><div class="tt" id="cap-t"></div><div class="ss" id="cap-s"></div></div>
+<script src="kit.js"></script>
+<script>
+const QS=[["Which Cadbury do you buy most often?","Single choice"],["How often do you buy chocolate?","Single choice"],["Who do you usually buy it for?","Multi choice"],["Your pincode","Text"],["Mobile number for the sample","OTP"]];
+const SITES=[["cadbury.in / silk","Spin the wheel","Live · 4 min to embed"],["5star.in / try","Sampling form","Live · 3 min to embed"],["cadburycelebrations.in / memories","UGC upload","Live · 5 min to embed"],["bournvita.in / quiz","Quiz","Live · 4 min to embed"],["oreo.in / dunk","Spin the wheel","Live · 5 min to embed"]];
+
+const STEPS=[
+{label:"Mondelez sends questions",wide:true,url:"app.freestand.in/activations/new",cap:"Mondelez only provides the questions",meta:"Mon 10:04 · brief received",
+ screen:()=>consoleUI("Activations","New activation","Cadbury Dairy Milk Silk · Spin the wheel",
+   '<div class="two-col"><div><div class="fl">Activation type</div><div class="fchips">'+["Sampling form","Spin the wheel","UGC upload","Quiz","Referral"].map(c=>'<span class="fch'+(c==="Spin the wheel"?" on":"")+'">'+c+'</span>').join("")+'</div></div>'
+   +'<div><div class="fl">Reward</div><div class="fi">1 of 3 Silk sample packs <span class="ph" style="margin-left:auto">▾</span></div></div></div>'
+   +'<div class="fl" style="margin-top:14px">Questions — pasted from the Mondelez brief</div><div class="qs">'+QS.map((q,i)=>'<div class="q" style="animation-delay:'+(i*0.06)+'s"><b>'+(i+1)+'</b>'+q[0]+'<span class="ty">'+q[1]+'</span></div>').join("")+'</div>'
+   +'<div style="display:flex;gap:9px;margin-top:14px;align-items:center"><span class="pbtn gold">Generate embed →</span><span style="font-size:11px;color:#6B7280">Consent text, OTP and sampling logic are added automatically</span></div>',
+   ["Draft","#FDF3DC","#8a6d00"]),
+ right:()=>head("Give us the questions","Everything else is already built")
+  +data([["Mondelez provides","5 questions + the reward","n","BRIEF"],["FreeStand adds","OTP, consent, address, anti-fraud","g","AUTOMATIC"],["Format","Spin the wheel","","ANY OF 5"],["Brand site","cadbury.in / silk","","TARGET PAGE"]],"","What each side does")
+  +kpis([["5","questions"],["0","design briefs"],["0","dev tickets"]])},
+
+{label:"Script generated",wide:true,url:"app.freestand.in/activations/MDLZ-SILK-SPIN",cap:"One script tag, ready to paste",meta:"Mon 10:11 · 7 minutes after the brief",
+ screen:()=>consoleUI("Activations","MDLZ-SILK-SPIN","Cadbury Dairy Milk Silk · Spin the wheel",
+   '<div class="fl">Embed snippet — paste anywhere on the page</div>'
+   +'<div class="code"><span class="cp">Copied ✓</span><span class="c">&lt;!-- FreeStand activation --&gt;</span>\n<span class="k">&lt;script</span> <span class="k">src</span>=<span class="s">"https://cdn.freestand.in/embed.js"</span>\n  <span class="k">data-activation</span>=<span class="s">"MDLZ-SILK-SPIN"</span>\n  <span class="k">data-brand</span>=<span class="s">"cadbury"</span><span class="k">&gt;&lt;/script&gt;</span>\n<span class="k">&lt;div</span> <span class="k">id</span>=<span class="s">"freestand-activation"</span><span class="k">&gt;&lt;/div&gt;</span></div>'
+   +'<div class="two-col" style="margin-top:12px"><div class="pc"><div class="h">Works with</div><div class="lr"><span class="n">WordPress · Sitecore · AEM</span><span class="ok">NO PLUGIN</span></div><div class="lr"><span class="n">Google Tag Manager</span><span class="ok">1 TAG</span></div><div class="lr"><span class="n">Any static HTML page</span><span class="ok">PASTE</span></div></div>'
+   +'<div class="pc"><div class="h">Already inside the script</div><div class="lr"><span class="n">Mobile OTP + consent capture</span><span class="ok">ON</span></div><div class="lr"><span class="n">Address validation</span><span class="ok">ON</span></div><div class="lr"><span class="n">FreeStand pixel + attribution</span><span class="ok">ON</span></div></div></div>'
+   +'<div style="display:flex;gap:9px;margin-top:12px"><span class="pbtn">Send to website team</span><span class="pbtn ghost">Preview</span></div>',
+   ["Ready to embed","#E9FBF0","#128C4A"]),
+ right:()=>head("One tag. Any page. Any number of times.","No plugin, no redesign, no release cycle")
+  +data([["Snippet","2 lines of HTML","g","GENERATED"],["Hosting","cdn.freestand.in","","FREESTAND"],["Pixel","Included in the same script","g","AUTOMATIC"],["Handoff","Sent to website team","","MON 10:11"]],"","What ships")
+  +kpis([["2","lines of code"],["0","plugins"],["7 min","brief → script"]])},
+
+{label:"Live on cadbury.in",wide:true,url:"cadbury.in/silk/spin-and-win",cap:"Website team pastes it — live in 5 minutes",meta:"Mon 10:16 · 5 minutes to embed",
+ screen:()=>'<div class="site"><img src="../../mdlz/lite-cadbury-nav.png" style="width:100%;display:block;flex-shrink:0" alt="cadbury.in navigation"/>'
+   +'<div class="hero"><div class="cp"><div class="k">NEW · SILK HAZELNUT</div><div class="t">Spin. Win.<br/>Taste it first.</div><div class="s">Answer 5 quick questions, spin the wheel and we\'ll ship a Silk sample to your door.</div></div>'
+   +'<div class="wid"><div class="k">SPIN &amp; WIN</div><div class="t">1 of 3 Silk samples</div><div class="wheelwrap"><div class="wheel"></div><div class="ptr"></div></div>'
+   +'<div class="fi"><span class="ph">Mobile number</span><span style="margin-left:auto;font-size:10px;color:#4F2170;font-weight:700">SEND OTP</span></div><div class="pbtn">Spin the wheel</div>'
+   +'<div class="pw"><img src="../../mdlz/lite-fs-logo.png"/>POWERED BY FREESTAND</div></div></div></div>',
+ right:()=>head("Live before the meeting ends","The website team pasted two lines. That was the integration.")
+  +data([["Embedded on","cadbury.in / silk","g","LIVE"],["Time to embed","5 minutes","g","MON 10:16"],["Consumer flow","5 questions → OTP → spin → address","","SAME AS BRIEF"],["Data lands in","FreeStand → Mondelez CDP","","SAME DAY"]],"","What went live")
+  +kpis([["12 min","brief → live"],["5 min","website team"],["1","spin per mobile"]])},
+
+{label:"Any format, any page",wide:true,url:"app.freestand.in/activations",cap:"Sampling, spin, UGC, quiz — same 5 minutes",meta:"27 embeds live across 9 Mondelez sites",
+ screen:()=>consoleUI("Activations","Activations","All brands · live",
+   '<div class="two-col" style="grid-template-columns:repeat(3,1fr)"><div class="pc"><div class="h">Live embeds</div><div class="big">27</div><div class="l">across 9 Mondelez sites</div></div><div class="pc"><div class="h">Avg time to embed</div><div class="big">4.3 min</div><div class="l">by brand website teams</div></div><div class="pc"><div class="h">Responses this month</div><div class="big">318K</div><div class="l">all synced to Mondelez CDP</div></div></div>'
+   +'<div class="pc" style="margin-top:12px"><div class="h">Recently embedded</div>'+SITES.map(s=>'<div class="lr"><span class="n">'+s[0]+'</span><span class="d">'+s[1]+'</span><span class="ok">'+s[2]+'</span></div>').join("")+'</div>'
+   +'<div style="display:flex;gap:9px;margin-top:12px"><span class="pbtn gold">+ New activation</span></div>',
+   ["27 live","#E9FBF0","#128C4A"]),
+ right:()=>head("Any amount, any format","The same snippet, whatever the activity is")
+  +data([["Sampling form","5star.in / try","g","LIVE"],["Spin the wheel","cadbury.in · oreo.in","g","LIVE"],["UGC upload","cadburycelebrations.in","g","LIVE"],["Quiz","bournvita.in / quiz","g","LIVE"]],"4 formats","Formats live today")
+  +kpis([["27","embeds live"],["9","Mondelez sites"],["4.3 min","avg to embed"]])},
+];
+mountFlow({title:"Platform — microsite embed in 5 minutes",steps:STEPS});
+</script>
+</body></html>

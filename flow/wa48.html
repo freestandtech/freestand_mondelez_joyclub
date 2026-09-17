@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Platform — WhatsApp campaign live in 48 hours</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="kit.css">
+</head><body>
+<div id="__asset-preload" style="display:none" aria-hidden="true"><img data-asset="../../mdlz/lite-fs-logo.png" src="../../mdlz/lite-fs-logo.png" alt="" /><img data-asset="../../mdlz/lite-mdlz-logo.png" src="../../mdlz/lite-mdlz-logo.png" alt="" /></div>
+<script>
+(function(){
+  var MAP={};
+  function build(){
+    var box=document.getElementById("__asset-preload"); if(!box) return;
+    [].forEach.call(box.querySelectorAll("img[data-asset]"),function(im){
+      var k=im.getAttribute("data-asset"), v=im.getAttribute("src");
+      if(v&&v!==k) MAP[k]=v;
+    });
+  }
+  function fixOne(el){
+    var s=el.getAttribute("src")||"";
+    if(MAP[s]) el.setAttribute("src",MAP[s]);
+  }
+  function sweep(root){
+    if(!root||!root.querySelectorAll) return;
+    if(root.tagName==="IMG") fixOne(root);
+    [].forEach.call(root.querySelectorAll("img"),fixOne);
+  }
+  build(); sweep(document);
+  new MutationObserver(function(muts){
+    for(var i=0;i<muts.length;i++){
+      var m=muts[i];
+      if(m.type==="attributes"&&m.target.tagName==="IMG") fixOne(m.target);
+      for(var j=0;j<m.addedNodes.length;j++) sweep(m.addedNodes[j]);
+    }
+  }).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:["src"]});
+})();
+</script>
+
+
+<template id="__bundler_thumbnail" data-bg-color="#075E54">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#075E54"/><g fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"><path d="M600 200a190 190 0 11-95 355l-105 45 45-100A190 190 0 01600 200z"/><path d="M520 380h160M520 440h100"/></g><text x="600" y="720" font-family="Arial,sans-serif" font-size="42" font-weight="700" fill="#fff" text-anchor="middle">Survey live in 48 hours</text></svg>
+</template>
+<div id="topbar">
+  <img class="md" src="../../mdlz/lite-mdlz-logo.png" alt="Mondelez"/>
+  <div class="t" id="bar-title"></div>
+  <img class="fs" src="../../mdlz/lite-fs-logo.png" alt="FreeStand"/>
+</div>
+<div id="rail"></div>
+<div class="phone"><div class="scr" id="scr"></div><div class="nt"></div></div>
+<div class="browser"><div class="bh"><div class="dots"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i></div><div class="url"><span style="opacity:.55">🔒</span><span id="burl"></span></div></div><div class="bb" id="bb"></div></div>
+<div id="rc"></div>
+<div id="caption"><div class="tag" id="cap-tag"></div><div class="tt" id="cap-t"></div><div class="ss" id="cap-s"></div></div>
+<script src="kit.js"></script>
+<script>
+const MD={logo:"../../mdlz/lite-mdlz-logo.png",name:"Mondelez",sub:"online"};
+const QS=[["Which of these did you buy in the last 30 days?","Multi choice"],["Where do you usually buy chocolate?","Single choice"],["Rate Dairy Milk availability near you","1–5 scale"],["Which festival will you gift for next?","Single choice"],["Would you try a Kerala-exclusive flavour?","Yes / No"]];
+const DIST=[["Ernakulam",9840],["Trivandrum",8210],["Kozhikode",6930],["Thrissur",6120],["Kollam",4480],["Kannur",3210]];
+
+const STEPS=[
+{label:"Brief · Mon 10:00",wide:true,url:"app.freestand.in/whatsapp/new",cap:"“Survey everyone in Kerala by Wednesday”",meta:"Mon 10:04 · brief received",
+ screen:()=>consoleUI("WhatsApp","New WhatsApp campaign","Survey · Kerala · Joy Club + enriched profiles",
+   '<div class="two-col"><div><div class="fl">Audience</div><div class="fi">State <b style="margin-left:6px">= Kerala</b><span class="ph" style="margin-left:auto">+ filter</span></div>'
+   +'<div class="pc" style="margin-top:8px"><div class="h">Reachable on WhatsApp</div><div class="big">184,220</div><div class="l">of 211,904 Kerala profiles · consented</div></div></div>'
+   +'<div><div class="fl">Campaign type</div><div class="fchips">'+["Survey","Broadcast","Drip","Reorder nudge"].map(c=>'<span class="fch'+(c==="Survey"?" on":"")+'">'+c+'</span>').join("")+'</div>'
+   +'<div class="fl" style="margin-top:12px">Reward on completion</div><div class="fi">50 Joy Club points <span class="ph" style="margin-left:auto">▾</span></div></div></div>'
+   +'<div class="fl" style="margin-top:14px">Questions — pasted from the Mondelez brief</div><div class="qs">'+QS.map((q,i)=>'<div class="q" style="animation-delay:'+(i*0.06)+'s"><b>'+(i+1)+'</b>'+q[0]+'<span class="ty">'+q[1]+'</span></div>').join("")+'</div>',
+   ["Draft","#FDF3DC","#8a6d00"]),
+ right:()=>head("A last-minute ask","Monday morning: Kerala, five questions, answers by Wednesday")
+  +data([["Mondelez provides","5 questions + the state","n","BRIEF"],["Audience","184,220 Kerala profiles","g","ALREADY REACHABLE"],["Reward","50 Joy Club points","","AUTOMATIC"],["Approvals","Meta template review","","FREESTAND HANDLES"]],"","What each side does")
+  +kpis([["5","questions"],["184K","reachable"],["0","new opt-ins needed"]])},
+
+{label:"Built · Mon 16:00",wide:true,url:"app.freestand.in/whatsapp/KER-SURVEY-01/flow",cap:"Survey built in Magic Flow, templates approved",meta:"Mon 16:20 · 6 hours after the brief",
+ screen:()=>consoleUI("WhatsApp","Magic Flow","KER-SURVEY-01 · 5 questions · Malayalam + English",
+   '<div class="mf">'+[["▶","#052762","TRIGGER","Audience: Kerala · 184,220","Tue 09:00"],["💬","#075E54","GREETING","Namaskaram {first_name} — 2 minutes, 50 points","Approved"],["1","#0A49B7","QUESTION 1","Bought in the last 30 days? · multi choice","Buttons"],["2","#0A49B7","QUESTION 2","Where do you buy? · single choice","List"],["3","#0A49B7","QUESTION 3","Availability rating · 1–5","Buttons"],["4","#0A49B7","QUESTION 4","Next festival gift · single choice","List"],["5","#0A49B7","QUESTION 5","Kerala-exclusive flavour? · yes / no","Buttons"],["★","#E4A400","REWARD","+50 Joy Club points · thank you","Auto"]]
+     .map((n,i)=>(i?'<div class="ln"></div>':"")+'<div class="nd" style="animation-delay:'+(i*0.05)+'s"><div class="ic" style="background:'+n[1]+'">'+n[0]+'</div><div><div class="k">'+n[2]+'</div><div class="t">'+n[3]+'</div></div><span class="tg">'+n[4]+'</span></div>').join("")+'</div>',
+   ["Templates approved","#E9FBF0","#128C4A"]),
+ right:()=>head("Built the same afternoon","Questions become buttons and lists. Nothing is coded.")
+  +data([["Flow","8 nodes · 5 questions","g","BUILT"],["Languages","Malayalam + English","g","AUTO-TRANSLATED"],["Meta templates","5 approved","g","MON 15:40"],["Send window","Tue 09:00 – Wed 21:00","","SCHEDULED"]],"","What FreeStand did")
+  +kpis([["6 hrs","brief → built"],["8","flow nodes"],["0","code written"]])},
+
+{label:"Live · Tue 09:00",cap:"Survey live on WhatsApp within 24 hours",meta:"Tue 09:00 · first send",
+ screen:()=>wa(MD,[
+   {s:"in",t:"Namaskaram Anjali 🙏 5 quick questions, 50 Joy Club points.",tm:"09:00"},
+   {s:"in",t:"1/5 · Bought in the last 30 days?",btns:["Dairy Milk","5 Star","Oreo"],tm:"09:00"},
+   {s:"out",t:"Dairy Milk",tm:"09:02"},
+   {s:"in",t:"2/5 · Where do you usually buy chocolate?",btns:["Kirana / bakery","Supermarket","Online"],tm:"09:02"}]),
+ right:()=>head("Live in 23 hours","Buttons, not typing — 78% finish all five")
+  +data([["Q1 answer","Dairy Milk","g","DECLARED"],["Q2 answer","Kirana / bakery","g","DECLARED"],["District","Ernakulam","","FROM PROFILE"],["Language","Malayalam","n","DETECTED"]])
+  +kpis([["23 hrs","brief → live"],["78%","complete all 5"],["1m 40s","avg time"]])},
+
+{label:"Dashboard · Wed 09:00",wide:true,url:"app.freestand.in/analytics/KER-SURVEY-01",cap:"Every answer on the platform, as it lands",meta:"Wed 09:14 · 41,208 responses and counting",
+ screen:()=>consoleUI("Analytics","KER-SURVEY-01 · Live","Kerala survey · updating every 10s",
+   '<div class="two-col" style="grid-template-columns:repeat(4,1fr)"><div class="pc"><div class="h">Responses</div><div class="big">41,208</div><div class="l">22.4% of sends</div></div><div class="pc"><div class="h">Completed all 5</div><div class="big">78%</div><div class="l">32,142 full surveys</div></div><div class="pc"><div class="h">Avg time</div><div class="big">1m 40s</div><div class="l">buttons, not typing</div></div><div class="pc"><div class="h">Points issued</div><div class="big">1.6M</div><div class="l">50 per completion</div></div></div>'
+   +'<div class="two-col" style="margin-top:12px"><div class="pc"><div class="h">Responses by district</div>'+cols(DIST,9840)+'</div>'
+   +'<div class="pc"><div class="h">Q2 · Where do you usually buy?</div>'+hbars([["Kirana / bakery",54],["Supermarket",31],["Online",15]],54)+'<div class="h" style="margin-top:12px">Q5 · Kerala-exclusive flavour?</div>'+hbars([["Yes",71],["No",29]],71)+'</div></div>',
+   ["Live · 12s ago","#E9FBF0","#128C4A"]),
+ right:()=>head("Wednesday morning: the answers","Visualised on the platform, no analyst in the loop")
+  +data([["Responses","41,208 · 78% complete","g","LIVE"],["Cuts available","District · brand · age · tier","","ON PLATFORM"],["Export","CSV · dashboard link","g","ONE CLICK"],["Refresh","Every 10 seconds","","AUTOMATIC"]],"","What Mondelez sees")
+  +kpis([["41K","responses"],["6","districts"],["48 hrs","brief → data"]])},
+
+{label:"In CDP · Wed 17:42",wide:true,url:"app.freestand.in/destinations",cap:"Data in the Mondelez CDP the same day",meta:"Wed 17:42 · pixel + audiences synced",
+ screen:()=>consoleUI("Destinations","Destinations","KER-SURVEY-01 · sync status",
+   '<div class="pc"><div class="h">Mondelez CDP</div><div class="lr"><span class="n">41,208 survey records · 19 mapped fields</span><span class="d">Wed 17:42</span><span class="ok">DELIVERED</span></div><div class="lr"><span class="n">Consent + timestamp per record</span><span class="d">Same payload</span><span class="ok">INCLUDED</span></div><div class="lr"><span class="n">Nightly delta sync</span><span class="d">23:00 IST</span><span class="ok">ON</span></div></div>'
+   +'<div class="two-col" style="margin-top:12px"><div class="pc"><div class="h">FreeStand pixel</div><div class="lr"><span class="n">cadbury.in · 5star.in · oreo.in + 6</span><span class="ok">9 SITES</span></div><div class="lr"><span class="n">Survey respondents seen on site</span><span class="d">Last 24h</span><span class="wt">6,318</span></div><div class="lr"><span class="n">Events this month</span><span class="wt">2.1M</span></div></div>'
+   +'<div class="pc"><div class="h">Audience tracking</div><div class="lr"><span class="n">Kerala · said Yes to exclusive flavour</span><span class="wt">29,257</span></div><div class="lr"><span class="n">→ Meta Ads · Google Ads</span><span class="d">Custom audience</span><span class="ok">SYNCED</span></div><div class="lr"><span class="n">→ Joy Club · next drop early access</span><span class="ok">TAGGED</span></div></div></div>',
+   ["All synced","#E9FBF0","#128C4A"]),
+ right:()=>head("Same day, in the CDP","Answers, consent, pixel events and audiences — delivered, not exported")
+  +data([["Mondelez CDP","41,208 records · 19 fields","g","WED 17:42"],["Pixel","9 sites · 2.1M events / mo","g","TRACKING"],["Audience","29,257 → Meta, Google","g","SYNCED"],["Next","Kerala-exclusive drop to the Yes cohort","n","QUEUED"]],"","Where the data went")
+  +kpis([["<8 hrs","dashboard → CDP"],["19","fields mapped"],["2","ad platforms"]])},
+];
+mountFlow({title:"Platform — WhatsApp campaign live in 48 hours",steps:STEPS});
+</script>
+</body></html>

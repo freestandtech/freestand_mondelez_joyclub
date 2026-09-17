@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Limited drops — Biscoff × Minimon</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="kit.css">
+</head><body>
+<div id="__asset-preload" style="display:none" aria-hidden="true"><img data-asset="../../mdlz/flow-biscoff-avatar.png" src="../../mdlz/flow-biscoff-avatar.png" alt="" /><img data-asset="../../mdlz/flow-biscoff-banner.png" src="../../mdlz/flow-biscoff-banner.png" alt="" /><img data-asset="../../mdlz/flow-blinkit-biscoff.jpg" src="../../mdlz/flow-blinkit-biscoff.jpg" alt="" /><img data-asset="../../mdlz/flow-bournvita-ad.jpg" src="../../mdlz/flow-bournvita-ad.jpg" alt="" /><img data-asset="../../mdlz/lite-fs-logo.png" src="../../mdlz/lite-fs-logo.png" alt="" /><img data-asset="../../mdlz/lite-mdlz-logo.png" src="../../mdlz/lite-mdlz-logo.png" alt="" /></div>
+<script>
+(function(){
+  var MAP={};
+  function build(){
+    var box=document.getElementById("__asset-preload"); if(!box) return;
+    [].forEach.call(box.querySelectorAll("img[data-asset]"),function(im){
+      var k=im.getAttribute("data-asset"), v=im.getAttribute("src");
+      if(v&&v!==k) MAP[k]=v;
+    });
+  }
+  function fixOne(el){
+    var s=el.getAttribute("src")||"";
+    if(MAP[s]) el.setAttribute("src",MAP[s]);
+  }
+  function sweep(root){
+    if(!root||!root.querySelectorAll) return;
+    if(root.tagName==="IMG") fixOne(root);
+    [].forEach.call(root.querySelectorAll("img"),fixOne);
+  }
+  build(); sweep(document);
+  new MutationObserver(function(muts){
+    for(var i=0;i<muts.length;i++){
+      var m=muts[i];
+      if(m.type==="attributes"&&m.target.tagName==="IMG") fixOne(m.target);
+      for(var j=0;j<m.addedNodes.length;j++) sweep(m.addedNodes[j]);
+    }
+  }).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:["src"]});
+})();
+</script>
+
+
+<template id="__bundler_thumbnail" data-bg-color="#B32017">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#B32017"/><g fill="none" stroke="#F3D9A6" stroke-width="24" stroke-linecap="round"><rect x="470" y="230" width="260" height="200" rx="26"/><path d="M600 230v-70M540 500l60 60 60-60M600 560v90"/></g><text x="600" y="720" font-family="Arial,sans-serif" font-size="42" font-weight="700" fill="#fff" text-anchor="middle">Limited drops</text></svg>
+</template>
+<div id="topbar">
+  <img class="md" src="../../mdlz/lite-mdlz-logo.png" alt="Mondelez"/>
+  <div class="t" id="bar-title"></div>
+  <img class="fs" src="../../mdlz/lite-fs-logo.png" alt="FreeStand"/>
+</div>
+<div id="rail"></div>
+<div class="phone"><div class="scr" id="scr"></div><div class="nt"></div></div>
+<div id="rc"></div>
+<div id="caption"><div class="tag" id="cap-tag"></div><div class="tt" id="cap-t"></div><div class="ss" id="cap-s"></div></div>
+<script src="kit.js"></script>
+<script>
+const BR={logo:"../../mdlz/flow-biscoff-avatar.png",name:"Lotus Biscoff",sub:"online",bg:"#8E1A13"};
+const RC=[["12 Sep","Biscoff Sandwich 8-pack","₹428"],["09 Sep","Biscoff Original 250g","₹312"],["05 Sep","Biscoff Spread + Minis","₹549"],["31 Aug","Biscoff Original 125g","₹276"]];
+
+const STEPS=[
+{label:"Banner on Blinkit",cap:"Drop advertised on the order screen",meta:"Blinkit · post-checkout banner",
+ screen:()=>'<div class="scroll"><img class="tall" src="../../mdlz/flow-blinkit-biscoff.jpg" alt="Blinkit order screen with Biscoff drop banner"/>'
+  +'<div class="tap" style="left:92px;top:207px;width:60px;height:33px"></div>'
+  +'<div class="taplb" style="left:62px;top:248px">Tap → opens WhatsApp</div></div>',
+ right:()=>head("Bought against a basket","The order screen is the longest-dwell screen in quick commerce")
+  +data([["Placement","Blinkit order tracking","","AD SERVER"],["Targeting","Basket contains biscuits","n","INTENT"],["Offer","Biscoff × Minimon · 10,000 packs","","CAMPAIGN"],["Destination","Brand WhatsApp","g","OWNED"]])
+  +kpis([["12 min","dwell"],["4.1%","CTR"],["1 tap","to WhatsApp"]])},
+
+{label:"WhatsApp",cap:"Waitlist opt-in with consent",meta:"Marketplace click → owned contact",
+ screen:()=>wa(BR,[
+   {s:"out",t:"I want the Biscoff × Minimon drop",tm:"18:04"},
+   {s:"in",t:"You found it 🧸\n10,000 packs. Same Biscoff taste. Cuter together.",tm:"18:04"},
+   {s:"in",t:"Shall I add you to the waitlist?",note:"We'll store your name, mobile and Blinkit order ref. Reply STOP to opt out.",btns:["✅ Add me to the waitlist","How does it work?"],tm:"18:04"},
+   {s:"out",t:"✅ Add me to the waitlist",tm:"18:05"}],{biz:true}),
+ right:()=>head("An anonymous click becomes a contact","The marketplace kept the customer. This thread does not.")
+  +data([["Name","Rhea Menon","g","DECLARED"],["Mobile","+91 90048 21770","g","WA VERIFIED"],["Order reference","BLK-4471209","","PARTNER"],["Consent","Storage + messaging","g","LOGGED"]])
+  +meter(34,"PROFILE BUILT")},
+
+{label:"Waitlist",cap:"On the waitlist — with a way to jump it",meta:"Position 4,217 of 10,000",
+ screen:()=>'<div class="apph" style="padding-top:44px"><img class="lg" src="../../mdlz/flow-biscoff-banner.png" style="height:21px"/><div class="r" style="background:#FCE8E6;color:#B32017">WAITLIST</div></div>'
+  +'<div class="appb"><div class="hero" style="background:linear-gradient(140deg,#B32017,#8E1A13)"><div class="k">BISCOFF × MINIMON</div><div class="v">You\'re #4,217</div><div class="p">10,000 packs · ships 04 Oct</div><div class="prog"><i style="width:42%"></i></div></div>'
+  +'<div class="jc-row" style="margin-top:11px;animation-delay:0.1s"><div class="th" style="background:#FCE8E6">★</div><div><div class="t">Guarantee your pack</div><div class="s">Upload 5 Biscoff receipts</div></div><div class="jc-pill prog">0 / 5</div></div>'
+  +'<div class="jc-row" style="animation-delay:0.18s"><div class="th">🧺</div><div><div class="t">Qualifying purchase</div><div class="s">Any Biscoff SKU on Blinkit</div></div></div>'
+  +'<div class="jc-row" style="animation-delay:0.26s"><div class="th">⏱</div><div><div class="t">Window closes</div><div class="s">28 Sep 2026</div></div></div></div>',
+ right:()=>head("Scarcity instead of discount","The waitlist is the offer. Qualifying is the ask.")
+  +data([["Waitlist ID","BX-4217","","ASSIGNED"],["Qualification","5 Biscoff receipts","n","TASK SET"],["Window","12 Sep – 28 Sep","","CAMPAIGN"]])
+  +kpis([["10,000","packs"],["5","receipts to qualify"],["₹0","discount given"]])},
+
+{label:"5 receipts",cap:"Receipts uploaded and read automatically",meta:"Repeat purchase proven · basket data captured",
+ screen:()=>wa(BR,[
+   {s:"in",t:"Upload your Blinkit receipts here — we read them automatically.",tm:"21:12"},
+   {s:"out",t:"Sent 5 receipts",tm:"21:19",extra:'<div class="slots" style="grid-template-columns:repeat(5,1fr)">'+[0,1,2,3,4].map(i=>'<div class="slot f" style="animation-delay:'+(i*0.08)+'s">✓</div>').join("")+'</div>'},
+   {s:"in",t:"All 5 verified ✓\n₹2,205 across 5 orders in 19 days.\nYour pack is guaranteed.",btns:["See my allocation"],tm:"21:19"}]),
+ right:()=>head("Five receipts, five data points","Each upload is a purchase proof and a basket record")
+  +data([["Verified spend","₹2,205 · 5 orders","g","RECEIPT OCR"],["Repeat SKU","Biscoff Sandwich 8-pack","","RECEIPT OCR"],["Cadence","5 orders in 19 days","n","DERIVED"],["Pincode","560095 · Koramangala","g","DELIVERY"]],"4 of 19 fields")
+  +meter(68,"PROFILE BUILT")},
+
+{label:"Drop unlocked",cap:"Allocation confirmed — pack reserved",meta:"Off the waitlist · ships 04 Oct",
+ screen:()=>joy('<div class="jc-h1">Allocation secured</div><div class="jc-sub">Biscoff × Minimon limited edition</div>'
+  +'<div class="pts" style="background:linear-gradient(135deg,#1E7A38,#0F5B27)"><div class="r1"><span>PACK 3,884 / 10,000</span><span class="nx">SHIPS 04 OCT</span></div><div class="big">450 pts</div><div class="bar"><i style="width:100%"></i></div><div class="lbl">Earned from 5 qualifying receipts</div></div>'
+  +'<div class="jc-sec">Your drop</div>'
+  +'<div class="jc-row" style="animation-delay:0.08s"><div class="th">🧸</div><div><div class="t">Minimon plush + 4 packs</div><div class="s">Limited edition collectible</div></div><div class="jc-pill ok">CONFIRMED</div></div>'
+  +'<div class="jc-row" style="animation-delay:0.16s"><div class="th">📍</div><div><div class="t">560095 · Koramangala</div><div class="s">From your Blinkit receipt</div></div><div class="jc-pill new">VERIFIED</div></div>','Rewards','JC-77219 · Joy Starter'),
+ right:()=>head("A collector, now on file","One collectible bought five orders and a full profile")
+  +data([["Allocation","Pack 3,884 of 10,000","g","CONFIRMED"],["Address","560095 · Koramangala","g","FROM RECEIPT"],["Joy Club","JC-77219 · 450 pts","g","LINKED"],["Cohort","Heavy sweet-biscuit buyer","n","DERIVED"]])
+  +meter(84,"PROFILE BUILT")},
+
+{label:"Next-brand ads",cap:"Profile handed to the next Mondelez brand",meta:"Gems · Bournvita",
+ screen:()=>'<div class="scroll"><img class="tall" src="../../mdlz/flow-bournvita-ad.jpg" alt="Bournvita sponsored Instagram ad"/></div>',
+ right:()=>head("Same person, sold differently","A biscuit collector becomes a Gems and Bournvita prospect")
+  +'<div class="adrow"><div class="ad"><div class="b" style="color:#E23A2E">CADBURY GEMS</div><div class="c">Impulse creative — the same collectible instinct.</div></div>'
+  +'<div class="ad"><div class="b" style="color:#4A2A82">BOURNVITA</div><div class="c">Not a sale, a case: stronger bones, sharper mind, immunity. Convince first, sell second.</div></div></div>'
+  +data([["Cohort passed","Heavy biscuit · Bengaluru","n","DERIVED"],["Channel","WhatsApp + quick commerce","","OBSERVED"],["Consent scope","Cross-brand messaging","g","ALREADY GIVEN"]])
+  +kpis([["3","brands activated"],["1","acquisition cost"],["2.4×","cross-brand CTR"]])},
+];
+mountFlow({title:"Limited drops — Biscoff × Minimon",steps:STEPS});
+</script>
+</body></html>

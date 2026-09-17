@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Mondelez Joy Club · Loyalty Program</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,600;1,700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}html,body{margin:0;padding:0;width:1280px;height:832px;overflow:hidden;font-family:Poppins,sans-serif;background:#fff;color:#16121c}
+a{color:#4F2170}a:hover{color:#E4A400}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes popIn{from{opacity:0;transform:scale(0.85)}to{opacity:1;transform:scale(1)}}
+@keyframes sheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes scanline{0%{top:12%}50%{top:82%}100%{top:12%}}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+/* ── right column ── */
+#rcol{position:absolute;left:520px;right:36px;top:40px;bottom:76px;display:flex;flex-direction:column;gap:13px;min-height:0}
+.heading{font-size:29px;font-weight:600;line-height:1.2;letter-spacing:-0.3px;flex-shrink:0}
+.sub{font-weight:300;font-size:15px;line-height:1.55;color:#5a5064;flex-shrink:0}
+.note{display:flex;flex-direction:column;gap:8px;flex-shrink:0}
+.note .n{display:flex;gap:11px;align-items:flex-start;font-size:13.5px;color:#332b3c;line-height:1.5}
+.note .b{width:22px;height:22px;border-radius:50%;background:#4F2170;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.extra{flex:1;min-height:0;overflow:auto;padding-right:4px}
+.card{background:#fff;border:1px solid #E9E2F2;border-radius:14px}
+.hdr{font-size:10.5px;font-weight:700;color:#4F2170;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:9px}
+.chip{padding:6px 11px;border-radius:6px;font-size:11px;font-weight:500;display:inline-block;margin:0 6px 6px 0}
+.logos{position:absolute;left:522px;bottom:30px;display:flex;align-items:center;gap:22px}
+.logos img.fs{height:26px}.logos img.md{height:32px}
+/* ── phone ── */
+.phone{position:absolute;left:44px;top:30px;width:424px;height:772px;border-radius:52px;background:#111;box-shadow:0 0 0 2px #2b2b2b,0 22px 50px rgba(30,15,60,0.35);padding:12px}
+.scr{position:relative;width:100%;height:100%;border-radius:42px;background:#F5F4F7;overflow:hidden;display:flex;flex-direction:column}
+.notch{position:absolute;left:50%;top:10px;transform:translateX(-50%);width:104px;height:24px;border-radius:99px;background:#111;z-index:20}
+.app-top{background:linear-gradient(165deg,#54237A,#421B60);padding:22px 20px 12px;display:flex;align-items:flex-start;flex-shrink:0}
+.app-top .md{height:30px;background:#fff;border-radius:7px;padding:3px 5px}
+.app-top .jc{margin-left:auto;text-align:right}
+.app-top .jc .w{font-style:italic;font-weight:700;font-size:22px;color:#fff;line-height:1}
+.app-top .jc .w b{color:#F2B123;font-style:italic}
+.app-top .jc .u{font-size:8px;color:rgba(255,255,255,0.8);margin-top:5px;letter-spacing:1.6px;font-weight:700}
+.app-body{flex:1;overflow-y:auto;padding:0 18px 14px;background:#F6F4F9}
+.hero{margin:0 -18px;padding:14px 20px 66px;background:linear-gradient(165deg,#421B60,#5B2A82);color:#fff;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-40px;top:-30px;width:170px;height:170px;border-radius:999px;background:rgba(255,255,255,0.06)}
+.hero .g1{font-size:14.5px;font-style:italic;opacity:0.92}
+.hero .g2{font-size:26px;font-weight:800;letter-spacing:-0.5px;margin-top:1px}
+.hero .g3{font-size:12px;opacity:0.82;margin-top:3px}
+.app-body>*:first-child:not(.hero){margin-top:16px}
+.app-body::-webkit-scrollbar{width:0}
+.sec{font-size:10.5px;font-weight:700;letter-spacing:1.4px;color:#9c94a8;text-transform:uppercase;margin:20px 0 9px}
+.h1{font-size:23px;font-weight:700;letter-spacing:-0.4px;margin:2px 0 0}
+.welcome{font-size:13px;color:#6d6478}
+.ptscard{background:linear-gradient(135deg,#5C2B85,#6B3595 60%,#7A41A6);border-radius:20px;padding:16px 18px 15px;color:#fff;margin-top:-54px;position:relative;box-shadow:0 14px 30px rgba(40,16,70,0.3)}
+.ptscard .r1{display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:800;letter-spacing:1.1px}
+.ptscard .r1 .crown{color:#F2B123;margin-right:5px}
+.ptscard .r1 .nx{opacity:0.82;font-weight:700}
+.ptscard .big{font-size:34px;font-weight:800;margin-top:6px;letter-spacing:-0.8px}
+.ptscard .bar{height:7px;border-radius:4px;background:rgba(255,255,255,0.25);margin-top:12px;overflow:hidden}
+.ptscard .bar i{display:block;height:100%;background:#E8A317;border-radius:4px;transition:width 0.5s}
+.ptscard .lbl{font-size:11px;opacity:0.85;margin-top:8px}
+.row{background:#fff;border-radius:14px;padding:11px 13px;display:flex;align-items:center;gap:12px;margin-bottom:10px;box-shadow:0 1px 2px rgba(30,15,60,0.05)}
+.row img.th{width:56px;height:56px;border-radius:10px;object-fit:cover;flex-shrink:0;background:#EDE7F4}
+.row .t{font-size:14px;font-weight:600;line-height:1.25}
+.row .s{font-size:11px;color:#8b8394;margin-top:3px}
+.pill{font-size:10.5px;font-weight:600;border-radius:999px;padding:6px 12px;flex-shrink:0;margin-left:auto}
+.pill.ok{background:#E6F6EA;color:#1E7A38}.pill.prog{background:#FDF0D8;color:#96670A}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.act{background:#fff;border:none;border-radius:16px;padding:11px 12px;text-align:left;font-family:inherit;cursor:pointer;box-shadow:0 2px 6px rgba(30,15,60,0.06);display:flex;flex-direction:row;align-items:center;gap:10px;transition:transform 0.12s,box-shadow 0.12s}
+.act .ic{width:32px;height:32px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.act .tx{display:flex;flex-direction:column;gap:2px;min-width:0}
+.act{position:relative;overflow:hidden}
+.act:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(79,33,112,0.28);outline:2px solid #4F2170}
+.act::after{content:"Click to participate";position:absolute;inset:0;background:rgba(79,33,112,0.94);color:#fff;font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.15s;letter-spacing:0.2px}
+.act:hover::after{opacity:1}
+.act.done:hover::after{content:"Earned ✓";background:rgba(30,122,56,0.94)}
+.act .t{font-size:13px;font-weight:600;line-height:1.3}
+.act .p{font-size:11.5px;font-weight:700;color:#4F2170}
+.act.full{grid-column:1 / -1;flex-direction:row;align-items:center;background:#EFE6F8}
+.act.full .ic{margin-bottom:0}
+.act.full .tx{flex:1}
+.sec{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:#4F2170;text-transform:uppercase;margin:18px 0 9px}
+.act.done{background:#F2FBF4;box-shadow:0 0 0 1.5px #9AD8AC inset}
+.act.done .p{color:#1E7A38}
+.tabbar{display:flex;background:#fff;border-top:1px solid #EDE9F2;padding:8px 6px 12px;flex-shrink:0}
+.tb{flex:1;border:none;background:transparent;font-family:inherit;display:flex;flex-direction:column;align-items:center;gap:4px;padding:7px 0;cursor:pointer;color:#8b8394;font-size:10px;font-weight:600;border-radius:14px}
+.tb.on{background:#4F2170;color:#fff}
+.tb svg{width:20px;height:20px;stroke-width:1.8;fill:none;stroke:currentColor}
+/* sheets */
+.ovl{position:absolute;inset:0;background:rgba(22,12,34,0.5);z-index:30;display:flex;align-items:flex-end}
+.sheet{width:100%;max-height:88%;background:#fff;border-radius:22px 22px 42px 42px;padding:16px 18px 22px;animation:sheetUp 0.28s cubic-bezier(.22,1,.36,1);overflow-y:auto}
+.sheet::-webkit-scrollbar{width:0}
+.sh-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.sh-head .t{font-size:16px;font-weight:700;flex:1;line-height:1.25}
+.sh-head .x{width:28px;height:28px;border-radius:999px;background:#F1EDF6;border:none;font-size:15px;color:#6d6478;cursor:pointer;font-family:inherit;flex-shrink:0}
+.sh-p{font-size:12.5px;color:#6d6478;line-height:1.5;margin-bottom:12px}
+.btn{width:100%;border:none;border-radius:13px;background:#4F2170;color:#fff;font-family:inherit;font-size:14px;font-weight:600;padding:14px;cursor:pointer;margin-top:12px}
+.btn.gold{background:#E8A317;color:#2E1145}
+.btn.ghost{background:#F1EDF6;color:#4F2170}
+.btn:disabled{opacity:0.45;cursor:not-allowed}
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.gal .g{position:relative;border-radius:12px;overflow:hidden;cursor:pointer;border:2.5px solid transparent}
+.gal .g.sel{border-color:#4F2170}
+.gal .g img{width:100%;height:118px;object-fit:cover;display:block}
+.gal .g .ck{position:absolute;right:6px;top:6px;width:22px;height:22px;border-radius:999px;background:#4F2170;color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;font-weight:700}
+.ta{width:100%;border:1.5px solid #E4DBEE;border-radius:12px;padding:11px 12px;font-family:inherit;font-size:12.5px;line-height:1.5;resize:none;color:#16121c}
+.ta:focus{outline:none;border-color:#4F2170}
+.stars{display:flex;gap:6px;margin:4px 0 12px}
+.stars button{border:none;background:transparent;font-size:26px;cursor:pointer;padding:0;line-height:1;color:#DCD4E6}
+.stars button.on{color:#E8A317}
+.chk-list{display:flex;flex-direction:column;gap:8px;margin:4px 0}
+.chk{display:flex;align-items:center;gap:10px;font-size:12.5px;padding:10px 12px;border-radius:11px;background:#F8F6FB;border:1px solid #EDE7F4}
+.chk .ic{width:20px;height:20px;border-radius:999px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;background:#CFC7DB}
+.chk.ok .ic{background:#27AE60}
+.chk.ok{background:#F2FBF4;border-color:#C6E9D1}
+.spin{width:18px;height:18px;border-radius:999px;border:2.5px solid #E4DBEE;border-top-color:#4F2170;animation:spin 0.8s linear infinite;flex-shrink:0}
+.win{text-align:center;padding:10px 0 2px}
+.win .em{font-size:40px}
+.win .t{font-size:18px;font-weight:700;margin-top:6px}
+.win .p{display:inline-block;margin-top:8px;background:#FDF3DC;color:#96670A;font-size:15px;font-weight:800;border-radius:999px;padding:7px 18px}
+.win .s{font-size:12px;color:#6d6478;margin-top:8px;line-height:1.5}
+/* camera */
+.cam{position:relative;height:280px;border-radius:16px;background:#12101a;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.cam .brk{position:absolute;width:32px;height:32px;border-color:#E8A317}
+.cam .receipt{width:170px;background:#fff;border-radius:4px;padding:12px 12px;font-family:ui-monospace,monospace;font-size:8.5px;line-height:1.7;color:#333;transform:rotate(-1.5deg);box-shadow:0 8px 20px rgba(0,0,0,0.4)}
+.cam .receipt .c{text-align:center;font-weight:700;font-size:9.5px}
+.cam .receipt .l{display:flex;justify-content:space-between}
+.cam .scan{position:absolute;left:8%;right:8%;height:3px;border-radius:2px;background:linear-gradient(90deg,transparent,#E8A317,transparent);animation:scanline 2.2s ease-in-out infinite}
+.shutter{width:58px;height:58px;border-radius:999px;background:#fff;border:4px solid #4F2170;margin:14px auto 0;cursor:pointer;display:block}
+.ocr{font-family:ui-monospace,monospace;font-size:11px;background:#F8F6FB;border:1px solid #EDE7F4;border-radius:11px;padding:11px 12px;line-height:1.8}
+.ocr b{color:#4F2170}
+.share{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-top:4px}
+.share button{border:1px solid #E4DBEE;background:#fff;border-radius:13px;padding:13px 6px;font-family:inherit;font-size:11px;font-weight:600;color:#332b3c;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px}
+.share button:hover{border-color:#4F2170;color:#4F2170}
+.share button .e{font-size:20px}
+.code{font-family:ui-monospace,monospace;font-size:16px;font-weight:700;letter-spacing:2px;color:#4F2170;background:#F5EFFA;border:1.5px dashed #C9B6DC;border-radius:12px;padding:13px;text-align:center}
+.flav{display:flex;gap:10px;align-items:center;padding:10px;border:2px solid #EDE7F4;border-radius:13px;margin-bottom:9px;cursor:pointer;background:#fff}
+.flav.sel{border-color:#4F2170;background:#FBF8FD}
+.flav img{width:52px;height:52px;border-radius:9px;object-fit:cover;flex-shrink:0}
+.flav .t{font-size:13px;font-weight:600}.flav .s{font-size:10.5px;color:#8b8394;margin-top:2px}
+.fbtags{display:flex;flex-wrap:wrap;gap:7px;margin-top:4px}
+.fbtags button{border:1.5px solid #E4DBEE;background:#fff;border-radius:999px;padding:7px 13px;font-family:inherit;font-size:11.5px;font-weight:600;color:#5a5064;cursor:pointer}
+.fbtags button.on{border-color:#4F2170;background:#F5EFFA;color:#4F2170}
+.toast{position:absolute;left:50%;bottom:96px;transform:translateX(-50%);background:#241c38;color:#fff;font-size:11.5px;font-weight:600;border-radius:999px;padding:10px 18px;animation:fadeInUp 0.3s both;white-space:nowrap;z-index:40;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+.hintp{position:absolute;left:26px;right:26px;top:250px;background:#fff;border-radius:18px;box-shadow:0 22px 55px rgba(30,15,60,0.4);padding:20px 18px;text-align:center;z-index:25;animation:fadeInUp 0.4s both}
+/* shop / rewards / recipes / profile */
+.banner{background:linear-gradient(135deg,#3F1A5E,#5B2A82);border-radius:18px;padding:18px 20px;color:#fff}
+.banner .k{font-size:10.5px;font-weight:700;letter-spacing:1.3px;color:#E8A317}
+.banner .t{font-size:19px;font-weight:700;margin-top:6px;line-height:1.25}
+.banner .s{font-size:12px;opacity:0.85;margin-top:6px;line-height:1.5}
+.buy{background:#4F2170;color:#fff;border:none;border-radius:999px;padding:9px 20px;font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;flex-shrink:0;margin-left:auto}
+.buy.got{background:#27AE60}
+.rw{background:#fff;border-radius:14px;padding:14px;display:flex;align-items:center;gap:10px;margin-bottom:10px;box-shadow:0 1px 2px rgba(30,15,60,0.05)}
+.rw .t{font-size:14px;font-weight:600}.rw .s{font-size:11px;color:#8b8394;margin-top:3px}
+.rw .c{margin-left:auto;font-size:13px;font-weight:700;color:#4F2170;flex-shrink:0;text-align:right}
+.rw button{margin-left:auto;border:1.5px solid #4F2170;background:#fff;color:#4F2170;border-radius:999px;padding:8px 15px;font-family:inherit;font-size:11.5px;font-weight:700;cursor:pointer;flex-shrink:0}
+.rw button:disabled{opacity:0.38;cursor:not-allowed}
+.rw button.got{background:#27AE60;border-color:#27AE60;color:#fff}
+.pf{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgba(30,15,60,0.05)}
+.pf .f{padding:12px 14px;border-bottom:1px solid #F1EDF6}
+.pf .f:last-child{border-bottom:none}
+.pf .k{font-size:10.5px;color:#8b8394}
+.pf .v{font-size:14px;font-weight:600;margin-top:2px}
+.dang{color:#C0392B}
+</style></head><body>
+<div id="__asset-preload" style="display:none" aria-hidden="true"><img data-asset="../../mdlz/lite-fs-logo.png" src="../../mdlz/lite-fs-logo.png" alt="" /><img data-asset="../../mdlz/lite-mdlz-logo.png" src="../../mdlz/lite-mdlz-logo.png" alt="" /><img data-asset="../../mdlz/mini-prod-dairymilk.png" src="../../mdlz/mini-prod-dairymilk.png" alt="" /><img data-asset="../../mdlz/opt/gift-birthday.jpg" src="../../mdlz/opt/gift-birthday.jpg" alt="" /><img data-asset="../../mdlz/opt/prod-biscoff.jpg" src="../../mdlz/opt/prod-biscoff.jpg" alt="" /><img data-asset="../../mdlz/opt/prod-twirl.jpg" src="../../mdlz/opt/prod-twirl.jpg" alt="" /><img data-asset="../../mdlz/opt/recipe-tiffin.jpg" src="../../mdlz/opt/recipe-tiffin.jpg" alt="" /><img data-asset="../../mdlz/opt/srk-ad.jpg" src="../../mdlz/opt/srk-ad.jpg" alt="" /><img data-asset="../../mdlz/opt/ugc-1.jpg" src="../../mdlz/opt/ugc-1.jpg" alt="" /><img data-asset="../../mdlz/opt/ugc-2.jpg" src="../../mdlz/opt/ugc-2.jpg" alt="" /></div>
+<script>
+(function(){
+  var MAP={};
+  function build(){
+    var box=document.getElementById("__asset-preload"); if(!box) return;
+    [].forEach.call(box.querySelectorAll("img[data-asset]"),function(im){
+      var k=im.getAttribute("data-asset"), v=im.getAttribute("src");
+      if(v&&v!==k) MAP[k]=v;
+    });
+  }
+  function fixOne(el){
+    var s=el.getAttribute("src")||"";
+    if(MAP[s]) el.setAttribute("src",MAP[s]);
+  }
+  function sweep(root){
+    if(!root||!root.querySelectorAll) return;
+    if(root.tagName==="IMG") fixOne(root);
+    [].forEach.call(root.querySelectorAll("img"),fixOne);
+  }
+  build(); sweep(document);
+  new MutationObserver(function(muts){
+    for(var i=0;i<muts.length;i++){
+      var m=muts[i];
+      if(m.type==="attributes"&&m.target.tagName==="IMG") fixOne(m.target);
+      for(var j=0;j<m.addedNodes.length;j++) sweep(m.addedNodes[j]);
+    }
+  }).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:["src"]});
+})();
+</script>
+
+
+
+<template id="__bundler_thumbnail" data-bg-color="#4F2170">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#4F2170"/><g transform="translate(600 360) scale(14)" fill="none" stroke="#E4A400" stroke-width="1.6" stroke-linecap="round"><path transform="translate(-12 -12)" d="M4 9h16v11H4zM4 9l8-5 8 5"/></g><text x="600" y="600" font-family="Arial,sans-serif" font-size="46" font-weight="700" fill="#fff" text-anchor="middle">Joy Club</text><text x="600" y="660" font-family="Arial,sans-serif" font-size="22" letter-spacing="5" fill="#fff" opacity="0.6" text-anchor="middle">MONDELEZ × FREESTAND</text></svg>
+</template>
+
+<div id="rcol">
+<div class="heading" id="head"></div>
+<div class="sub" id="sub"></div>
+<div class="note" id="note"></div>
+<div class="extra" id="extra"></div>
+</div>
+<div class="logos"><img class="fs" src="../../mdlz/lite-fs-logo.png" alt="FreeStand"/><img class="md" src="../../mdlz/lite-mdlz-logo.png" alt="Mondelez"/></div>
+<div class="phone"><div class="notch"></div><div class="scr" id="scr">
+  <div class="app-top">
+    <img class="md" src="../../mdlz/lite-mdlz-logo.png" alt="Mondelez"/>
+    <div class="jc"><div class="w">Joy <b>Club</b></div><div class="u">DISCOVER · EARN · BE REWARDED</div></div>
+  </div>
+  <div class="app-body" id="body"></div>
+  <div class="tabbar" id="tabs"></div>
+  <div class="hintp" id="hint"><div style="font-size:24px">👆</div>
+    <div style="font-size:15px;font-weight:700;margin-top:6px">This app is live</div>
+    <div style="font-size:11.5px;color:#6d6478;line-height:1.55;margin-top:6px">Tap any <b>Participate &amp; earn</b> activity · post UGC, write an Amazon review, refer a friend, scan a receipt or claim a new flavour. Each one runs its real flow and credits points.</div>
+    <div onclick="document.getElementById('hint').style.display='none'" style="margin-top:14px;background:#4F2170;color:#fff;border-radius:11px;padding:11px 20px;font-size:12.5px;font-weight:600;display:inline-block;cursor:pointer">Got it · let me try</div></div>
+</div></div>
+<script>
+/* ─── state ─── */
+const BASE=1625, NEXT=2250;
+const ACTS=[
+  {id:"ugc",    t:"Post UGC",                        p:250, tag:"+250 pts"},
+  {id:"review", t:"Give feedback on Amazon",         p:150, tag:"+150 pts"},
+  {id:"refer",  t:"Refer a friend",                  p:200, tag:"+200 pts"},
+  {id:"receipt",t:"Upload receipt",                  p:240, tag:"+80 / item"},
+  {id:"trial",  t:"Try a new flavour & give feedback",p:300, tag:"+300 pts", full:true},
+];
+const REWARDS=[
+  ["Rakhi gift card ₹250","Festival",500],
+  ["Movie voucher ×2","Partner",800],
+  ["Silk personalised pack","Cadbury",600],
+  ["Festive hamper · Diwali edition","Featured",1500],
+];
+const SHOP=[
+  ["Dairy Milk 50g","₹45 · sampled ✓","../../mdlz/mini-prod-dairymilk.png"],
+  ["Cadbury &More Biscoff","₹120 · new launch","../../mdlz/opt/prod-biscoff.jpg"],
+  ["Twirl Golden Dipped","₹85 · limited edition","../../mdlz/opt/prod-twirl.jpg"],
+  ["Celebrations Premium","₹499 · festive gifting","../../mdlz/opt/srk-ad.jpg"],
+];
+const FLAVS=[
+  ["Cadbury &More Biscoff","New launch · caramelised biscuit","../../mdlz/opt/prod-biscoff.jpg"],
+  ["Twirl Golden Dipped","Limited edition · golden caramel","../../mdlz/opt/prod-twirl.jpg"],
+  ["Celebrations Premium","Festive gifting assortment","../../mdlz/opt/srk-ad.jpg"],
+];
+let tab="Home", done={}, redeemed={}, bought={}, sheet=null, toastT=null;
+let sUgc=null, sStars=5, sFlav=null, sTags={}, sShared=false, vTimer=null;
+let sCap="Silk Hazelnut break \u2728 #CadburyJoy #JoyClub";
+let sReview="Silkiest bar I've had \u2014 the new recipe melts differently. Bought a full pack the same week.";
+let sTrialFb="The biscuit pieces actually stay crunchy. Would buy for Diwali gifting.";
+function setVar(k,v){ if(k==="cap")sCap=v; else if(k==="rev")sReview=v; else sTrialFb=v; }
+
+function pts(){ return BASE+ACTS.reduce((a,x)=>a+(done[x.id]?x.p:0),0)-Object.values(redeemed).reduce((a,v)=>a+v,0); }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+function toast(m){ const o=document.querySelector(".toast"); if(o)o.remove(); clearTimeout(toastT);
+  const d=document.createElement("div"); d.className="toast"; d.textContent=m; document.getElementById("scr").appendChild(d);
+  toastT=setTimeout(()=>d.remove(),2200); }
+function award(id){ if(done[id])return; done[id]=true; const a=ACTS.find(x=>x.id===id); toast("+"+a.p+" pts credited · verified ✓"); }
+
+/* ─── tabs ─── */
+const ICONS={
+ Home:'<path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/>',
+ Shop:'<path d="M5 7h14l1 13H4z"/><path d="M9 7a3 3 0 0 1 6 0"/>',
+ Rewards:'<rect x="3.5" y="8.5" width="17" height="12" rx="1.5"/><path d="M3.5 12.5h17M12 8.5v12"/><path d="M12 8.5S10.5 4 8 4a2.2 2.2 0 0 0 0 4.5zM12 8.5S13.5 4 16 4a2.2 2.2 0 0 1 0 4.5z"/>',
+ Recipes:'<rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9 3.5v17"/>',
+ Profile:'<circle cx="12" cy="8.5" r="3.6"/><path d="M5 20.5c0-3.6 3.1-5.5 7-5.5s7 1.9 7 5.5"/>',
+};
+function drawTabs(){
+  document.getElementById("tabs").innerHTML=Object.keys(ICONS).map(k=>
+    '<button class="tb'+(tab===k?" on":"")+'" onclick="setTab(\''+k+'\')"><svg viewBox="0 0 24 24">'+ICONS[k]+'</svg>'+k+'</button>').join("");
+}
+function setTab(t){ tab=t; draw(); }
+
+/* ─── screens ─── */
+const ACT_IC={ugc:["📷","#FBE4F2"],review:["⭐","#F2F2F2"],refer:["👥","#E9E2F8"],receipt:["🧾","#E9E2F8"],trial:["★","#4F2170"]};
+function scrHome(){
+  const p=pts(), prog=Math.min(100,(p-0)/NEXT*100), left=Math.max(0,NEXT-p);
+  return '<div class="hero"><div class="g1">Good to see you again,</div><div class="g2">Meena!</div><div class="g3">Keep snacking. Keep earning.</div></div>'
+  +'<div class="ptscard"><div class="r1"><span><span class="crown">♛</span>GOLD MEMBER</span><span class="nx">NEXT: BLISS ›</span></div>'
+  +'<div class="big">'+p.toLocaleString("en-IN")+' pts</div>'
+  +'<div class="bar"><i style="width:'+prog+'%"></i></div>'
+  +'<div class="lbl">'+(left>0?left+" pts to <b style='color:#F2B123'>Bliss</b> · free festive hamper":"Bliss unlocked 🏆 · festive hamper ready")+'</div></div>'
+  +'<div class="sec">Participate &amp; earn</div>'
+  +'<div class="acts">'+ACTS.map(a=>{const ic=ACT_IC[a.id]||["★","#E9E2F8"];
+    return '<button class="act'+(a.full?" full":"")+(done[a.id]?" done":"")+'" onclick="open_(\''+a.id+'\')"><span class="ic" style="background:'+ic[1]+(a.full?";color:#fff":"")+'">'+ic[0]+'</span><span class="tx"><span class="t">'+a.t+'</span><span class="p">'+(done[a.id]?"✓ earned +"+a.p:a.tag)+'</span></span></button>';}).join("")+'</div>'
+  +'<div class="sec">Sample history</div>'
+  +'<div class="row"><img class="th" src="../../mdlz/mini-prod-dairymilk.png"/><div><div class="t">Dairy Milk sample</div><div class="s">Claimed 12 Jan 2026</div></div><span class="pill ok">Delivered</span></div>'
+  +'<div class="row"><img class="th" src="../../mdlz/opt/prod-biscoff.jpg"/><div><div class="t">Cadbury &amp;More Biscoff</div><div class="s">New launch trial · 28 Aug</div></div><span class="pill prog">'+(done.trial?"Delivered":"In progress")+'</span></div>'
+  +'<div style="font-size:11px;color:#9c94a8;line-height:1.5;margin-top:14px;text-align:center">One wallet · 14 Mondelez brands</div>';
+}
+function scrShop(){
+  return '<div class="banner"><div class="k">CURATED SHOPPING</div><div class="t">Find your favourites again</div><div class="s">Official brand stores &amp; trusted quick-commerce · straight to the products you sampled.</div></div>'
+  +'<div style="height:14px"></div>'
+  +SHOP.map((s,i)=>'<div class="row"><img class="th" src="'+s[2]+'"/><div><div class="t">'+s[0].replace(/&/g,"&amp;")+'</div><div class="s">'+s[1]+'</div></div><button class="buy'+(bought[i]?" got":"")+'" onclick="buy('+i+')">'+(bought[i]?"✓ Added":"Buy")+'</button></div>').join("")
+  +'<div style="font-size:11px;color:#9c94a8;text-align:center;margin-top:10px">BigBasket · Blinkit · Amazon · official store</div>';
+}
+function scrRewards(){
+  const p=pts();
+  return '<div style="display:flex;align-items:center;gap:10px"><div class="h1" style="flex:1">Rewards</div><div style="background:#E8A317;color:#2E1145;font-size:13px;font-weight:700;border-radius:999px;padding:9px 18px">'+p.toLocaleString("en-IN")+' pts</div></div>'
+  +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:16px;overflow:hidden;margin-top:14px">'
+  +'<div style="background:linear-gradient(135deg,#3F1A5E,#5B2A82);padding:16px 14px;color:#fff"><div style="font-size:10px;font-weight:700;letter-spacing:1.2px;color:#E8A317">FEATURED</div><div style="font-size:16px;font-weight:700;margin-top:8px;line-height:1.25">Festive hamper</div><div style="font-size:11px;opacity:0.85;margin-top:5px">1,500 pts · Diwali edition</div></div>'
+  +'<img src="../../mdlz/opt/gift-birthday.jpg" style="width:100%;height:100%;object-fit:cover;display:block"/></div>'
+  +'<div style="height:14px"></div>'
+  +REWARDS.map((r,i)=>'<div class="rw"><div><div class="t">'+r[0]+'</div><div class="s">'+r[1]+'</div></div>'
+    +'<button '+(redeemed[i]?'class="got"':(p<r[2]?"disabled":""))+' onclick="redeem('+i+','+r[2]+')">'+(redeemed[i]?"✓ Redeemed":r[2]+" pts")+'</button></div>').join("")
+  +'<div class="rw"><div><div class="t">Gold early access · festive sale</div><div class="s">Festival</div></div><div class="c">Tier perk</div></div>';
+}
+function scrRecipes(){
+  return '<div class="h1">Recipes</div>'
+  +'<div style="background:#fff;border-radius:16px;overflow:hidden;margin-top:14px;box-shadow:0 1px 2px rgba(30,15,60,0.05)">'
+  +'<img src="../../mdlz/opt/recipe-tiffin.jpg" style="width:100%;height:168px;object-fit:cover;display:block"/>'
+  +'<div style="padding:14px"><div style="font-size:16px;font-weight:700">Cheryl\'s Tiffin Cake</div><div style="font-size:11.5px;color:#8b8394;margin-top:4px">15 mins · 8 servings · Dairy Milk</div>'
+  +'<button class="btn gold" style="margin-top:12px;padding:12px" onclick="toast(\'Recipe opened · save it to earn +20 pts\')">View recipe</button></div></div>'
+  +[["Cold Coffee Dairy Milk Shake","5 mins · summer special"],["Biscoff-stuffed brownies","40 mins · with &More bar"],["Celebrations barfi remix","25 mins · festive"]]
+    .map(r=>'<div class="row" style="margin-top:10px"><div><div class="t">'+r[0].replace(/&/g,"&amp;")+'</div><div class="s">'+r[1]+'</div></div></div>').join("")
+  +'<div style="font-size:11px;color:#9c94a8;text-align:center;margin-top:12px">Post your bake with #JoyInTheKitchen · earn 250 pts</div>';
+}
+function scrProfile(){
+  return '<div class="h1">Profile</div><div style="font-size:12.5px;color:#6d6478;margin-top:4px">Your account and privacy controls.</div>'
+  +'<div class="pf" style="margin-top:14px">'
+  +[["Name","Meena Sharma"],["Email","meena.s@gmail.com"],["Phone","+91 98765 43210"],["Language","हिन्दी"]]
+    .map(f=>'<div class="f"><div class="k">'+f[0]+'</div><div class="v">'+f[1]+'</div></div>').join("")+'</div>'
+  +'<div class="row" style="margin-top:12px"><div class="t">Log out</div></div>'
+  +'<div class="sec">Manage your data</div>'
+  +'<div class="row"><div><div class="t">Export data</div><div class="s">Request a copy of the data linked to this account.</div></div></div>'
+  +'<div class="row" style="box-shadow:0 0 0 1.5px #F3D4D0 inset"><div><div class="t dang">Request data deletion</div><div class="s">DPDP-compliant erasure of your profile.</div></div></div>'
+  +'<div style="font-size:11px;color:#9c94a8;line-height:1.5;margin-top:12px;text-align:center">Consent ledger, opt-out and erasure handled by FreeStand on Mondelez\'s behalf.</div>';
+}
+
+/* ─── activity sheets ─── */
+function open_(id){ clearTimeout(vTimer); vTimer=null; sheet={id:id,step:0}; sUgc=null; sStars=5; sFlav=null; sTags={}; sShared=false; draw(); }
+function close_(){ clearTimeout(vTimer); vTimer=null; sheet=null; draw(); }
+function step(n){ if(sheet) sheet.step=n; draw(); }
+function verify(next,ms){ const id=sheet&&sheet.id; clearTimeout(vTimer);
+  vTimer=setTimeout(()=>{ vTimer=null; if(sheet&&sheet.id===id) step(next); }, ms||2200); }
+
+const SHEETS={
+ ugc:{title:"Post your Joy moment", render:s=>{
+   if(s.step===0) return '<div class="sh-p">Pick a photo with a Mondelez pack in frame and post it with the campaign tag.</div>'
+     +'<div class="gal">'+["../../mdlz/opt/ugc-1.jpg","../../mdlz/opt/ugc-2.jpg"].map((u,i)=>'<div class="g'+(sUgc===i?" sel":"")+'" onclick="pickUgc('+i+')"><img src="'+u+'"/>'+(sUgc===i?'<div class="ck">✓</div>':"")+'</div>').join("")+'</div>'
+     +'<div style="height:12px"></div><textarea class="ta" rows="2" id="ugc-cap" oninput="setVar(\'cap\',this.value)">'+esc(sCap)+'</textarea>'
+     +'<button class="btn" '+(sUgc===null?"disabled":"")+' onclick="step(1);verify(2)">Submit for review</button>';
+   if(s.step===1) return '<div class="sh-p">AI verification in progress · usually under 10 seconds.</div>'
+     +checks([["Pack detected in frame",1],["Campaign tag present",1],["Duplicate-image check",1],["Brand safety & NSFW screen",0]]);
+   return win("📸","UGC approved!",250,"Earned media for the brand, points for you. Your post is now in the campaign gallery.");
+ }},
+ review:{title:"Give feedback on Amazon", render:s=>{
+   if(s.step===0) return '<div class="sh-p">Review a product you actually sampled · we verify the review is live before crediting points.</div>'
+     +'<div class="row" style="box-shadow:none;border:1px solid #EDE7F4"><img class="th" src="../../mdlz/mini-prod-dairymilk.png"/><div><div class="t">Dairy Milk 50g</div><div class="s">Sampled 12 Jan · verified purchase</div></div></div>'
+     +'<div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#9c94a8;text-transform:uppercase;margin-top:6px">Your rating</div>'
+     +'<div class="stars">'+[1,2,3,4,5].map(n=>'<button class="'+(n<=sStars?"on":"")+'" onclick="setStars('+n+')">★</button>').join("")+'</div>'
+     +'<textarea class="ta" rows="4" id="rev-txt" placeholder="Write a few words about the taste, texture and whether you\'d buy it again…" oninput="setVar(\'rev\',this.value)">'+esc(sReview)+'</textarea>'
+     +'<button class="btn" onclick="step(1);verify(2)">Post on Amazon</button>';
+   if(s.step===1) return '<div class="sh-p">Checking your review on Amazon…</div>'
+     +checks([["Verified-purchase badge",1],["Review live on product page",1],["Rating & text captured",0]]);
+   return win("⭐","Review verified!",150,"Rating "+sStars+"/5 captured against your profile · it also feeds the brand's purchase-intent model.");
+ }},
+ refer:{title:"Refer a friend", render:s=>{
+   if(s.step===0) return '<div class="sh-p">Share your invite. You both earn when your friend\'s claim is verified.</div>'
+     +'<div class="code">JOY-MEENA-200</div>'
+     +'<div class="share">'
+     +'<button onclick="shareIt()"><span class="e">💬</span>WhatsApp</button>'
+     +'<button onclick="shareIt()"><span class="e">🔗</span>Copy link</button>'
+     +'<button onclick="shareIt()"><span class="e">✉️</span>Email</button></div>'
+     +'<div style="font-size:11px;color:#9c94a8;line-height:1.5;margin-top:14px;text-align:center">Referrer is only paid on a <b>verified claim</b> · no reward for a bare share.</div>';
+   if(s.step===1) return '<div class="sh-p">Invite shared ✓ · waiting for your friend to claim.</div>'
+     +checks([["Invite delivered on WhatsApp",1],["Friend opened the link",1],["Friend\'s claim verified",0]]);
+   return win("🤝","Referral verified!",200,"Priya claimed her sample at the Andheri stall · 200 pts to each of you, and she\'s now a Joy Club member too.");
+ }},
+ receipt:{title:"Upload receipt", render:s=>{
+   if(s.step===0) return '<div class="sh-p">Point the camera at your bill · we read the Mondelez lines automatically.</div>'
+     +'<div class="cam">'
+     +'<div class="brk" style="left:12px;top:12px;border-top:3px solid;border-left:3px solid;border-radius:6px 0 0 0"></div>'
+     +'<div class="brk" style="right:12px;top:12px;border-top:3px solid;border-right:3px solid;border-radius:0 6px 0 0"></div>'
+     +'<div class="brk" style="left:12px;bottom:12px;border-bottom:3px solid;border-left:3px solid;border-radius:0 0 0 6px"></div>'
+     +'<div class="brk" style="right:12px;bottom:12px;border-bottom:3px solid;border-right:3px solid;border-radius:0 0 6px 0"></div>'
+     +'<div class="receipt"><div class="c">BLINKIT</div><div class="c" style="font-weight:400">11 Sep 2026 · 19:42</div><div style="border-top:1px dashed #bbb;margin:6px 0"></div>'
+     +'<div class="l"><span>Dairy Milk 50g ×2</span><span>90</span></div><div class="l"><span>&amp;More Biscoff</span><span>120</span></div><div class="l"><span>Oreo 2-pack</span><span>60</span></div><div class="l"><span>Atta 5kg</span><span>168</span></div>'
+     +'<div style="border-top:1px dashed #bbb;margin:6px 0"></div><div class="l" style="font-weight:700"><span>TOTAL</span><span>438</span></div></div>'
+     +'<div class="scan"></div></div>'
+     +'<button class="shutter" onclick="step(1);verify(2,2400)" title="Capture"></button>'
+     +'<div style="font-size:11px;color:#9c94a8;text-align:center;margin-top:10px">Camera · tap the shutter to capture</div>';
+   if(s.step===1) return '<div class="sh-p">Reading the receipt…</div>'
+     +'<div class="ocr">BLINKIT · 11 Sep 2026<br/><b>Dairy Milk 50g ×2</b> … ₹90 ✓<br/><b>&amp;More Biscoff</b> … ₹120 ✓<br/><b>Oreo 2-pack</b> … ₹60 ✓<br/>Atta 5kg … ₹168 · not a Mondelez line</div>'
+     +'<div style="height:10px"></div>'+checks([["Store & date read",1],["3 Mondelez items matched",1],["Duplicate-receipt check",0]]);
+   return win("🧾","Receipt verified!",240,"3 qualifying items × 80 pts. Basket, SKUs, store and price paid are now on your profile · that's the purchase panel brands never had.");
+ }},
+ trial:{title:"Try a new flavour", render:s=>{
+   if(s.step===0) return '<div class="sh-p">Gold members get first taste of every launch. Pick one · it ships to your saved address, no form.</div>'
+     +FLAVS.map((f,i)=>'<div class="flav'+(sFlav===i?" sel":"")+'" onclick="pickFlav('+i+')"><img src="'+f[2]+'"/><div><div class="t">'+f[0].replace(/&/g,"&amp;")+'</div><div class="s">'+f[1]+'</div></div>'+(sFlav===i?'<div style="margin-left:auto;color:#4F2170;font-weight:700">✓</div>':"")+'</div>').join("")
+     +'<button class="btn" '+(sFlav===null?"disabled":"")+' onclick="step(1);verify(2,1800)">Claim my sample</button>';
+   if(s.step===1) return '<div class="sh-p">Claim confirmed · sample on its way to Palm Court, Bandra West.</div>'
+     +checks([["Address reused from profile",1],["Inventory reserved · FC-02",1],["Out for delivery",0]]);
+   if(s.step===2) return '<div class="sh-p">Delivered ✓ · now tell us how <b>'+FLAVS[sFlav][0].replace(/&/g,"&amp;")+'</b> was. Feedback completes the activity.</div>'
+     +'<div class="stars">'+[1,2,3,4,5].map(n=>'<button class="'+(n<=sStars?"on":"")+'" onclick="setStars('+n+')">★</button>').join("")+'</div>'
+     +'<div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#9c94a8;text-transform:uppercase">What stood out?</div>'
+     +'<div class="fbtags">'+["Texture","Sweetness","Crunch","Packaging","Value","Would gift it"].map(t=>'<button class="'+(sTags[t]?"on":"")+'" onclick="tog(\''+t+'\')">'+t+'</button>').join("")+'</div>'
+     +'<div style="height:10px"></div><textarea class="ta" rows="3" id="trial-fb" placeholder="Anything else?" oninput="setVar(\'fb\',this.value)">'+esc(sTrialFb)+'</textarea>'
+     +'<button class="btn" onclick="step(3)">Submit feedback</button>';
+   return win("🍫","New flavour tried!",300,"Sample claimed, delivered and reviewed · your profile now carries a fresh launch-trial signal for the next campaign.");
+ }},
+};
+function checks(list){
+  return '<div class="chk-list">'+list.map((c,i)=>'<div class="chk'+(c[1]?" ok":"")+'"><div class="ic">'+(c[1]?"✓":"")+'</div><div style="flex:1">'+c[0]+'</div>'+(c[1]?"":'<div class="spin"></div>')+'</div>').join("")+'</div>';
+}
+function win(em,t,p,s){
+  return '<div class="win"><div class="em">'+em+'</div><div class="t">'+t+'</div><div class="p">+'+p+' pts</div><div class="s">'+s+'</div></div>'
+    +'<button class="btn" onclick="finish()">Back to Joy Club</button>';
+}
+function pickUgc(i){ sUgc=i; draw(); }
+function setStars(n){ sStars=n; draw(); }
+function tog(t){ sTags[t]=!sTags[t]; draw(); }
+function pickFlav(i){ sFlav=i; draw(); }
+function shareIt(){ sShared=true; toast("Invite shared on WhatsApp"); step(1); verify(2,2400); }
+function finish(){ clearTimeout(vTimer); vTimer=null; award(sheet.id); sheet=null; draw(); }
+function buy(i){ bought[i]=!bought[i]; if(bought[i])toast("Added to your Blinkit basket"); draw(); }
+function redeem(i,c){ if(redeemed[i]){delete redeemed[i];} else if(pts()>=c){ redeemed[i]=c; toast(REWARDS[i][0]+" redeemed 🎁"); } draw(); }
+
+/* ─── right column content ─── */
+const chipBg=i=>["#F0E4F7","#FDF3DC","#DCE8F2"][i%3];
+const chips=a=>a.map((t,i)=>'<span class="chip" style="background:'+chipBg(i)+'">'+t+'</span>').join("");
+function exEnrolOld(){
+  return '<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">'
+  +'<div class="card" style="padding:15px 17px"><div class="hdr">Auto-enrollment, not sign-up</div>'
+  +'<div style="font-size:12.5px;line-height:1.6;color:#332b3c">The membership is created from the profile the sampler already built on WhatsApp · no form, no app download, no password. Gratification and loyalty live in one place.</div>'
+  +'<div style="margin-top:10px">'+chips(["0 extra taps","100 welcome points","Same identity"])+'</div></div>'
+  +'<div class="card" style="padding:15px 17px"><div class="hdr">One wallet · 14 brands</div>'
+  +'<div style="display:flex;flex-wrap:wrap;gap:5px">'+["Dairy Milk","Silk","Oreo","Bournvita","5 Star","Gems","Perk","Celebrations","Toblerone","Milka","Halls","Tang","Bournville","&More"].map((b,i)=>'<span style="font-size:10px;font-weight:600;padding:5px 9px;border-radius:999px;background:'+chipBg(i)+'">'+b.replace(/&/g,"&amp;")+'</span>').join("")+'</div>'
+  +'<div style="font-size:11px;color:#7a6a8c;margin-top:9px;line-height:1.5">A chocolate sampler becomes a Bournvita prospect without a second signup.</div></div>'
+  +'<div class="card" style="padding:15px 17px;grid-column:1 / -1"><div class="hdr">Enrollment funnel · last campaign</div>'
+  +'<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:11px">'
+  +[["61,208","samples delivered"],["56,311","auto-enrolled (92%)"],["38,904","earned ≥1 action"],["11,742","redeemed a reward"]].map((x,i)=>'<div style="border:1px solid #E9E2F2;border-radius:11px;padding:13px 10px;text-align:center;animation:fadeInUp 0.35s '+(i*0.08)+'s both"><div style="font-size:21px;font-weight:700;color:#4F2170">'+x[0]+'</div><div style="font-size:10.5px;color:#8b8394;margin-top:3px">'+x[1]+'</div></div>').join("")+'</div></div></div>';
+}
+function exActs(){
+  const rows=[["📸","Post UGC","+250","Pack, tag & duplicate checked"],["⭐","Amazon review","+150","Verified purchase, review live"],["🤝","Refer a friend","+200","Paid on friend's verified claim"],["🧾","Receipt upload","+80/item","OCR reads store, SKUs, price"],["🍫","Flavour trial","+300","Sample, then feedback"]];
+  return '<div class="card" style="padding:15px 17px"><div class="hdr">Five earn activities</div>'
+  +rows.map((r,i)=>'<div style="display:flex;gap:12px;align-items:center;padding:11px 12px;border-radius:10px;margin-bottom:7px;background:#FBF9FD;border:1px solid #EFE9F5;animation:fadeInUp 0.3s '+(i*0.07)+'s both"><div style="font-size:20px">'+r[0]+'</div><div style="width:124px;flex-shrink:0"><div style="font-size:13.5px;font-weight:600">'+r[1]+'</div><div style="font-size:12px;font-weight:700;color:#4F2170">'+r[2]+'</div></div><div style="flex:1;font-size:13px;color:#5a5064;line-height:1.4">'+r[3]+'</div></div>').join("")
+  +'<div style="font-size:13px;color:#7a6a8c;line-height:1.5;margin-top:4px">Points confirm after AI review.</div></div>';
+}
+function exRewards(){
+  return '<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">'
+  +'<div class="card" style="padding:15px 17px"><div class="hdr">Catalogue</div>'
+  +[["Rakhi gift card","500","46%"],["Movie voucher ×2","800","28%"],["Silk personalised","600","17%"],["Festive hamper","1,500","9%"]]
+    .map(r=>'<div style="display:flex;align-items:center;gap:10px;padding:10px 11px;border:1px solid #EFE9F5;border-radius:10px;margin-bottom:7px"><div style="flex:1;font-size:13.5px;font-weight:500">'+r[0]+'</div><div style="font-size:12.5px;font-weight:700;color:#4F2170">'+r[1]+' pts</div><div style="font-size:12px;color:#8b8394;width:38px;text-align:right">'+r[2]+'</div></div>').join("")
+  +'<div style="font-size:13px;color:#7a6a8c">Redemption choice is a signal.</div></div>'
+  +'<div class="card" style="padding:15px 17px"><div class="hdr">Tiers</div>'
+  +[["Joy Starter","0+","Welcome points"],["Joy Gold","1,000+","Early access · free pack"],["Joy Bliss","2,250+","Hampers · events"]]
+    .map((x,i)=>'<div style="padding:12px 13px;border-radius:10px;margin-bottom:8px;background:'+(i===1?"#F7F3FD":"#fff")+';border:1px solid '+(i===1?"#DCC9EC":"#EFE9F5")+'"><div style="font-size:14px;font-weight:700">'+x[0]+' <span style="font-size:11px;font-weight:700;color:#96670A;background:#FDF3DC;border-radius:999px;padding:2px 8px;margin-left:4px">'+x[1]+'</span></div><div style="font-size:12.5px;color:#8b8394;margin-top:3px">'+x[2]+'</div></div>').join("")
+  +'</div></div>';
+}
+function exSurface(){
+  return '<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">'
+  +'<div class="card" style="padding:15px 17px"><div class="hdr">Shop</div>'
+  +'<div style="font-size:13.5px;line-height:1.55;color:#332b3c">Re-purchase links for what they sampled · clicks are attributable.</div>'
+  +'<div style="margin-top:9px">'+chips(["BigBasket","Blinkit","Amazon"])+'</div></div>'
+  +'<div class="card" style="padding:15px 17px"><div class="hdr">Recipes</div>'
+  +'<div style="font-size:13.5px;line-height:1.55;color:#332b3c">Content they want · bakes come back as UGC worth 250 pts.</div></div>'
+  +'<div class="card" style="padding:15px 17px;grid-column:1 / -1"><div class="hdr">Profile · consent</div>'
+  +'<div style="font-size:13.5px;line-height:1.55;color:#332b3c">Export and deletion in the app, not a legal PDF.</div>'
+  +'<div style="margin-top:9px">'+chips(["Consent ledger","One-tap opt-out","DPDP erasure","Hindi"])+'</div></div></div>';
+}
+function exEnrol(){
+  return '<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">'
+  +'<div class="card" style="padding:15px 17px"><div class="hdr">No sign-up</div>'
+  +'<div style="font-size:13.5px;line-height:1.55;color:#332b3c">Membership is created from the WhatsApp profile. No form, no app, no password.</div>'
+  +'<div style="margin-top:10px">'+chips(["0 extra taps","100 welcome pts"])+'</div></div>'
+  +'<div class="card" style="padding:15px 17px"><div class="hdr">One wallet · 14 brands</div>'
+  +'<div style="display:flex;flex-wrap:wrap;gap:5px">'+["Dairy Milk","Silk","Oreo","Bournvita","5 Star","Gems","Celebrations","Toblerone","&More"].map((b,i)=>'<span style="font-size:11px;font-weight:600;padding:5px 9px;border-radius:999px;background:'+chipBg(i)+'">'+b.replace(/&/g,"&amp;")+'</span>').join("")+'</div></div>'
+  +'<div class="card" style="padding:15px 17px;grid-column:1 / -1"><div class="hdr">Last campaign</div>'
+  +'<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:11px">'
+  +[["61,208","delivered"],["56,311","enrolled · 92%"],["38,904","earned pts"],["11,742","redeemed"]].map((x,i)=>'<div style="border:1px solid #E9E2F2;border-radius:11px;padding:13px 10px;text-align:center"><div style="font-size:23px;font-weight:700;color:#4F2170">'+x[0]+'</div><div style="font-size:11.5px;color:#8b8394;margin-top:3px">'+x[1]+'</div></div>').join("")+'</div></div></div>';
+}
+const STEPS=[
+ {tab:"Home",hint:false,extra:exEnrol,
+  t:"Auto-enrollment into Mondelez Joy Club",
+  s:"Every verified sampler joins the moment their claim is confirmed · points, tier and sample history at <b>joy.cadbury.in</b>.",
+  n:[["1","One program, 14 brands."],["2","Gold · 625 pts from Bliss."]]},
+ {tab:"Home",hint:true,extra:exActs,
+  t:"Participate &amp; earn · every activity is live",
+  s:"Tap any activity · each one runs its real flow: photo upload, Amazon review, share sheet, receipt camera, flavour trial.",
+  n:[["1","Points credit only after verification."],["2","Every action returns usable data."]]},
+ {tab:"Rewards",hint:false,extra:exRewards,
+  t:"Redeem · where points become repeat purchase",
+  s:"Gift cards, vouchers and festive hampers. Redeem on the phone · options unlock with the balance.",
+  n:[["1","Redemption choice is a signal."],["2","Starter → Gold → Bliss keeps them earning."]]},
+ {tab:"Shop",hint:false,extra:exSurface,
+  t:"Shop, recipes &amp; data control",
+  s:"Re-purchase links, recipe content and one-tap consent controls · all in the same app.",
+  n:[["1","Tab bar: Home · Shop · Rewards · Recipes · Profile."],["2","Re-purchase clicks are attributable per SKU."]]},
+];
+
+function draw(){
+  document.getElementById("body").innerHTML =
+    tab==="Home"?scrHome(): tab==="Shop"?scrShop(): tab==="Rewards"?scrRewards(): tab==="Recipes"?scrRecipes(): scrProfile();
+  drawTabs();
+  const old=document.getElementById("ovl"); if(old)old.remove();
+  if(sheet){
+    const d=document.createElement("div"); d.className="ovl"; d.id="ovl";
+    d.innerHTML='<div class="sheet"><div class="sh-head"><div class="t">'+SHEETS[sheet.id].title+'</div><button class="x" onclick="close_()">✕</button></div>'+SHEETS[sheet.id].render(sheet)+'</div>';
+    document.getElementById("scr").appendChild(d);
+  }
+}
+const SUBS=[
+ ["ugc",0],["ugc",1],["ugc",2],
+ ["receipt",0],["receipt",1],["receipt",2],
+ ["refer",0],["refer",1],["refer",2]
+];
+function preset(id){
+ if(id==="ugc"){ if(sUgc===null)sUgc=0; if(!sCap)sCap="Joy in every bite 🍫 #MondelezJoyClub"; }
+ if(id==="review"&&!sStars)sStars=5;
+ if(id==="trial"&&sFlav===null)sFlav=0;
+}
+function show(){
+  const raw=parseFloat(location.hash.slice(1)||"0")||0;
+  const i=Math.min(Math.max(0,Math.floor(raw)),STEPS.length-1);
+  const sub=Math.max(0,Math.round((raw-Math.floor(raw))*10));
+  const s=STEPS[i];
+  let wantSheet=null;
+  if(i===1&&sub>0&&SUBS[sub-1]){
+    const S=SUBS[sub-1]; preset(S[0]);
+    if(S[1]>=2){ const a=ACTS.find(x=>x.id===S[0]); if(a)done[a.id]=true; }
+    wantSheet={id:S[0],step:S[1]};
+  }
+  document.getElementById("head").innerHTML=s.t;
+  document.getElementById("sub").innerHTML=s.s;
+  document.getElementById("note").innerHTML=s.n.map(n=>'<div class="n"><span class="b">'+n[0]+'</span><span>'+n[1]+'</span></div>').join("");
+  document.getElementById("extra").innerHTML=s.extra?s.extra():"";
+  document.getElementById("hint").style.display=(s.hint&&!wantSheet)?"block":"none";
+  tab=s.tab; sheet=wantSheet; clearTimeout(vTimer); vTimer=null; draw();
+}
+window.addEventListener("hashchange",show); show();
+</script>
+</body></html>

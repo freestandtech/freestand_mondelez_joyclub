@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Data recall — everything comes back to Mondelez</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="strat.css">
+<style>
+.src3{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;flex-shrink:0}
+.src{background:#fff;border:1px solid #E3E7EF;border-radius:13px;padding:12px 14px;animation:fadeInUp 0.4s both}
+.src .bn{font-size:15px;font-weight:800;letter-spacing:-0.3px}
+.src .stag{font-size:10.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-top:3px}
+.src .li{font-size:11.5px;color:#374151;font-weight:600;margin-top:7px;line-height:1.5}
+.merge{display:grid;grid-template-columns:1fr 84px 1fr;align-items:center;gap:10px;flex:1;min-height:0}
+.mcard{background:#fff;border:1px solid #E3E7EF;border-radius:14px;padding:13px 16px;height:100%;display:flex;flex-direction:column}
+.mcard .h{font-size:12.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:#8A93A3;margin-bottom:9px}
+.arrows{display:flex;flex-direction:column;align-items:center;gap:5px}
+.arrows .lb{font-size:9px;font-weight:800;letter-spacing:1px;color:#8A93A3;text-align:center;line-height:1.3}
+.use{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;flex:1;min-height:0}
+.ucard{background:#fff;border:1px solid #E3E7EF;border-radius:14px;padding:13px 15px;display:flex;flex-direction:column;animation:fadeInUp 0.4s both}
+.ucard .ic{width:36px;height:36px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ucard .t{font-size:15.5px;font-weight:800;letter-spacing:-0.3px;margin-top:10px;line-height:1.15}
+.ucard .s{font-size:12px;color:#5B6472;font-weight:500;margin-top:5px;line-height:1.45;flex:1}
+.ucard .m{margin-top:auto;display:flex;align-items:baseline;gap:7px;padding-top:9px}
+.ucard .m .v{font-size:23px;font-weight:800;letter-spacing:-1px;line-height:1}
+.ucard .m .l{font-size:10.5px;font-weight:700;color:#8A93A3}
+</style>
+</head><body>
+<div id="__asset-preload" style="display:none" aria-hidden="true"><img data-asset="../../mdlz/lite-fs-logo.png" src="../../mdlz/lite-fs-logo.png" alt="" /><img data-asset="../../mdlz/lite-mdlz-logo.png" src="../../mdlz/lite-mdlz-logo.png" alt="" /></div>
+<script>
+(function(){var MAP={};function build(){var box=document.getElementById("__asset-preload");if(!box)return;[].forEach.call(box.querySelectorAll("img[data-asset]"),function(im){var k=im.getAttribute("data-asset"),v=im.getAttribute("src");if(v&&v!==k)MAP[k]=v;});}
+function fixOne(el){var s=el.getAttribute("src")||"";if(MAP[s])el.setAttribute("src",MAP[s]);}
+function sweep(root){if(!root||!root.querySelectorAll)return;if(root.tagName==="IMG")fixOne(root);[].forEach.call(root.querySelectorAll("img"),fixOne);}
+build();sweep(document);new MutationObserver(function(m){for(var i=0;i<m.length;i++){if(m[i].type==="attributes"&&m[i].target.tagName==="IMG")fixOne(m[i].target);for(var j=0;j<m[i].addedNodes.length;j++)sweep(m[i].addedNodes[j]);}}).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:["src"]});})();
+</script>
+<template id="__bundler_thumbnail" data-bg-color="#052762">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#052762"/><g fill="none" stroke="#E4A400" stroke-width="16"><path d="M200 220h300M200 320h300M200 420h300"/><path d="M520 320h140"/><rect x="680" y="220" width="320" height="200" rx="20"/></g><text x="600" y="640" font-family="Arial,sans-serif" font-size="42" font-weight="700" fill="#fff" text-anchor="middle">Data recall</text></svg>
+</template>
+<div id="topbar">
+  <img class="md" src="../../mdlz/lite-mdlz-logo.png" alt="Mondelez"/>
+  <div class="t" id="bar-title"></div>
+  <img class="fs" src="../../mdlz/lite-fs-logo.png" alt="FreeStand"/>
+</div>
+<div id="rail"></div>
+<div id="stage"></div>
+<div id="caption"><div class="tag" id="cap-tag"></div><div class="tt" id="cap-t"></div><div class="ss" id="cap-s"></div></div>
+<script src="strat.js"></script>
+<script>
+const AC="#0A49B7";
+const arw='<svg width="72" height="14" viewBox="0 0 72 14" fill="none"><line x1="2" y1="7" x2="58" y2="7" stroke="#B9CBE8" stroke-width="2.6" stroke-dasharray="7 6" style="animation:dashmove 1.3s linear infinite"/><path d="M58 2l12 5-12 5z" fill="#B9CBE8"/></svg>';
+window.PAGE={
+ title:"Data recall — every enrollment comes back to Mondelez",
+ accent:AC,
+ steps:[
+ {label:"What each enrollment returned",
+  full:()=>'<div style="flex:1;display:flex;flex-direction:column;gap:12px">'
+   +'<div><div class="kick" style="color:'+AC+'">Data recall · step 1</div><div class="head">Three enrollment strategies, three different data sets</div></div>'
+   +'<div class="src3">'
+   +[["Bournvita","#B4591B","#FDF1E6","Digital sampling → receipt streak","Child age · household size · current brand · 5 verified purchases · store &amp; basket · price sensitivity"],
+     ["Cadbury","#4F2170","#F3EAFA","Receipt cashback → participation","UPI handle · SKU &amp; basket · store chain · UGC &amp; handles · referral graph · review sentiment"],
+     ["Biscoff × Minions","#C0392B","#FDECEA","IPL drop → referral gate","Second-screen behaviour · referral network of 9.4 · new-to-brand flag · drop responsiveness · city heat"]]
+     .map((s,i)=>'<div class="src" style="animation-delay:'+(i*0.08)+'s;border-top:3px solid '+s[1]+'"><div class="bn">'+s[0]+'</div><div class="stag" style="color:'+s[1]+'">'+s[3]+'</div><div class="li">'+s[4]+'</div></div>').join("")
+   +'</div>'
+   +'<div class="merge">'
+   +'<div class="mcard"><div class="h">Collected across the three enrollments</div>'
+   +bars([["Bournvita profiles",41208,"#B4591B"],["Cadbury members",169624,"#4F2170"],["Biscoff drop profiles",93600,"#C0392B"],["Overlap (multi-brand)",38402,"#E4A400"]],180000)
+   +'<div style="margin-top:auto;padding-top:10px;font-size:12.5px;font-weight:700;color:#052762">266,030 net-new consented profiles · 19 attributes average</div></div>'
+   +'<div class="arrows">'+arw+'<div class="lb">IDENTITY<br/>RESOLUTION</div>'+arw+'</div>'
+   +'<div class="mcard"><div class="h">Merged with what Mondelez already has</div>'
+   +chk([["9.2M existing CRM records","Sparse — often just a name and a phone number"],["Enriched against the new 1PD","Address, geo, affluence, SKU affinity and CLTV attached"],["Deduped by the address agent","Multi-model consensus removes variants of the same household"],["Written back consent-scoped","Straight into Mondelez’s CDP, mapped to its own schema"]],AC)
+   +'</div></div></div>',
+  cap:["DATA RECALL","What each enrollment strategy returned","266k net-new profiles"]},
+
+ {label:"How the data gets used",
+  full:()=>'<div style="flex:1;display:flex;flex-direction:column;gap:12px">'
+   +'<div><div class="kick" style="color:'+AC+'">Data recall · step 2</div><div class="head">Then media stops guessing</div>'
+   +'<div class="sub">The same profiles that claimed, bought and shared become the targeting, suppression and measurement layer for every campaign that follows.</div></div>'
+   +'<div class="use">'
+   +[["🎯","Sharper targeting","Real buyers replace interest proxies. Lookalikes are seeded from receipt-verified purchasers, not page-likers.","#0A49B7","#EAF0FB","2.4×","match quality"],
+     ["💸","Lower CAC","Referral and drop mechanics acquire at a fraction of paid media, and suppression stops paying twice for the same household.","#128C4A","#E9FBF0","₹11–92","CAC range"],
+     ["📈","Measurable ROI","Receipts close the loop from impression to purchase — ROAS is computed on verified sales, not modelled ones.","#B4591B","#FDF1E6","3.8×","verified ROAS"],
+     ["🔁","Owned re-engagement","Magic Flow runs the next 12 months on WhatsApp at a fraction of media CPMs — no auction, no intermediary.","#4F2170","#F3EAFA","₹0.4","per re-engagement"]]
+     .map((u,i)=>'<div class="ucard" style="animation-delay:'+(i*0.08)+'s;border-top:3px solid '+u[3]+'"><div class="ic" style="background:'+u[4]+';font-size:18px">'+u[0]+'</div><div class="t">'+u[1]+'</div><div class="s">'+u[2]+'</div><div class="m"><span class="v" style="color:'+u[3]+'">'+u[5]+'</span><span class="l">'+u[6]+'</span></div></div>').join("")
+   +'</div>'
+   +'<div style="display:grid;grid-template-columns:1.3fr 1fr;gap:12px;flex:0 0 190px">'
+   +pan("Media efficiency before vs after the 1PD layer",bars([["CAC · paid only",92,"#9AA3B2"],["CAC · blended with referral",38,"#0A49B7"],["CPM · WhatsApp re-engage",4,"#128C4A"],["ROAS · modelled",1.6,"#9AA3B2"],["ROAS · receipt-verified",3.8,"#B4591B"]],100))
+   +pan("Where the audience goes next",chk([["Meta &amp; Google audience match","~68% match rate on hashed identifiers"],["CPAS &amp; quick-commerce","Retail media aimed at proven basket behaviour"],["Suppression lists","Stop spending on households already converted"]],AC))
+   +'</div></div>',
+  cap:["DATA RECALL","Sharper targeting, lower CAC, verified ROAS","One 1PD layer under all media"]},
+]};
+mountStrat();
+</script>
+</body></html>
